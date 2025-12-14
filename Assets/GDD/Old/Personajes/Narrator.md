@@ -1,0 +1,2 @@
+- Cocky
+- Tinderbox soldier

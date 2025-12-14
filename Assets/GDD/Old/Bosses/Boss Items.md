@@ -1,0 +1,1 @@
+Matas al boss, te da a elegir entre 3 boons específicos de un pool.
