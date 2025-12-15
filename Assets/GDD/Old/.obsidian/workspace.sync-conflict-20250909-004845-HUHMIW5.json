@@ -1,0 +1,239 @@
+{
+  "main": {
+    "id": "78ef3cf500862c22",
+    "type": "split",
+    "children": [
+      {
+        "id": "ccc681db277440f1",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "34a35e051f3c516f",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "empty",
+              "state": {},
+              "pinned": true,
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          },
+          {
+            "id": "67385c55f2452d93",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "GDD.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "GDD"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "09b7b71c73a98fda",
+    "type": "split",
+    "children": [
+      {
+        "id": "1946cd25153d9341",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "76226e0074f3a7ba",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "7a1e1000e7ce2ea2",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "27963ad49e2ffd96",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 313.5
+  },
+  "right": {
+    "id": "bdfec3516b08d627",
+    "type": "split",
+    "children": [
+      {
+        "id": "0fa955f9ce7d4272",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "bce74ab0eaa6830d",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Tesis/Trinkets/Manzana Envenenada.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Manzana Envenenada"
+            }
+          },
+          {
+            "id": "27d7782c600ee549",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "GDD.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": false
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from GDD"
+            }
+          },
+          {
+            "id": "4fe177d2d6f7e1a6",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "7b12aabc049abc88",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "GDD.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of GDD"
+            }
+          },
+          {
+            "id": "eaa96dccde8e6e59",
+            "type": "leaf",
+            "state": {
+              "type": "peerdraft-share-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Your Peerdraft Shares"
+            }
+          }
+        ],
+        "currentTab": 4
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "bases:Create new base": false,
+      "switcher:Open quick switcher": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "graph:Open graph view": false,
+      "system3-relay:Relay": false,
+      "peerdraft:Show my Peerdraft Shares": false
+    }
+  },
+  "active": "67385c55f2452d93",
+  "lastOpenFiles": [
+    "Untitled.base",
+    "Untitled 1.base",
+    "GDD.md",
+    "Enemigos.md",
+    "Amulets.md",
+    "Abuela.md",
+    "2025-07-30.md",
+    "Tesis/Mapas/Mapas.md",
+    "Tesis/To Do List.md",
+    "Tesis/Bosses/Bosses.md",
+    "Tesis/Bosses/Boss Items.md",
+    "Tesis/Gameplay.md",
+    "Tesis/Personajes/La Bruja.md",
+    "Tesis/Bosses/Ricitos de Oro.md",
+    "Tesis/Bosses/El Soldadito de Plomo.md",
+    "Tesis/Bosses/El Flautista de Hamelin.md",
+    "Daggerheart/Argent.md",
+    "Daggerheart/Silvaren Glintveil.md",
+    "Ideas/Ideas Enemigos.md",
+    "Ideas/Ideas Objetos.md",
+    "Ideas/Ideas Trinkets.md",
+    "Ideas/Ideas Armas.md",
+    "Tesis/Bosses/La Sirenita.md",
+    "Tesis/Bosses/Rapunzel.md",
+    "Tesis/Bosses/The Author.md",
+    "Tesis/Bosses/Tres Osos.md",
+    "Tesis/Trinkets/Manzana Envenenada.md",
+    "Ideas/Ideas Objetos",
+    "Ideas",
+    "Tesis/Narrativa/Historias",
+    "Tesis/Items/Armas",
+    "Tesis/Items",
+    "Tesis/Trinkets",
+    "Untitled 1.canvas",
+    "Untitled.canvas",
+    "Tesis/Bosses",
+    "Tesis/Enemigos",
+    "Tesis/Mecánicas",
+    "Lamb-idle-up_(2).webp"
+  ]
+}
