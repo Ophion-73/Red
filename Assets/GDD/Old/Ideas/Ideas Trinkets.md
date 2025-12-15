@@ -1,0 +1,7 @@
+- Diente de Lobo - Daño al animal
+- Alguna referencia a la mamá de caperucita - La canasta de mamá
+	- Te deja equipar más cosas
+- Serpiente Blanca
+	- Servant - Controlar animales?
+	- Hormigas, peces, cuervos
+	- Build bardo
