@@ -113,6 +113,16 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Personajes/Hada Madrina.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Hada Madrina"
+            }
+          },
+          {
+            "id": "57643a61778a41c6",
                 "file": "Tesis/Gameplay.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
@@ -137,6 +147,45 @@
             }
           },
           {
+            "id": "22255f592b6379df",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "9833629ccae55d48",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Personajes/Hada Madrina.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Hada Madrina"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
             "id": "7b12aabc049abc88",
             "type": "leaf",
             "state": {
@@ -176,6 +225,21 @@
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "6e0372db1229f5e4",
+  "lastOpenFiles": [
+    "Mecánicas/Trinkets.md",
+    "Narrativa/Historias/Historias.md",
+    "Personajes/7 Enanos.md",
+    "Personajes/Hada Madrina.md",
+    "Personajes/El Lobo.md",
+    "Personajes/Caperucita.md",
+    "Personajes/La Bruja.md",
+    "Trinkets/Manzana Envenenada.md",
+    "Gameplay.md",
+    "To Do List.md"
       "graph:Open graph view": false,
       "peerdraft:Show my Peerdraft Shares": false
     }
