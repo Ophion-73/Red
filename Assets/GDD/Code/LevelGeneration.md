@@ -1,63 +1,63 @@
-# Algoritmo de Generación de Nievel
+# Level Generation Algorithm
 
-## FASE 1: Preparación
+## PHASE 1: Preparation
 
-### Paso 1: Creación de la Escena
-* Crear una nueva escena en Unity llamada `Level`.
-* Crear un GameObject vacío en la jerarquía llamado `GeneratorManager`. Este será el cerebro del sistema.
+### Step 1: Scene Creation
+* Create a new scene in Unity named `Level`.
+* Create an empty GameObject in the hierarchy named `GeneratorManager`. This will be the brain of the system.
 
-### Paso 2: Sistema de Datos (ScriptableObjects)
-* Crear un script llamado `EscenarioData.cs`. 
-* Este archivo permitirá crear archivos de datos (uno para cada mapa que se necesite).
-* **Campos necesarios:**
-    * `Nombre del Escenario` (String)
-    * `Prefab Sala Inicial` (GameObject)
-    * `Pool de Salas de Combate` (Lista de GameObjects)
-    * `Prefab Sala de Jefe` (GameObject)
+### Step 2: Data System (ScriptableObjects)
+* Create a script named `ScenarioData.cs`. 
+* This file will allow for the creation of data files (one for each map needed).
+* **Required fields:**
+    * `Scenario Name` (String)
+    * `Initial Room Prefab` (GameObject)
+    * `Combat Room Pool` (List of GameObjects)
+    * `Boss Room Prefab` (GameObject)
 
-### Paso 3: Preparación de los Prefabs (Salas)
-* Diseñar las salas en 2.5D.
-* Cada sala debe tener un objeto vacío de entrada y salida.
-
----
-
-## FASE 2: Programación del Algoritmo (C#)
-
-### Paso 4: Crear la clase `LevelGenerator`
-Crear un script de C# y definir las variables principales:
-* Referencia al `EscenarioData` actual.
-* Contador de salas generadas (int).
-* Límite de salas.
-
-### Paso 5: Lógica de Conexión
-El algoritmo debe realizar las siguientes acciones:
-
-1.  **Instanciar Inicio:** Colocar la sala inicial en la posición (0,0,0).
-2.  **Bucle de Generación:**
-    * Tomar la salida de la última sala colocada.
-    * Elegir una sala aleatoria de la lista de Salas de Combate.
-    * Instanciar la nueva sala.
-    * **Alineación de la nueva sala:** Mover la nueva sala para que su entrada coincida exactamente en posición y rotación con la salida de la sala anterior.
-3.  **Colocar Boss:** Al llegar a la ultima sala, usar la sala del Boss.
+### Step 3: Prefab Preparation (Rooms)
+* Design the rooms in 2.5D.
+* Each room must have an empty object for entry and exit.
 
 ---
 
-## FASE 3: Contenido Aleatorio y Navegación
+## PHASE 2: Algorithm Programming (C#)
 
-### Paso 6: Spawning del contenido de la Sala
-* Dentro de cada prefab de sala, crear puntos vacíos llamados `SpawnPoint` (estos objetos se deben de colocar como hijos en un empty para mantener el orden).
-* Crear un script `RoomContent.cs` que se ejecute al ser instanciada la sala:
-    * Elegir aleatoriamente entre instanciar: Un enemigo, un cofre de recompensa o un obstáculo destructible.
+### Step 4: Create the `LevelGenerator` class
+Create a C# script and define the main variables:
+* Reference to the current `ScenarioData`.
+* Generated room counter (int).
+* Room limit.
 
-### Paso 7: Generación de NavMesh
-* Como el mapa cambia cada vez, la malla de navegación debe ser dinámica.
-* Al finalizar el bucle de generación que se haga el bake del NavMesh.
+### Step 5: Connection Logic
+The algorithm must perform the following actions:
+
+1.  **Instantiate Start:** Place the initial room at position (0,0,0).
+2.  **Generation Loop:**
+    * Take the exit of the last placed room.
+    * Choose a random room from the Combat Room list.
+    * Instantiate the new room.
+    * **New room alignment:** Move the new room so that its entrance exactly matches the position and rotation of the previous room's exit.
+3.  **Place Boss:** Upon reaching the last room, use the Boss room.
 
 ---
 
-## FASE 4: Flujo de Juego
+## PHASE 3: Random Content and Navigation
 
-### Paso 8: Transición de Escenarios
-1.  Crear un `GameManager` que lleve el conteo de los escenarios.
-2.  Cuando el jugador derrota al jefe, caminar a la salida de la sala (estilo Mario Bros.).
-3.  Al pasar por la salida, el `GameManager` cambia el `EscenarioData` al siguiente en la lista y reinicia el proceso de generación.
+### Step 6: Room Content Spawning
+* Inside each room prefab, create empty points called `SpawnPoint` (these objects should be placed as children in an empty to maintain order).
+* Create a script `RoomContent.cs` that executes when the room is instantiated:
+    * Randomly choose between instantiating: An enemy, a reward chest, or a destructible obstacle.
+
+### Step 7: NavMesh Generation
+* Since the map changes every time, the navigation mesh must be dynamic.
+* Once the generation loop is finished, perform the NavMesh bake.
+
+---
+
+## PHASE 4: Gameplay Flow
+
+### Step 8: Scenario Transition
+1.  Create a `GameManager` that keeps track of the scenarios.
+2.  When the player defeats the boss, walk to the room's exit (Mario Bros. style).
+3.  Upon passing through the exit, the `GameManager` changes the `ScenarioData` to the next one in the list and restarts the generation process.
