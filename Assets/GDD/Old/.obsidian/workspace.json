@@ -1,56 +1,41 @@
 {
   "main": {
-    "id": "1989c573873301ce",
+    "id": "78ef3cf500862c22",
     "type": "split",
     "children": [
       {
-        "id": "44a855236ec66090",
+        "id": "ccc681db277440f1",
         "type": "tabs",
         "children": [
           {
-            "id": "008423df8ba5cdaa",
+            "id": "78a1d8a0a9cbfcaf",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Tesis/Bosses/Boss Items.md",
+                "file": "Tesis/Personajes/7 Enanos.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Boss Items"
-            }
-          },
-          {
-            "id": "ca1c0b2f3b058b18",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Narrativa/SEQ. 1 (INTRODUCTION).md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "SEQ. 1 (INTRODUCTION)"
+              "title": "7 Enanos"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
   },
   "left": {
-    "id": "71660857eb8f0b9e",
+    "id": "09b7b71c73a98fda",
     "type": "split",
     "children": [
       {
-        "id": "0f18c193a6847b11",
+        "id": "1946cd25153d9341",
         "type": "tabs",
         "children": [
           {
-            "id": "2213ff97670359a4",
+            "id": "76226e0074f3a7ba",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -63,7 +48,7 @@
             }
           },
           {
-            "id": "fb01ca94e96b377b",
+            "id": "7a1e1000e7ce2ea2",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -80,7 +65,7 @@
             }
           },
           {
-            "id": "35d46c3c61e150f1",
+            "id": "27963ad49e2ffd96",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -93,23 +78,23 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 313.5
   },
   "right": {
-    "id": "8cefc9553332035d",
+    "id": "bdfec3516b08d627",
     "type": "split",
     "children": [
       {
-        "id": "4cfe4f69a0f0c816",
+        "id": "0fa955f9ce7d4272",
         "type": "tabs",
         "children": [
           {
-            "id": "78e5c44963315393",
+            "id": "bce74ab0eaa6830d",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Tesis/Bosses/Boss Items.md",
+                "file": "Tesis/Trinkets/Manzana Envenenada.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -119,25 +104,35 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Boss Items"
+              "title": "Backlinks for Manzana Envenenada"
             }
           },
           {
-            "id": "4fb49006ec3df5cf",
+            "id": "27d7782c600ee549",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Tesis/Bosses/Boss Items.md",
+                "file": "Personajes/Hada Madrina.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Boss Items"
+              "title": "Outgoing links from Hada Madrina"
             }
           },
           {
-            "id": "20d6c7971095332a",
+            "id": "57643a61778a41c6",
+                "file": "Tesis/Gameplay.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": false
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Gameplay"
+            }
+          },
+          {
+            "id": "4fe177d2d6f7e1a6",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -152,7 +147,7 @@
             }
           },
           {
-            "id": "7dd46bc17887b1a4",
+            "id": "22255f592b6379df",
             "type": "leaf",
             "state": {
               "type": "all-properties",
@@ -166,32 +161,21 @@
             }
           },
           {
-            "id": "492996bd722c2d8d",
+            "id": "9833629ccae55d48",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "Tesis/Bosses/Boss Items.md",
+                "file": "Personajes/Hada Madrina.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Boss Items"
-            }
-          },
-          {
-            "id": "700d87789b886ff9",
-            "type": "leaf",
-            "state": {
-              "type": "fountain-sidebar",
-              "state": {},
-              "icon": "list-tree",
-              "title": "Table of contents of fountain script"
+              "title": "Outline of Hada Madrina"
             }
           }
-        ],
-        "currentTab": 5
+        ]
       }
     ],
     "direction": "horizontal",
@@ -202,37 +186,104 @@
     "hiddenItems": {
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
+            "id": "7b12aabc049abc88",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Tesis/Personajes/7 Enanos.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of 7 Enanos"
+            }
+          },
+          {
+            "id": "eaa96dccde8e6e59",
+            "type": "leaf",
+            "state": {
+              "type": "peerdraft-share-view",
+              "state": {},
+              "icon": "lucide-ghost",
+              "title": "peerdraft-share-view"
+            }
+          }
+        ],
+        "currentTab": 3
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "bases:Create new base": false,
+      "switcher:Open quick switcher": false,
       "canvas:Create new canvas": false,
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
-      "bases:Create new base": false,
-      "peerdraft:Show my Peerdraft Shares": false,
-      "obsidian-kanban:Create new board": false,
-      "fountain:New fountain document": false
+      "bases:Create new base": false
     }
   },
-  "active": "ca1c0b2f3b058b18",
+  "active": "6e0372db1229f5e4",
   "lastOpenFiles": [
-    "Narrativa/Untitled.fountain",
-    "Narrativa/Script Important.md",
-    "Narrativa/SEQ. 1 (INTRODUCTION).md",
-    "Narrativa/Pasted image 20251219221007.png",
-    "Pasted image 20251219161309.png",
-    "Narrativa",
-    "Bosses.meta",
-    "Bosses/New Text Document.txt.meta",
-    "Bosses/New Text Document.txt",
-    "Bosses",
+    "Mecánicas/Trinkets.md",
+    "Narrativa/Historias/Historias.md",
+    "Personajes/7 Enanos.md",
+    "Personajes/Hada Madrina.md",
+    "Personajes/El Lobo.md",
+    "Personajes/Caperucita.md",
+    "Personajes/La Bruja.md",
+    "Trinkets/Manzana Envenenada.md",
+    "Gameplay.md",
+    "To Do List.md"
+      "graph:Open graph view": false,
+      "peerdraft:Show my Peerdraft Shares": false
+    }
+  },
+  "active": "78a1d8a0a9cbfcaf",
+  "lastOpenFiles": [
+    "Tesis/Mecánicas/Trinkets.md",
     "Tesis/Gameplay.md",
-    "Tesis/To Do List.md",
-    "Tesis/Bosses/El Soldadito de Plomo.md",
-    "Tesis/Bosses/El Flautista de Hamelin.md",
+    "Ideas/Ideas Trinkets.md",
+    "Tesis/Bosses/The Author.md",
     "Tesis/Bosses/Bosses.md",
-    "Tesis/Bosses/Boss Items.md",
+    "GDD.md",
     "Notas/2025-07-30.md",
-    "da.md",
-    "DWDWD.md",
-    "Untitled"
+    "Notas",
+    "Tesis/Enemigos/Enemigos.md",
+    "Tesis/Enemigos",
+    "Tesis/Personajes/Abuela.md",
+    "Amulets.md",
+    "Daggerheart/Switch Withawick.md",
+    "Daggerheart/Silvaren Glintveil.md",
+    "Daggerheart/Argent.md",
+    "Ideas/Ideas Objetos.md",
+    "Ideas/Ideas Enemigos.md",
+    "Ideas/Ideas Armas.md",
+    "Tesis/Mapas/El Bosque.md",
+    "Tesis/Personajes/7 Enanos.md",
+    "Tesis/Narrativa/Basic Narrative.md",
+    "Tesis/Personajes/Caperucita.md",
+    "Tesis/Personajes/El Lobo.md",
+    "Tesis/Personajes/Hada Madrina.md",
+    "Tesis/Personajes/La Bruja.md",
+    "Tesis/Personajes/Narrator.md",
+    "Tesis/Personajes/The Three Aunts.md",
+    "Tesis/Personajes/Rumpelstiltskin.md",
+    "Daggerheart/~syncthing~Switch Withawick.md.tmp",
+    "~syncthing~2025-07-30.md.tmp",
+    "Ideas/~syncthing~Ideas Armas.md.tmp",
+    "~syncthing~GDD.md.tmp",
+    "Ideas/~syncthing~Ideas Objetos.md.tmp",
+    "Ideas/~syncthing~Ideas Trinkets.md.tmp",
+    "Ideas/~syncthing~Ideas Enemigos.md.tmp",
+    "~syncthing~Enemigos.md.tmp",
+    "Untitled 1.canvas",
+    "Untitled.canvas",
+    "Lamb-idle-up_(2).webp"
   ]
 }
