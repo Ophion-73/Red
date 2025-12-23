@@ -1,0 +1,194 @@
+.markdown-source-view.fountain {
+	/* Screenplay font. */
+	--fountain-font-family: "Courier Prime", "Courier New", "Courier", monospace;
+
+	/*
+	* Line widths for each token.
+	* Also determines left-right margins.
+	*/
+	--fountain-line-width: 60ch;
+	--fountain-character-line-width: 16ch;
+	--fountain-dialogue-line-width: 38ch;
+	--fountain-parenthetical-line-width: 29ch;
+
+	/* Color of text in %% Obsidian comment %% blocks and <!-- HTML comments --> (not set). */
+	/* --fountain-code-comment: */
+}
+
+.markdown-source-view.mod-cm6.is-readable-line-width.fountain .cm-sizer {
+	--file-line-width: var(--fountain-line-width);
+}
+
+/* ----------------------------- main tokens ------------------------------ */
+
+.markdown-source-view.fountain .cm-content .cm-fountain-scene-heading {
+		font-weight: var(--font-bold);
+	}
+
+.markdown-source-view.fountain .cm-content .cm-fountain-parenthetical,.markdown-source-view.fountain .cm-content .cm-fountain-character-extension,.markdown-source-view.fountain .cm-content .cm-fountain-lyrics {
+		font-style: italic;
+	}
+
+.markdown-source-view.fountain .cm-content .cm-fountain-transition {
+		font-weight: var(--font-bold);
+		text-align: right;
+	}
+
+.markdown-source-view.fountain .cm-content .cm-fountain-transition .cm-quote-1:not(.cm-formatting) {
+			color: var(--text-normal);
+		}
+
+.markdown-source-view.fountain .cm-content .cm-fountain-centered {
+		font-weight: var(--font-bold);
+		text-align: center;
+	}
+
+.markdown-source-view.fountain .cm-content .cm-fountain-centered .cm-quote-1:not(.cm-formatting) {
+			color: var(--text-normal);
+		}
+
+/* transition and centered tokens, must override Obsidian blockquote styles */
+
+.markdown-source-view.fountain .cm-content .cm-fountain-centered,.markdown-source-view.fountain .cm-content .cm-fountain-transition {
+		/* reset any styles set by plugins */
+		font-style: normal;
+		background-color: inherit;
+		/* set on element.style by blockquote */
+		text-indent: 0 !important;
+		padding-left: 0 !important;
+		/* remove left border */
+	}
+
+.markdown-source-view.fountain .cm-content .cm-fountain-centered::before {
+			display: none;
+		}
+
+.markdown-source-view.fountain .cm-content .cm-fountain-transition::before {
+			display: none;
+		}
+
+.markdown-source-view.fountain .cm-content .cm-fountain-character {
+		/* in themes like Minimal, width is overridden by a more specific selector. We will need to set the CSS Variable instead. */
+		--line-width: var(--fountain-character-line-width);
+		width: var(--fountain-character-line-width);
+	}
+
+body:not(.fountain-theme-fix) :is(.markdown-source-view.fountain .cm-content .cm-fountain-character) {
+			left: calc(
+				(var(--fountain-line-width) - var(--fountain-character-line-width)) / 2
+			);
+		}
+
+.markdown-source-view.fountain .cm-content .cm-fountain-lyrics,.markdown-source-view.fountain .cm-content .cm-fountain-dialogue {
+		--line-width: var(--fountain-dialogue-line-width);
+		width: var(--fountain-dialogue-line-width);
+	}
+
+body:not(.fountain-theme-fix) :is(.markdown-source-view.fountain .cm-content .cm-fountain-lyrics) {
+			left: calc(
+				(var(--fountain-line-width) - var(--fountain-dialogue-line-width)) / 2
+			);
+		}
+
+body:not(.fountain-theme-fix) :is(.markdown-source-view.fountain .cm-content .cm-fountain-dialogue) {
+			left: calc(
+				(var(--fountain-line-width) - var(--fountain-dialogue-line-width)) / 2
+			);
+		}
+
+.markdown-source-view.fountain .cm-content .cm-fountain-parenthetical {
+		--line-width: var(--fountain-parenthetical-line-width);
+		width: var(--fountain-parenthetical-line-width);
+	}
+
+body:not(.fountain-theme-fix) :is(.markdown-source-view.fountain .cm-content .cm-fountain-parenthetical) {
+			left: calc(
+				(
+						var(--fountain-line-width) -
+							var(--fountain-parenthetical-line-width)
+					) /
+					2
+			);
+		}
+
+/* ----------------------------- formatting ------------------------------- */
+
+/* FIXME */
+
+.markdown-source-view.fountain .cm-content .cm-fountain-boneyard,.markdown-source-view.fountain .cm-content .cm-fountain-formatting-boneyard-start,.markdown-source-view.fountain .cm-content .cm-fountain-formatting-boneyard-end,.markdown-source-view.fountain .cm-content .cm-formatting[class*="cm-fountain-formatting-"] {
+		color: var(--text-faint);
+	}
+
+.markdown-source-view.fountain .cm-content .cm-line > :not(.cm-formatting) {
+		--code-comment: var(--fountain-code-comment, var(--text-muted));
+	}
+
+.markdown-source-view.mod-cm6.fountain .cm-line:not(.cm-active) [class*="cm-fountain-formatting-"] {
+		display: none;
+	}
+
+.markdown-source-view.mod-cm6.fountain .cm-line:not(.cm-active) .cm-fountain-formatting-centered {
+		visibility: hidden;
+		display: inherit;
+	}
+
+/* for some reason, we need to re-declare this at the .cm-line level, since the declaration on .markdown-source-view.mod-cm6 .cm-scroller doesn't pick up the --font-text style */
+
+.markdown-source-view.mod-cm6 .cm-line[class*="cm-fountain-"]:not(.cm-fountain-synopsis):not(.cm-fountain-section) {
+		font-family: var(--fountain-font-family);
+	}
+
+/* ------------------------------ editor width ------------------------------ */
+
+/* * unconstrained: no styles */
+
+/* * left unconstrained */
+
+/* Disable for now until we have a fix for Minimal */
+
+/* &.fountain-left .cm-contentContainer {
+		max-width: var(--fountain-fixed-line-width);
+	} */
+
+.markdown-source-view.mod-cm6.fountain-center .cm-contentContainer {
+		/* * centered constrained */
+		width: var(--fountain-fixed-line-width);
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+/* ! Give option to suppress indents */
+
+/*
+- hidden
+- marked
+- unmarked
+*/
+
+.markdown-source-view.mod-cm6 .cm-line[class*="cm-fountain-"] .cm-indent::before {
+		display: inline-block;
+		content: "→";
+		font-family: var(--font-monospace);
+		color: var(--text-faint);
+	}
+
+.markdown-source-view.mod-cm6 .cm-line[class*="cm-fountain-"] .cm-indent {
+		/* display: none; */
+		-moz-tab-size: 2;
+		  -o-tab-size: 2;
+		     tab-size: 2;
+	}
+
+/* .markdown-source-view.mod-cm6.fountain {
+	--font-text-size: 12px;
+} */
+
+.is-mobile .markdown-source-view.mod-cm6.fountain {
+	--font-text-size: var(--font-ui-small);
+}
+
+/* smaller file margins on mobile */
+
+.is-mobile .markdown-source-view.mod-cm6.fountain .cm-scroller {
+	--file-margins: var(--size-4-8) var(--size-2-2);
+}

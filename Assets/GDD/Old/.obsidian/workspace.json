@@ -1,5 +1,24 @@
 {
   "main": {
+    "id": "66d587de83c898dc",
+    "type": "split",
+    "children": [
+      {
+        "id": "ed414b4640918c52",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "aeaf47357c92cba0",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Narrativa/SEQ. 1 (INTRODUCTION).md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "SEQ. 1 (INTRODUCTION)"
     "id": "f45619162aef3ff7",
     "type": "split",
     "children": [
@@ -23,6 +42,15 @@
     "direction": "vertical"
   },
   "left": {
+    "id": "0db23147c34a98af",
+    "type": "split",
+    "children": [
+      {
+        "id": "b8f5e4de94c30eb3",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "21e9d62fc014494c",
     "id": "48e907cbc4850fa8",
     "type": "split",
     "children": [
@@ -44,6 +72,7 @@
             }
           },
           {
+            "id": "a8848d77c2df6a3f",
             "id": "dfd16b79f6aa5c11",
             "type": "leaf",
             "state": {
@@ -61,6 +90,7 @@
             }
           },
           {
+            "id": "567cee92bc2f1b4d",
             "id": "fecc9709abc4d4e5",
             "type": "leaf",
             "state": {
@@ -77,6 +107,15 @@
     "width": 300
   },
   "right": {
+    "id": "9798719df63309dd",
+    "type": "split",
+    "children": [
+      {
+        "id": "affd3564f9aa6fde",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "51cdc28725e639c3",
     "id": "ac07e6dbc903030f",
     "type": "split",
     "children": [
@@ -90,6 +129,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Narrativa/SEQ. 1 (INTRODUCTION).md",
                 "file": "Tesis/Mapas/Mapas.md",
                 "collapseAll": false,
                 "extraContext": false,
@@ -100,6 +140,11 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
+              "title": "Backlinks for SEQ. 1 (INTRODUCTION)"
+            }
+          },
+          {
+            "id": "ea4649cb8ef7c948",
               "title": "Enlaces entrantes de Mapas"
             }
           },
@@ -109,11 +154,17 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Narrativa/SEQ. 1 (INTRODUCTION).md",
                 "file": "Tesis/Mapas/Mapas.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
+              "title": "Outgoing links from SEQ. 1 (INTRODUCTION)"
+            }
+          },
+          {
+            "id": "d5ee0c97a41398f9",
               "title": "Enlaces salientes de Mapas"
             }
           },
@@ -133,6 +184,7 @@
             }
           },
           {
+            "id": "5a70112942cd46ce",
             "id": "1cf837ceabed77bc",
             "type": "leaf",
             "state": {
@@ -147,17 +199,20 @@
             }
           },
           {
+            "id": "e8e2cb605eefbe0c",
             "id": "787dec1ca29ebac1",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
+                "file": "Narrativa/SEQ. 1 (INTRODUCTION).md",
                 "file": "Tesis/Mapas/Mapas.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
+              "title": "Outline of SEQ. 1 (INTRODUCTION)"
               "title": "Esquema de Mapas"
             }
           }
@@ -170,6 +225,23 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false,
+      "peerdraft:Show my Peerdraft Shares": false
+    }
+  },
+  "active": "aeaf47357c92cba0",
+  "lastOpenFiles": [
+    "Narrativa/Pasted image 20251219221007.png",
+    "Narrativa/Script Important.md",
+    "Narrativa/SEQ. 1 (INTRODUCTION).md",
+    "Narrativa/Untitled.fountain",
+    "Bosses.meta"
       "switcher:Abrir selector rápido": false,
       "graph:Abrir vista gráfica": false,
       "canvas:Crear nuevo lienzo": false,
