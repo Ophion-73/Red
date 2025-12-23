@@ -1,0 +1,1 @@
+player will be able to jump from 1 to 3 times, depending on upgrades

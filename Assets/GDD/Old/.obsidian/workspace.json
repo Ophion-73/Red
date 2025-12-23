@@ -19,6 +19,21 @@
               },
               "icon": "lucide-file",
               "title": "SEQ. 1 (INTRODUCTION)"
+    "id": "f45619162aef3ff7",
+    "type": "split",
+    "children": [
+      {
+        "id": "0582e759894c857b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "774b09d6d82ffa05",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Nueva pestaña"
             }
           }
         ]
@@ -36,6 +51,15 @@
         "children": [
           {
             "id": "21e9d62fc014494c",
+    "id": "48e907cbc4850fa8",
+    "type": "split",
+    "children": [
+      {
+        "id": "d24b56f1f83bb277",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c60873b09f7ebd49",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -44,11 +68,12 @@
                 "autoReveal": false
               },
               "icon": "lucide-folder-closed",
-              "title": "Files"
+              "title": "Explorador de archivos"
             }
           },
           {
             "id": "a8848d77c2df6a3f",
+            "id": "dfd16b79f6aa5c11",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -61,17 +86,18 @@
                 "sortOrder": "alphabetical"
               },
               "icon": "lucide-search",
-              "title": "Search"
+              "title": "Buscar"
             }
           },
           {
             "id": "567cee92bc2f1b4d",
+            "id": "fecc9709abc4d4e5",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
               "state": {},
               "icon": "lucide-bookmark",
-              "title": "Bookmarks"
+              "title": "Marcadores"
             }
           }
         ]
@@ -90,11 +116,21 @@
         "children": [
           {
             "id": "51cdc28725e639c3",
+    "id": "ac07e6dbc903030f",
+    "type": "split",
+    "children": [
+      {
+        "id": "e0d64b871439f378",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d335b1006376740b",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
                 "file": "Narrativa/SEQ. 1 (INTRODUCTION).md",
+                "file": "Tesis/Mapas/Mapas.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -109,11 +145,17 @@
           },
           {
             "id": "ea4649cb8ef7c948",
+              "title": "Enlaces entrantes de Mapas"
+            }
+          },
+          {
+            "id": "838e80ca5e4bee85",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
                 "file": "Narrativa/SEQ. 1 (INTRODUCTION).md",
+                "file": "Tesis/Mapas/Mapas.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
@@ -123,6 +165,11 @@
           },
           {
             "id": "d5ee0c97a41398f9",
+              "title": "Enlaces salientes de Mapas"
+            }
+          },
+          {
+            "id": "d6203cba7e2bd78c",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -133,11 +180,12 @@
                 "searchQuery": ""
               },
               "icon": "lucide-tags",
-              "title": "Tags"
+              "title": "Etiquetas"
             }
           },
           {
             "id": "5a70112942cd46ce",
+            "id": "1cf837ceabed77bc",
             "type": "leaf",
             "state": {
               "type": "all-properties",
@@ -147,22 +195,25 @@
                 "searchQuery": ""
               },
               "icon": "lucide-archive",
-              "title": "All properties"
+              "title": "Todas las propiedades"
             }
           },
           {
             "id": "e8e2cb605eefbe0c",
+            "id": "787dec1ca29ebac1",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
                 "file": "Narrativa/SEQ. 1 (INTRODUCTION).md",
+                "file": "Tesis/Mapas/Mapas.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
               "title": "Outline of SEQ. 1 (INTRODUCTION)"
+              "title": "Esquema de Mapas"
             }
           }
         ]
@@ -191,5 +242,26 @@
     "Narrativa/SEQ. 1 (INTRODUCTION).md",
     "Narrativa/Untitled.fountain",
     "Bosses.meta"
+      "switcher:Abrir selector rápido": false,
+      "graph:Abrir vista gráfica": false,
+      "canvas:Crear nuevo lienzo": false,
+      "daily-notes:Abrir la nota de hoy": false,
+      "templates:Insertar plantilla": false,
+      "command-palette:Abrir paleta de comandos": false,
+      "bases:Crear nueva base": false,
+      "peerdraft:Show my Peerdraft Shares": false
+    }
+  },
+  "active": "774b09d6d82ffa05",
+  "lastOpenFiles": [
+    "Tesis/Mapas/Mapas.md",
+    "Tesis/Mapas/El Bosque.md",
+    "Tesis/Narrativa/Historias/Historias.md",
+    "Tesis/Mapas/La Torre.md",
+    "Tesis/Mapas/La Casa de Dulce.md",
+    "Tesis/Mapas/La Cabaña.md",
+    "Tesis/Mapas/El Pueblo.md",
+    "Tesis/Mapas/El Castillo.md",
+    "Tesis/Mapas/El Mar.md"
   ]
 }
