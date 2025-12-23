@@ -9,7 +9,6 @@
   "tag-pane": true,
   "footnotes": false,
   "properties": true,
-  "properties": false,
   "page-preview": true,
   "daily-notes": true,
   "templates": true,
@@ -31,7 +30,4 @@
   "sync": true,
   "bases": true,
   "webviewer": false
-  "webviewer": false,
-  "footnotes": false,
-  "bases": true
 }
