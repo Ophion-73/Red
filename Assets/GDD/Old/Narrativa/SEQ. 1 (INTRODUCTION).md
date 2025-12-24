@@ -58,6 +58,10 @@ RED nods silently.
 
 The BASKET is on the dining table.
 
+[PLAYER INPUT: Walk to the table, TBD to interact and grab BASKET. The BASKET is not really saved anywhere.]
+
+ON-SCREEN PROMPT
+You picked the basket.
 [PLAYER INPUT: Walk to the table, TBD to interact and grab BASKET. The BASKET is now in the inventory.]
 
 ON-SCREEN PROMPT
@@ -87,14 +91,14 @@ Press TBD to jump over the obstacle.
 
 While RED skips and jumps obstacles, shadows cross the foreground of a creature leaping and jumping by. 
 
-The ORIGINAL WOLF, or O. WOLF is lurking nearby, stalking RED through the plants and trees.
+The WOLF is lurking nearby, stalking RED through the plants and trees.
 
-The PLAYER moves forward for a bit, jumping obstacles as the O. WOLF jumps in the foreground and the background, until RED stops. The **CAMERA** pans to the right more, revealing the O. WOLF, standing above another fallen tree trunk, that rises above enough for RED to walk under, smirking with a hungry face.
+The PLAYER moves forward for a bit, jumping obstacles as the WOLF jumps in the foreground and the background, until RED stops. The **CAMERA** pans to the right more, revealing the WOLF, standing above another fallen tree trunk, that rises above enough for RED to walk under, smirking with a hungry face.
 
-O. WOLF
+WOLF
 Little Red Riding Hood, what are you doing here, when the woods are so big and you are so small?
 
-The O. WOLF breathes faster, beckoning.
+The WOLF breathes faster, beckoning.
 
 RED
 _(No response)_
@@ -102,20 +106,20 @@ _(No response)_
 
 The **CAMERA** moves back to RED as she keeps walking forward, running under the fallen tree.
 
-The **CAMERA** pans back again to the O. WOLF, now with an angry expression. 
+The **CAMERA** pans back again to the WOLF, now with an angry expression. 
 
-O. WOLF
+WOLF
 Hey, do not ignore me child! Don't be rude!
 
-[PLAYER ACTION CHOICE: OPTION 1 → The player goes back to the O. WOLF.]
+[PLAYER ACTION CHOICE: OPTION 1 → The player goes back to the WOLF.]
 
-O. WOLF
+WOLF
 Ha! Your mom must've taught you to listen? Regardless, I do not wish to stay for a pesky brat such as yourself! Go do whatever errands you were taking care of...
 
 [PLAYER ACTION CHOICE: OPTION 2 → The player keeps walking.]
 
 
-O. WOLF jumps back as the camera pans back to RED. 
+WOLF jumps back as the camera pans back to RED. 
 
 RED walks for a couple rooms, each two rooms, the ambiance starts to get darker and snowier. Apparently the forest begins to loop.
 
@@ -155,9 +159,9 @@ The hallway is as ominous as ever, never has it felt less inviting than it is at
 
 Until they reach a scratched door. 
 
-Inside, to the right, is the body of RED's grandmother, covered only by the struggle of an ugly-patterned curtain, it is not seen by RED. To the wall next to the door, lays the lumberjack, dead, due to heavy wounds inflicted by O. WOLF. And in the middle of the room is the O. WOLF, still breathing but hurt by the AXE, laying in front of the lumberjack. 
+Inside, to the right, is the body of RED's grandmother, covered only by the struggle of an ugly-patterned curtain, it is not seen by RED. To the wall next to the door, lays the lumberjack, dead, due to heavy wounds inflicted by WOLF. And in the middle of the room is the WOLF, still breathing but hurt by the AXE, laying in front of the lumberjack. 
 
-The O. WOLF wakes up, getting its strength ready to attack, and RED runs towards the AXE and grabs it, as the O. WOLF prepares its jaws.
+The WOLF wakes up, getting its strength ready to attack, and RED runs towards the AXE and grabs it, as the WOLF prepares its jaws.
 
 IN SLOW-MOTION
 
@@ -231,19 +235,19 @@ CUT TO:
 9. INT. GRANDMOTHER'S HOUSE
 
 RED walks the hallway again, it is not messy at all. 
-As she enters the room, she sees the WOLF on the floor, slowly waking up.
+As she enters the room, she sees the WOLF on the floor, slowly waking up, this is now GRANDMA.
 
-WOLF
+GRANDMA
 Red?
 
 She stands up, slowly freaking out.
 
-WOLF
+GRANDMA
 Red, what is happening to me?
 
-The WOLF becomes angry.
+GRANDMA becomes angry.
 
-WOLF
+GRANDMA
 What has SHE done to me?
 
 CUT TO:
@@ -257,18 +261,18 @@ It was an honest mistake.
 
 The screen fades to show all three outside the house.
 
-WOLF
+GRANDMA
 How dare you use these bodies for your dark magic?
 
 WITCH
 Dear, your granddaughter and I simply made a deal. No harm on it. I even fixed your house and that lumberjack to make it up for this tiny mistake.
 
-WOLF
+GRANDMA
 TINY? YOU LITTLE-
 
-RED grabs WOLF's leg, looking up at her, and she sighs.
+RED grabs GRANDMA's leg, looking up at her, and she sighs.
 
-WOLF
+GRANDMA
 Forgive me, child, I do not wish for you to see us... me... like this.
 
 The witch cackles devilishly.
@@ -276,13 +280,13 @@ The witch cackles devilishly.
 WITCH
 As long as you are able to help me recover what I lost, I assure you, things will be back to how they were and even better.
 
-WOLF
+GRANDMA
 And how exactly do you suppose we do that?
 
 WITCH
 Well, it won't be simple, but I can help you on the way, no mistakes this time, I promise.
 
-WOLF
+GRANDMA
 To trust a witch, that is indeed funny. And to have the child harmed? How dare you.
 
 WITCH
