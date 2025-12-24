@@ -62,6 +62,10 @@ The BASKET is on the dining table.
 
 ON-SCREEN PROMPT
 You picked the basket.
+[PLAYER INPUT: Walk to the table, TBD to interact and grab BASKET. The BASKET is now in the inventory.]
+
+ON-SCREEN PROMPT
+Press TBD to open the BASKET.
 
 RED walks towards the main door.
 
