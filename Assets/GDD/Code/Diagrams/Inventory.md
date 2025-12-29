@@ -14,7 +14,7 @@ class Run {
     In
    }
 
-  Inventory *-- Run : utiliza
+  Inventory *-- Run : uses
 
   class Types {
     <<enum>>
@@ -27,4 +27,4 @@ class Run {
     weapon
    }
 
-  Inventory *-- Types : utiliza
+  Inventory *-- Types : uses
