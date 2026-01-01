@@ -18,8 +18,8 @@ class Run {
 
   class Types {
     <<enum>>
-    caperuzas
-    comida
+    hoods
+    food
     transmutations
     trinkets
     charms
