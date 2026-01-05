@@ -116,6 +116,14 @@
         "children": [
           {
             "id": "51cdc28725e639c3",
+    "type": "split",
+    "children": [
+      {
+        "id": "affd3564f9aa6fde",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "51cdc28725e639c3",
     "id": "ac07e6dbc903030f",
     "type": "split",
     "children": [
@@ -145,6 +153,10 @@
           },
           {
             "id": "ea4649cb8ef7c948",
+            }
+          },
+          {
+            "id": "ea4649cb8ef7c948",
               "title": "Enlaces entrantes de Mapas"
             }
           },
@@ -161,6 +173,10 @@
               },
               "icon": "links-going-out",
               "title": "Outgoing links from SEQ. 1 (INTRODUCTION)"
+            }
+          },
+          {
+            "id": "d5ee0c97a41398f9",
             }
           },
           {
@@ -232,6 +248,16 @@
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
       "bases:Create new base": false,
+      "peerdraft:Show my Peerdraft Shares": false
+    }
+  },
+  "active": "aeaf47357c92cba0",
+  "lastOpenFiles": [
+    "Narrativa/Pasted image 20251219221007.png",
+    "Narrativa/Script Important.md",
+    "Narrativa/SEQ. 1 (INTRODUCTION).md",
+    "Narrativa/Untitled.fountain",
+    "Bosses.meta"
       "peerdraft:Show my Peerdraft Shares": false
     }
   },
