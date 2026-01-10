@@ -1,5 +1,6 @@
 using UnityEngine;
 using NaughtyAttributes;
+using System;
 
 [RequireComponent(typeof(Rigidbody))]
 public class Entity : MonoBehaviour
@@ -17,22 +18,19 @@ public class Entity : MonoBehaviour
     [SerializeField] private float _maxDamage;
     #endregion
 
-    #region Knockback
-    private Rigidbody _rb;
+    #region Testing
 
-    [SerializeField] private Vector3 _knockbackDirection;
-    [SerializeField] private float _knockbackForce;
+    [SerializeField] private Vector3 _knockbackDirectionTest;
+    [SerializeField] private float _knockbackForceTest;
+    [SerializeField] private float _damageTest;
+
     #endregion
+
+    private Rigidbody _rb;
 
     [SerializeField] private bool _isAlive = true;
 
     #endregion
-
-    private void Awake()
-    {
-        _rb = GetComponent<Rigidbody>();
-        _rb.constraints = RigidbodyConstraints.FreezeRotation;
-    }
 
     #region Getters & Setters
 
@@ -49,16 +47,31 @@ public class Entity : MonoBehaviour
 
     #endregion
 
+    #region Methods Testing
+    [Button]
+    public void TakeDamageAndKnockBackTest()
+    {
+        TakeDamage(_damageTest);
+        TakeKnockback(_knockbackDirectionTest, _knockbackForceTest);
+    }
+
+    #endregion
+
+
     #region Methods
 
-    [Button]
+    private void Awake()
+    {
+        _rb = GetComponent<Rigidbody>();
+        _rb.constraints = RigidbodyConstraints.FreezeRotation;
+    }
+
     public void Healing(float heal)
     {
         _currentHealth += heal;
         Debug.Log("Ah... I feel better (Healed HP)");
     }
 
-    [Button]
     public void TakeDamage(float damage)
     {
         _currentHealth -= damage;
@@ -68,19 +81,17 @@ public class Entity : MonoBehaviour
             Die();
     }
 
-    [Button]
-    public void TakeKnockback( Vector3 _knockbackDirection, float _knockbackForce)
+    public void TakeKnockback( Vector3 knockbackDirection, float knockbackForce)
     {
-        Vector3 directionForKnockback = _knockbackDirection;
+        Vector3 directionForKnockback = knockbackDirection;
         directionForKnockback.Normalize();
 
         _rb.linearVelocity = new Vector3(_rb.linearVelocity.x, _rb.linearVelocity.y, _rb.linearVelocity.z);
-        _rb.AddForce(directionForKnockback * _knockbackForce, ForceMode.Impulse);
+        _rb.AddForce(directionForKnockback * knockbackForce, ForceMode.Impulse);
 
         Debug.Log("Hey! You knocked the air out of me (Got knockback)");
     }
 
-    [Button]
     public void Die()
     {
         if (!_isAlive) return;
