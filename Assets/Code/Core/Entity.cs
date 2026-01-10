@@ -1,8 +1,7 @@
 using UnityEngine;
 using NaughtyAttributes;
-using System;
 
-[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class Entity : MonoBehaviour
 {
     #region Variables
@@ -19,14 +18,12 @@ public class Entity : MonoBehaviour
     #endregion
 
     #region Testing
-
-    [SerializeField] private Vector3 _knockbackDirectionTest;
+    [SerializeField] private Vector2 _knockbackDirectionTest;
     [SerializeField] private float _knockbackForceTest;
     [SerializeField] private float _damageTest;
-
     #endregion
 
-    private Rigidbody _rb;
+    private Rigidbody2D _rb;
 
     [SerializeField] private bool _isAlive = true;
 
@@ -48,6 +45,7 @@ public class Entity : MonoBehaviour
     #endregion
 
     #region Methods Testing
+
     [Button]
     public void TakeDamageAndKnockBackTest()
     {
@@ -57,13 +55,12 @@ public class Entity : MonoBehaviour
 
     #endregion
 
-
     #region Methods
 
     private void Awake()
     {
-        _rb = GetComponent<Rigidbody>();
-        _rb.constraints = RigidbodyConstraints.FreezeRotation;
+        _rb = GetComponent<Rigidbody2D>();
+        _rb.freezeRotation = true;
     }
 
     public void Healing(float heal)
@@ -81,13 +78,12 @@ public class Entity : MonoBehaviour
             Die();
     }
 
-    public void TakeKnockback( Vector3 knockbackDirection, float knockbackForce)
+    public void TakeKnockback(Vector2 knockbackDirection, float knockbackForce)
     {
-        Vector3 directionForKnockback = knockbackDirection;
-        directionForKnockback.Normalize();
+        Vector2 directionForKnockback = knockbackDirection.normalized;
 
-        _rb.linearVelocity = new Vector3(_rb.linearVelocity.x, _rb.linearVelocity.y, _rb.linearVelocity.z);
-        _rb.AddForce(directionForKnockback * knockbackForce, ForceMode.Impulse);
+        _rb.linearVelocity = Vector2.zero;
+        _rb.AddForce(directionForKnockback * knockbackForce, ForceMode2D.Impulse);
 
         Debug.Log("Hey! You knocked the air out of me (Got knockback)");
     }
@@ -103,4 +99,5 @@ public class Entity : MonoBehaviour
 
     #endregion
 }
+
 
