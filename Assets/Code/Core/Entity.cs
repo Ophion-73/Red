@@ -52,44 +52,41 @@ public class Entity : MonoBehaviour
     #region Methods
 
     [Button]
-    public void Heal()
+    public void Healing(float heal)
     {
-        _currentHealth += 10f;
-        Debug.Log("Ah... I feel better (Healed 10 HP)");
+        _currentHealth += heal;
+        Debug.Log("Ah... I feel better (Healed HP)");
     }
 
     [Button]
-    public void TakeDamage()
+    public void TakeDamage(float damage)
     {
-        _currentHealth -= 10f;
-        Debug.Log("Ouch! That hurt (Lost 10 HP)");
+        _currentHealth -= damage;
+        Debug.Log("Ouch! That hurt (Lost HP)");
 
         if (_currentHealth <= 0)
             Die();
     }
 
     [Button]
-    public void TakeDamageWithKnockback()
+    public void TakeKnockback( Vector3 _knockbackDirection, float _knockbackForce)
     {
-        TakeDamage();
-
         Vector3 directionForKnockback = _knockbackDirection;
         directionForKnockback.Normalize();
 
         _rb.linearVelocity = new Vector3(_rb.linearVelocity.x, _rb.linearVelocity.y, _rb.linearVelocity.z);
-
         _rb.AddForce(directionForKnockback * _knockbackForce, ForceMode.Impulse);
 
-        Debug.Log("Hey! You knocked the air out of me (Lost 10 HP and got knockback)");
+        Debug.Log("Hey! You knocked the air out of me (Got knockback)");
     }
 
     [Button]
     public void Die()
     {
-        _currentHealth = 0f;
+        if (!_isAlive) return;
+
         _isAlive = false;
         gameObject.SetActive(false);
-
         Debug.Log("My story shouldn't end like this (Died)");
     }
 
