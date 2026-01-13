@@ -9,7 +9,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Attack2
+    m_ConditionEvent: GButton
     m_EventTreshold: 0
   - m_ConditionMode: 3
     m_ConditionEvent: Horizontal
@@ -37,7 +37,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Attack1
+    m_ConditionEvent: REDButton
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: -3934844269751486849}
   m_DstState: {fileID: 0}
@@ -84,7 +84,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Attack1
+    m_ConditionEvent: REDButton
     m_EventTreshold: 0
   - m_ConditionMode: 4
     m_ConditionEvent: Horizontal
@@ -407,7 +407,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Attack1
+    m_ConditionEvent: REDButton
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: IsGrounded
@@ -435,7 +435,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Attack2
+    m_ConditionEvent: GButton
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: -5140824444380752457}
   m_DstState: {fileID: 0}
@@ -460,7 +460,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Attack2
+    m_ConditionEvent: GButton
     m_EventTreshold: 0
   - m_ConditionMode: 4
     m_ConditionEvent: Horizontal
@@ -533,13 +533,13 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: Attack1
+  - m_Name: REDButton
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: Attack2
+  - m_Name: GButton
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -565,6 +565,12 @@ AnimatorController:
     m_Controller: {fileID: 9100000}
   - m_Name: ComboStep
     m_Type: 3
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
+  - m_Name: Jump
+    m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -980,30 +986,30 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -4924106611335347570}
-    m_Position: {x: 260, y: 120, z: 0}
+    m_Position: {x: 210, y: 110, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7084803743228068363}
-    m_Position: {x: 260, y: 20, z: 0}
+    m_Position: {x: 120, y: -40, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6179901245488681667}
-    m_Position: {x: 345, y: 282, z: 0}
+    m_Position: {x: 370, y: 310, z: 0}
   m_ChildStateMachines:
   - serializedVersion: 1
     m_StateMachine: {fileID: -3934844269751486849}
-    m_Position: {x: 510, y: 40, z: 0}
+    m_Position: {x: 530, y: -20, z: 0}
   - serializedVersion: 1
     m_StateMachine: {fileID: -5140824444380752457}
-    m_Position: {x: 510, y: 120, z: 0}
+    m_Position: {x: 540, y: 100, z: 0}
   - serializedVersion: 1
     m_StateMachine: {fileID: 3324093304772838561}
-    m_Position: {x: 510, y: 190, z: 0}
+    m_Position: {x: 550, y: 210, z: 0}
   m_AnyStateTransitions:
   - {fileID: 4432292184524795909}
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: 50, y: 20, z: 0}
-  m_EntryPosition: {x: 50, y: 120, z: 0}
+  m_AnyStatePosition: {x: 50, y: -170, z: 0}
+  m_EntryPosition: {x: -40, y: 120, z: 0}
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: -4924106611335347570}
@@ -1016,7 +1022,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Attack1
+    m_ConditionEvent: REDButton
     m_EventTreshold: 0
   - m_ConditionMode: 3
     m_ConditionEvent: Horizontal
