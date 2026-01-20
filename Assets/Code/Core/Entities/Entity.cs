@@ -23,7 +23,7 @@ public class Entity : MonoBehaviour
     [SerializeField] private float _damageTest;
     #endregion
 
-    private Rigidbody2D _rb;
+    protected Rigidbody2D _rb;
 
     [SerializeField] private bool _isAlive = true;
 
@@ -99,5 +99,3 @@ public class Entity : MonoBehaviour
 
     #endregion
 }
-
-
