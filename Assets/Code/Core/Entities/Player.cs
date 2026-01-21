@@ -1,3 +1,4 @@
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.InputSystem;
 public class Player : Entity
@@ -49,6 +50,14 @@ public class Player : Entity
 
         if(_red.WasPressedThisFrame()) 
         {
+            if (isGrounded)
+            {
+                _attackSystem.Attack(isGrounded);
+            }
+            else if (!isGrounded)
+            {
+                _attackSystem.AirAttacks();
+            }
             //Aqui mandar a llamar el metodo red, falta crearlo(recuerda que red referencia a todos los ataques de caperucita)
         }
 
