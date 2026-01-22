@@ -3,8 +3,10 @@ using UnityEngine;
 public class AttackSO : ScriptableObject
 {
     public int damage;
-    public Vector3 direction;
+    public Vector2 direction;
     public float startup;
     public float endlag;
     public float forceKnockback;
+    public Vector2 rangeAttack;
+    public float durationAttack;
 }

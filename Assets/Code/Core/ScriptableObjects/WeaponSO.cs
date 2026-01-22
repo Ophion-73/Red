@@ -4,5 +4,6 @@ using UnityEngine;
 public class WeaponSO : ScriptableObject
 {
     public string nameWeapon;
-    public AttackSO[] attackSos;
+    public AttackSO[] GroundedAttackSos;
+    public AttackSO[] AirAttackSos;
 }
