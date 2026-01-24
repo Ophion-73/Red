@@ -1,5 +1,9 @@
+using System.Runtime.CompilerServices;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
+public enum AttackDirection { Up, Down, Right, Left, Neutral }
 public class Player : Entity
 {
     public InputActionAsset actions;
@@ -25,6 +29,8 @@ public class Player : Entity
     [SerializeField] private LayerMask groundLayer;
     
     private Animator _anim;
+
+
 
     private void OnEnable()
     {
@@ -70,16 +76,16 @@ public class Player : Entity
 
         if(_red.WasPressedThisFrame()) 
         {
+            //AttackDirection dir = GetAttackDir(move);
+           // _attackSystem.Attack(isGrounded,dir);
+
             //Aqui mandar a llamar el metodo red, falta crearlo(recuerda que red referencia a todos los ataques de caperucita)
         }
 
         if(_dash.WasPressedThisFrame())
         {
             //Aqui Mandar a llamar el metodo Dash
-            if(Mathf.Abs(_moveInput.x) > 0.01f)
-                Dash();
-            else
-                SpotDodge();
+            Dash();
         }
     }
     
@@ -127,11 +133,17 @@ public class Player : Entity
         }
     }
 
-    private void SpotDodge()
+    AttackDirection GetAttackDir(Vector2 input)
     {
-        
+        if (input.y > 1) return AttackDirection.Up;
+        if (input.y < -1) return AttackDirection.Down;
+        if (input.x > 1) return AttackDirection.Right;
+        if (input.x < -1) return AttackDirection.Left;
+        return AttackDirection.Neutral;
     }
 }
+
+
 
 public static class PlayerStrings
 {
@@ -141,5 +153,5 @@ public static class PlayerStrings
         public const string red = "RED";
         public const string jump = "JUMP";
         public const string dash = "Dash";
-    }
+     }
 }
