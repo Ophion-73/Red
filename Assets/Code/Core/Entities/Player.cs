@@ -76,7 +76,10 @@ public class Player : Entity
         if(_dash.WasPressedThisFrame())
         {
             //Aqui Mandar a llamar el metodo Dash
-            Dash();
+            if(Mathf.Abs(_moveInput.x) > 0.01f)
+                Dash();
+            else
+                SpotDodge();
         }
     }
     
@@ -123,6 +126,11 @@ public class Player : Entity
             transform.localScale = localScale;
         }
     }
+
+    private void SpotDodge()
+    {
+        
+    }
 }
 
 public static class PlayerStrings
@@ -133,5 +141,5 @@ public static class PlayerStrings
         public const string red = "RED";
         public const string jump = "JUMP";
         public const string dash = "Dash";
-     }
+    }
 }
