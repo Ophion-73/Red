@@ -1,6 +1,9 @@
+using System.Runtime.CompilerServices;
 using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
+public enum AttackDirection { Up, Down, Right, Left, Neutral }
 public class Player : Entity
 {
     public InputActionAsset actions;
@@ -16,6 +19,8 @@ public class Player : Entity
     public float walkSpeed;
     public float jumpSpeed;
     public float dashDistance;
+
+
 
     private void OnEnable()
     {
@@ -50,14 +55,9 @@ public class Player : Entity
 
         if(_red.WasPressedThisFrame()) 
         {
-            if (isGrounded)
-            {
-                _attackSystem.Attack(isGrounded);
-            }
-            else if (!isGrounded)
-            {
-                _attackSystem.AirAttacks();
-            }
+            //AttackDirection dir = GetAttackDir(move);
+           // _attackSystem.Attack(isGrounded,dir);
+
             //Aqui mandar a llamar el metodo red, falta crearlo(recuerda que red referencia a todos los ataques de caperucita)
         }
 
@@ -66,7 +66,18 @@ public class Player : Entity
             //Aqui Mandar a llamar el metodo Dash
         }
     }
+
+    AttackDirection GetAttackDir(Vector2 input)
+    {
+        if (input.y > 1) return AttackDirection.Up;
+        if (input.y < -1) return AttackDirection.Down;
+        if (input.x > 1) return AttackDirection.Right;
+        if (input.x < -1) return AttackDirection.Left;
+        return AttackDirection.Neutral;
+    }
 }
+
+
 
 public static class PlayerStrings
 {

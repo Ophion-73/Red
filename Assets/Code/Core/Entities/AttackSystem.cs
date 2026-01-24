@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AttackSystem : MonoBehaviour
@@ -19,33 +20,143 @@ public class AttackSystem : MonoBehaviour
             hitBoxWeapon = GetComponent<BoxCollider2D>();
         }
     }
-    public void Attack(bool isGrounded)
-    {
-        if (isGrounded && !isAttacking)
-        {
-            GroundedAttacks();
-        }
-        else if (!isGrounded && !isAttacking)
-        {
-            AirAttacks();
-        }
-    }
 
-    public void GroundedAttacks()
+    #region Switch
+    public void Attack(bool isGrounded, AttackDirection dir)
     {
-        AttackSO attackSO = currentWeapon.GroundedAttackSos[0];
+        if (!isAttacking)
+        {
+            switch (dir)
+            {
+                case AttackDirection.Up:
+                    if (isGrounded)
+                    {
+                        GroundedAttacksUp();
+                    }
+                    else
+                    {
+                        AirAttacksUp();
+                    }
+                    break;
+                case AttackDirection.Down:
+                    if (isGrounded)
+                    {
+                        GroundedAttacksDown();
+                    }
+                    else
+                    {
+                        AirAttacksDown();
+                    }
+                    break;
+                case AttackDirection.Right:
+                    if (isGrounded)
+                    {
+                        GroundedAttacksRight();
+                    }
+                    else
+                    {
+                        AirAttacksRight();
+                    }
+                    break;
+                case AttackDirection.Left:
+                    if (isGrounded)
+                    {
+                        GroundedAttacksLeft();
+                    }
+                    else
+                    {
+                        AirAttacksLeft();
+                    }
+                    break;
+                case AttackDirection.Neutral:
+                    if (isGrounded)
+                    {
+                        GroundedAttacksNeutral();
+                    }
+                    else
+                    {
+                        AirAttacksNeutral();
+                    }
+                    break;
+            }   
+
+        }
+
+
+    }
+    #endregion
+
+    #region GroundedAttacks
+    public void GroundedAttacksNeutral()
+    {
+        AttackSO attackSO = currentWeapon.GroundedNeutralAttackSos[0];
         isAttacking = true;
         StartCoroutine(AttackCoroutine(attackSO));
 
     }
-
-    public void AirAttacks()
+    public void GroundedAttacksUp()
     {
-        AttackSO attackSO = currentWeapon.AirAttackSos[0];
+        AttackSO attackSO = currentWeapon.GroundedUpAttackSos;
+        isAttacking = true;
+        StartCoroutine(AttackCoroutine(attackSO));
+
+    }
+    public void GroundedAttacksLeft()
+    {
+        AttackSO attackSO = currentWeapon.GroundedLeftAttackSos;
+        isAttacking = true;
+        StartCoroutine(AttackCoroutine(attackSO));
+
+    }
+    public void GroundedAttacksRight()
+    {
+        AttackSO attackSO = currentWeapon.GroundedRightAttackSos;
+        isAttacking = true;
+        StartCoroutine(AttackCoroutine(attackSO));
+
+    }
+    public void GroundedAttacksDown()
+    {
+        AttackSO attackSO = currentWeapon.GroundedDownAttackSos;
+        isAttacking = true;
+        StartCoroutine(AttackCoroutine(attackSO));
+
+    }
+    #endregion
+
+    #region AirAttacks
+    public void AirAttacksUp()
+    {
+        AttackSO attackSO = currentWeapon.AirUpAttackSOs;
+        isAttacking = true;
+        StartCoroutine(AttackCoroutine(attackSO));
+    }
+    public void AirAttacksDown()
+    {
+        AttackSO attackSO = currentWeapon.AirDownAttackSos;
+        isAttacking = true;
+        StartCoroutine(AttackCoroutine(attackSO));
+    }
+    public void AirAttacksRight()
+    {
+        AttackSO attackSO = currentWeapon.AirRightAttackSos;
+        isAttacking = true;
+        StartCoroutine(AttackCoroutine(attackSO));
+    }
+    public void AirAttacksLeft()
+    {
+        AttackSO attackSO = currentWeapon.AirLeftAttackSos;
         isAttacking = true;
         StartCoroutine(AttackCoroutine(attackSO));
     }
 
+    public void AirAttacksNeutral()
+    {
+        AttackSO attackSO = currentWeapon.AirNeutralAttackSos;
+        isAttacking = true;
+        StartCoroutine(AttackCoroutine(attackSO));
+    }
+    #endregion
 
     IEnumerator AttackCoroutine(AttackSO attackSO)
     {
