@@ -16,9 +16,19 @@ public class Player : Entity
 
     private bool isGrounded;
 
-    public float walkSpeed;
-    public float jumpSpeed;
-    public float dashDistance;
+    [Header("Movement Settings")]
+    public float walkSpeed = 8f;
+    public float jumpSpeed = 12f;
+    public float dashForce = 20f;
+    
+    private Vector2 _moveInput;
+    
+    [Header("Ground Check Settings")]
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private float groundCheckRadius = 0.2f;
+    [SerializeField] private LayerMask groundLayer;
+    
+    private Animator _anim;
 
 
 
@@ -36,21 +46,32 @@ public class Player : Entity
         _jump = InputSystem.actions.FindAction(PlayerStrings.PlayerInputStrings.jump);
         _red = InputSystem.actions.FindAction(PlayerStrings.PlayerInputStrings.red);
         _dash = InputSystem.actions.FindAction(PlayerStrings.PlayerInputStrings.dash);
+        _anim = GetComponent<Animator>();
     }
 
     private void Update()
     {
         InputRead();
+        UpdateAnimatorParameters();
+        Flip();
+    }
+    
+    private void FixedUpdate()
+    {
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        ApplyMovement();
     }
 
     public void InputRead()
     {
+        _moveInput = _move.ReadValue<Vector2>();
         if(_jump.WasPressedThisFrame())
         {
             //Aqui Mandar a llamar el metodo jump, falta crearlo
             // Para el movimiento utiliza las siguientes funciones
             // _move.x
             // move.y
+            Jump();
         }
 
         if(_red.WasPressedThisFrame()) 
@@ -64,6 +85,51 @@ public class Player : Entity
         if(_dash.WasPressedThisFrame())
         {
             //Aqui Mandar a llamar el metodo Dash
+            Dash();
+        }
+    }
+    
+    private void ApplyMovement()
+    {
+        float horizontalSpeed = _moveInput.x * walkSpeed;
+        float currentVerticalVelocity = _rb.linearVelocity.y;
+
+        _rb.linearVelocity = new Vector2(horizontalSpeed, currentVerticalVelocity);
+    }
+    
+    public void Jump()
+    {
+        if (isGrounded)
+        {
+            _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, 0); 
+            _rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
+            
+            _anim.SetTrigger("Jump");
+        }
+    }
+    
+    public void Dash()
+    {
+        float dashDirection = _moveInput.x != 0 ? Mathf.Sign(_moveInput.x) : transform.localScale.x;
+        _rb.linearVelocity = new Vector2(dashDirection * dashForce, 0);
+        
+        _anim.SetTrigger("Dodge");
+    }
+    
+    private void UpdateAnimatorParameters()
+    {
+        _anim.SetFloat("Horizontal", Mathf.Abs(_moveInput.x));
+        _anim.SetFloat("Vertical", _rb.linearVelocity.y);
+        _anim.SetBool("IsGrounded", isGrounded);
+    }
+    
+    private void Flip()
+    {
+        if (_moveInput.x > 0 && transform.localScale.x < 0 || _moveInput.x < 0 && transform.localScale.x > 0)
+        {
+            Vector3 localScale = transform.localScale;
+            localScale.x *= -1f;
+            transform.localScale = localScale;
         }
     }
 
@@ -88,6 +154,4 @@ public static class PlayerStrings
         public const string jump = "JUMP";
         public const string dash = "Dash";
      }
-
 }
-

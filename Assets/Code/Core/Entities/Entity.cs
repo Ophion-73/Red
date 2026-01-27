@@ -104,5 +104,3 @@ public class Entity : MonoBehaviour
 
     #endregion
 }
-
-
