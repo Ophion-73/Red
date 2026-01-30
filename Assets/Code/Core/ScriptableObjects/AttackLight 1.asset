@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fc725e2076ac3364bb7665ffe94aacbb, type: 3}
-  m_Name: AttackLight
+  m_Name: AttackLight 1
   m_EditorClassIdentifier: Assembly-CSharp::AttackSO
   damage: 10
   direction: {x: 1, y: 0}
-  startup: 1
-  endlag: 1
+  startup: 2
+  endlag: 2
   forceKnockback: 10
-  rangeAttack: {x: 10, y: 10}
-  durationAttack: 1
+  rangeAttack: {x: 5, y: 5}
+  durationAttack: 2
   comboWindow: 2

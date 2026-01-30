@@ -76,8 +76,8 @@ public class Player : Entity
 
         if(_red.WasPressedThisFrame()) 
         {
-            //AttackDirection dir = GetAttackDir(move);
-           // _attackSystem.Attack(isGrounded,dir);
+            AttackDirection dir = GetAttackDir(_moveInput);
+            _attackSystem.Attack(isGrounded,dir);
 
             //Aqui mandar a llamar el metodo red, falta crearlo(recuerda que red referencia a todos los ataques de caperucita)
         }

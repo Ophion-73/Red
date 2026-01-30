@@ -13,5 +13,15 @@ MonoBehaviour:
   m_Name: Axe
   m_EditorClassIdentifier: Assembly-CSharp::WeaponSO
   nameWeapon: Axe
-  attackSos:
+  GroundedNeutralAttackSos:
   - {fileID: 11400000, guid: 16e96319590bb734f9bd18393cb74909, type: 2}
+  - {fileID: 11400000, guid: 09565d8d706ab7142ad23f7e458c5fcb, type: 2}
+  GroundedUpAttackSos: {fileID: 0}
+  GroundedDownAttackSos: {fileID: 0}
+  GroundedRightAttackSos: {fileID: 0}
+  GroundedLeftAttackSos: {fileID: 0}
+  AirNeutralAttackSos: {fileID: 0}
+  AirUpAttackSOs: {fileID: 0}
+  AirDownAttackSos: {fileID: 0}
+  AirRightAttackSos: {fileID: 0}
+  AirLeftAttackSos: {fileID: 0}
