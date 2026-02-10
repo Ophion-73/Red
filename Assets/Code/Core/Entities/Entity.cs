@@ -58,7 +58,7 @@ public class Entity : MonoBehaviour
 
     #region Methods
 
-    private void Awake()
+    protected virtual void Awake()
     {
         if (_attackSystem == null)
         {
