@@ -24,7 +24,7 @@ public class Entity : MonoBehaviour
     #endregion
 
     protected AttackSystem _attackSystem;
-    private Rigidbody2D _rb;
+    protected Rigidbody2D _rb;
 
     [SerializeField] private bool _isAlive = true;
 
@@ -104,5 +104,3 @@ public class Entity : MonoBehaviour
 
     #endregion
 }
-
-

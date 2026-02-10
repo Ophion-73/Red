@@ -9,4 +9,5 @@ public class AttackSO : ScriptableObject
     public float forceKnockback;
     public Vector2 rangeAttack;
     public float durationAttack;
+    public float comboWindow;
 }
