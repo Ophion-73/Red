@@ -12,6 +12,7 @@ public class Player : Entity
     private InputAction _jump;
     private InputAction _red;
     private InputAction _dash;
+    private InputAction _interact;
 
 
     [SerializeField] bool isGrounded;
@@ -27,6 +28,10 @@ public class Player : Entity
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundCheckRadius = 0.2f;
     [SerializeField] private LayerMask groundLayer;
+    
+    [Header("Interaction Settings")]
+    [SerializeField] private float interactionRadius = 1.5f;
+    [SerializeField] private LayerMask interactableLayer;
     
     private Animator _anim;
 
@@ -50,15 +55,17 @@ public class Player : Entity
         _jump = map.FindAction(PlayerStrings.PlayerInputStrings.jump);
         _red = map.FindAction(PlayerStrings.PlayerInputStrings.red);
         _dash = map.FindAction(PlayerStrings.PlayerInputStrings.dash);
+        _interact = map.FindAction(PlayerStrings.PlayerInputStrings.interact);
     }
     
     private void Start()
     {
         _animator = GetComponent<Animator>();
-        _move = InputSystem.actions.FindAction(PlayerStrings.PlayerInputStrings.move);
+        /*_move = InputSystem.actions.FindAction(PlayerStrings.PlayerInputStrings.move);
         _jump = InputSystem.actions.FindAction(PlayerStrings.PlayerInputStrings.jump);
         _red = InputSystem.actions.FindAction(PlayerStrings.PlayerInputStrings.red);
         _dash = InputSystem.actions.FindAction(PlayerStrings.PlayerInputStrings.dash);
+        _interact = InputSystem.actions.FindAction(PlayerStrings.PlayerInputStrings.interact);*/
         _anim = GetComponent<Animator>();
     }
 
@@ -119,6 +126,11 @@ public class Player : Entity
             _animator.SetTrigger("Dodge");
             Dash();
         }
+
+        if (_interact.WasPressedThisFrame())
+        {
+            PerformInteraction();
+        }
     }
     
     private void ApplyMovement()
@@ -173,6 +185,18 @@ public class Player : Entity
         if (input.x < -1) return AttackDirection.Left;
         return AttackDirection.Neutral;
     }
+
+    private void PerformInteraction()
+    {
+        Collider2D hit = Physics2D.OverlapCircle(transform.position, interactionRadius, interactableLayer);
+        if (hit != null) Debug.Log("Interactuando con: " + hit.name);
+    }
+    
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, interactionRadius);
+    }
 }
 
 
@@ -185,5 +209,6 @@ public static class PlayerStrings
         public const string red = "RED";
         public const string jump = "JUMP";
         public const string dash = "Dash";
+        public const string interact = "Interact";
      }
 }
