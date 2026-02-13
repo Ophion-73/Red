@@ -1,0 +1,4 @@
+Referencias de Escala
+
+Concept 512 * 512
+Final 256
