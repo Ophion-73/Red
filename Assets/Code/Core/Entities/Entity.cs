@@ -74,7 +74,7 @@ public class Entity : MonoBehaviour
         Debug.Log("Ah... I feel better (Healed HP)");
     }
 
-    public void TakeDamage(float damage)
+    public virtual void TakeDamage(float damage)
     {
         _currentHealth -= damage;
         Debug.Log("Ouch! That hurt (Lost HP)");
