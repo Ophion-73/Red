@@ -1,5 +1,5 @@
 **RESUMEN DEL JUEGO**
-Roguelike narrativo en 2.5D donde el jugador controla a [[Caperucita]] Roja, acompañada por [[El Lobo]] poseído por su [[Abuela]], cruzando cuentos de hadas en su forma más retorcida, enfrentando enemigos generados aleatoriamente mientras desentraña como recuperar su final feliz, con combates Hack and Slash y decisiones que cambian cada partida.
+Roguelike narrativo en 2.5D donde el jugador controla a [[Red]] Roja, acompañada por [[El Lobo]] poseído por su [[Abuela]], cruzando cuentos de hadas en su forma más retorcida, enfrentando enemigos generados aleatoriamente mientras desentraña como recuperar su final feliz, con combates Hack and Slash y decisiones que cambian cada partida.
 
 **AUDIENCIA OBJETIVO Y PLATAFORMA**
 - Dirigido a jugadores de 16 a 40 años que disfrutan de juegos como *Hades* y *Dead Cells*. Disponible en PC.
@@ -33,18 +33,18 @@ Roguelike narrativo en 2.5D donde el jugador controla a [[Caperucita]] Roja, aco
 
 **PERSONAJES Y ROLES**
 **Jugador:**
-- **[[Caperucita]]**: Protagonista jugable. 
+- **[[Red]]**: Protagonista jugable. 
 	- Puede utilizar armas, cambiar de [[Caperuzas]] y utilizar [[Trinkets]], para conseguir poderes de otros personajes de cuentos de hadas.
 
 **Acompañante**:
-- [[El Lobo]]: Ataque secundario de [[Caperucita]], poseído por la abuela, tiene [[Transmutations]] a otros animales de cuentos de hadas.
+- [[El Lobo]]: Ataque secundario de [[Red]], poseído por la abuela, tiene [[Transmutations]] a otros animales de cuentos de hadas.
 
 **Out-Run NPCs**:
- - [[The Three Aunts]]: Crean las [[Caperuzas]] para dar habilidades iniciales a [[Caperucita]].
+ - [[The Three Aunts]]: Crean las [[Caperuzas]] para dar habilidades iniciales a [[Red]].
  - [[7 Enanos]]: Se encuentran In-Run, se desbloquean permanentemente para desbloquear árboles de habilidades relacionados con los 7 Pecados Capitales, dando buffs relacionados.
 
 **In-Run NPCs:**
-- [[Hada Madrina]]: Conecta a [[Caperucita]] con otros cuentos de hadas para obtener sus [[Trinkets]].
+- [[Hada Madrina]]: Conecta a [[Red]] con otros cuentos de hadas para obtener sus [[Trinkets]].
 - [[Rumpelstiltskin]]: Tienda de apuestas, puede dar cosas buenas o cosas malas.
 - [[La Bruja]]: La tienda del juego, vende trinkets, amuletos y objetos de utilidad.
 - [[Tres Cerditos]]: Dan mejoras permanentes únicas In-Run.
@@ -78,14 +78,14 @@ Roguelike narrativo en 2.5D donde el jugador controla a [[Caperucita]] Roja, aco
 **PROGRESIÓN Y REJUGABILIDAD**
 - **Out-Run:**
 	- Comida: Recurso In-Run para usar exclusivamente Out-Run, para upgrades a los [[7 Enanos]] y desbloquear [[Caperuzas]].
-	- Skill Tree: Cada enano desbloqueado abre un árbol diferente para [[Caperucita]].
+	- Skill Tree: Cada enano desbloqueado abre un árbol diferente para [[Red]].
 	- [[Amulets]]: Objetos que modifican permanentemente la run.
 	- Bounties: Se elije uno al inicio de la run para obtención de recompensas.
 - **In-Run**:
 	-  [[Trinkets]]: Se pueden tener 3 por run. Conexiones a otros cuentos de hadas.
 	- [[Charms]]: Se abre un pool de tres a escoger para que el jugador determine como va a jugar.
 	- [[Transmutations]]: Transformaciones de la abuela en otros animales de cuentos de hadas, modifican el combate.
-	-  [[Caperuzas]]: Modificadores para [[Caperucita]] en la run.
+	-  [[Caperuzas]]: Modificadores para [[Red]] en la run.
 	- [[Armas]]: Se escoje una al inicio de la run, apoya en como se desarrolla el combate.
 
 **DISEÑO DE NIVEL Y GENERACIÓN PROCEDURAL**

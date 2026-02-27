@@ -1,0 +1,9 @@
+- Bruja
+- Cuarto de [[Red]] (y Settings)
+- The Three Aunts
+- Los 7 Enanos
+- Rumpelstiltskin
+- Hada Madrina
+- Cuarto random (TBD)
+- Espejo Mágico
+- Mapa de práctica de combate a la izquierda del mapa
