@@ -1,260 +1,213 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using NaughtyAttributes;
 
 public class AttackSystem : MonoBehaviour
 {
-    //Esto esta documentado medio a lo wey si alguien ve esto y no le entiende pregunteme soy barrera
     [Header("Weapon")]
     public WeaponSO currentWeapon;
+
     [Header("HitBox")]
     public BoxCollider2D hitBoxWeapon;
+
     [Header("Variables")]
     public bool isAttacking;
-    public int damage;
     public bool canChainAttack;
     public int comboIndex;
-    private Coroutine _comboWindowCoroutine;
-    private Coroutine _attackCoroutine;
+    public int damage;
 
+    private Coroutine _attackCoroutine;
+    private Coroutine _comboWindowCoroutine;
 
     private void Awake()
     {
         if (hitBoxWeapon == null)
-        {
             hitBoxWeapon = GetComponent<BoxCollider2D>();
-        }
+
+        hitBoxWeapon.gameObject.SetActive(false);
     }
 
     #region Switch
-    
+
     public void Attack(bool isGrounded, AttackDirection dir)
     {
-        if (!isAttacking)
-        {
-            switch (dir)
-            {
-                case AttackDirection.Up:
-                    if (isGrounded)
-                    {
-                        GroundedAttacksUp();
-                    }
-                    else
-                    {
-                        AirAttacksUp();
-                    }
-                    break;
-                case AttackDirection.Down:
-                    if (isGrounded)
-                    {
-                        GroundedAttacksDown();
-                    }
-                    else
-                    {
-                        AirAttacksDown();
-                    }
-                    break;
-                case AttackDirection.Right:
-                    if (isGrounded)
-                    {
-                        GroundedAttacksRight();
-                    }
-                    else
-                    {
-                        AirAttacksRight();
-                    }
-                    break;
-                case AttackDirection.Left:
-                    if (isGrounded)
-                    {
-                        GroundedAttacksLeft();
-                    }
-                    else
-                    {
-                        AirAttacksLeft();
-                    }
-                    break;
-                case AttackDirection.Neutral:
-                    if (isGrounded)
-                    {
-                        GroundedAttacksNeutral();
-                    }
-                    else
-                    {
-                        AirAttacksNeutral();
-                    }
-                    break;
-            }   
+        AttackSO attackSO = null;
 
-        }
-        else if ( isAttacking)
+        switch (dir)
         {
-            return;
+            case AttackDirection.Neutral:
+                if (isGrounded)
+                {
+                    GroundedNeutral();
+                    return;
+                }
+                attackSO = currentWeapon.AirNeutralAttackSos;
+                break;
+
+            case AttackDirection.Up:
+                attackSO = isGrounded
+                    ? currentWeapon.GroundedUpAttackSos
+                    : currentWeapon.AirUpAttackSOs;
+                break;
+
+            case AttackDirection.Down:
+                attackSO = isGrounded
+                    ? currentWeapon.GroundedDownAttackSos
+                    : currentWeapon.AirDownAttackSos;
+                break;
+
+            case AttackDirection.Left:
+                attackSO = isGrounded
+                    ? currentWeapon.GroundedLeftAttackSos
+                    : currentWeapon.AirLeftAttackSos;
+                break;
+
+            case AttackDirection.Right:
+                attackSO = isGrounded
+                    ? currentWeapon.GroundedRightAttackSos
+                    : currentWeapon.AirRightAttackSos;
+                break;
         }
 
-
+        if (attackSO != null)
+        {
+            StartSingleAttack(attackSO);
+        }
     }
+
     #endregion
 
-    #region GroundedAttacks
-    [Button("Ataque de player")]
-    public void GroundedAttacksNeutral()
+    #region NormalAttacks
+
+    public void StartSingleAttack(AttackSO attackSO)
     {
-        //paso 1
-        //si es true mandamos a llamar trychain attack
+        CancelCurrentAttack();
+        _attackCoroutine = StartCoroutine(AttackCoroutine(attackSO));
+    }
+
+    #endregion
+
+    #region ComboNeutral
+
+    public void GroundedNeutral()
+    {
         if (canChainAttack)
         {
-            TryCahinAttack();
+            ChainNeutral();
             return;
         }
-        else if (_attackCoroutine != null)
-        {
-            return ;
-        }
 
-        StartAttack();
- 
+        if (_attackCoroutine != null) return;
 
-    }
-    public void GroundedAttacksUp()
-    {
-        AttackSO attackSO = currentWeapon.GroundedUpAttackSos;
-        isAttacking = true;
-        StartCoroutine(AttackCoroutine(attackSO));
-
-    }
-    public void GroundedAttacksLeft()
-    {
-        AttackSO attackSO = currentWeapon.GroundedLeftAttackSos;
-        isAttacking = true;
-        StartCoroutine(AttackCoroutine(attackSO));
-
-    }
-    public void GroundedAttacksRight()
-    {
-        AttackSO attackSO = currentWeapon.GroundedRightAttackSos;
-        isAttacking = true;
-        StartCoroutine(AttackCoroutine(attackSO));
-
-    }
-    public void GroundedAttacksDown()
-    {
-        AttackSO attackSO = currentWeapon.GroundedDownAttackSos;
-        isAttacking = true;
-        StartCoroutine(AttackCoroutine(attackSO));
-
-    }
-    #endregion
-
-    #region AirAttacks
-    public void AirAttacksUp()
-    {
-        AttackSO attackSO = currentWeapon.AirUpAttackSOs;
-        isAttacking = true;
-        StartCoroutine(AttackCoroutine(attackSO));
-    }
-    public void AirAttacksDown()
-    {
-        AttackSO attackSO = currentWeapon.AirDownAttackSos;
-        isAttacking = true;
-        StartCoroutine(AttackCoroutine(attackSO));
-    }
-    public void AirAttacksRight()
-    {
-        AttackSO attackSO = currentWeapon.AirRightAttackSos;
-        isAttacking = true;
-        StartCoroutine(AttackCoroutine(attackSO));
-    }
-    public void AirAttacksLeft()
-    {
-        AttackSO attackSO = currentWeapon.AirLeftAttackSos;
-        isAttacking = true;
-        StartCoroutine(AttackCoroutine(attackSO));
+        StartNeutral();
     }
 
-    public void AirAttacksNeutral()
+    void StartNeutral()
     {
-        AttackSO attackSO = currentWeapon.AirNeutralAttackSos;
-        isAttacking = true;
-        StartCoroutine(AttackCoroutine(attackSO));
-    }
-    #endregion
-    #region AttacksChecks
-    public void TryCahinAttack()
-    {
-        //paso 6
-        //si esta desactivado no hacemos nada pero si si activamos startattack
-        if (!canChainAttack)
-        {
-            return;
-        }
-        comboIndex++;
+        CancelCurrentAttack(false);
 
-        if (comboIndex >= currentWeapon.GroundedNeutralAttackSos.Length)
-        {
-            comboIndex = 0;
-        }
-        //si si es verdadero trychainattack llamamos el metodo startattack y pues ya se repite pero ahora con 1 mas en el index del array
-        canChainAttack = false;
-        StartAttack();
-        
-    }
-    public void StartAttack()
-    {
-        //paso 2
-        if (_attackCoroutine != null)
-        {
-            StopCoroutine( _attackCoroutine);
-        }
         AttackSO attackSO = currentWeapon.GroundedNeutralAttackSos[comboIndex];
         _attackCoroutine = StartCoroutine(AttackCoroutine(attackSO));
     }
 
-    public void OpenComboWindow(AttackSO attackSO)
+    void ChainNeutral()
     {
-        //paso 4
-        if (_comboWindowCoroutine != null)
-        {
-            StopCoroutine(_comboWindowCoroutine);
-        }
-        _comboWindowCoroutine = StartCoroutine(ComboWindowCoroutine(attackSO));
+        comboIndex++;
+
+        if (comboIndex >= currentWeapon.GroundedNeutralAttackSos.Length)
+            comboIndex = 0;
+
+        canChainAttack = false;
+        StartNeutral();
     }
+
     #endregion
+
+    #region Corrutinas
+
     IEnumerator AttackCoroutine(AttackSO attackSO)
     {
-        //paso 3
-        //Corrutina para activar ataque
         isAttacking = true;
+
         yield return new WaitForSeconds(attackSO.startup);
-        Debug.Log("Activate Hitbox");
+
         hitBoxWeapon.size = attackSO.rangeAttack;
-        Debug.Log("Tamaño de hitbox" +  hitBoxWeapon.size);
         hitBoxWeapon.gameObject.SetActive(true);
         damage = attackSO.damage;
+
         yield return new WaitForSeconds(attackSO.durationAttack);
+
         hitBoxWeapon.gameObject.SetActive(false);
+
         OpenComboWindow(attackSO);
+
         yield return new WaitForSeconds(attackSO.endlag);
-        comboIndex = 0;
+
         isAttacking = false;
         _attackCoroutine = null;
+
         Debug.Log("Finish Attack");
-        
     }
+
+    void OpenComboWindow(AttackSO attackSO)
+    {
+        if (_comboWindowCoroutine != null)
+            StopCoroutine(_comboWindowCoroutine);
+
+        _comboWindowCoroutine = StartCoroutine(ComboWindowCoroutine(attackSO));
+    }
+
     IEnumerator ComboWindowCoroutine(AttackSO attackSO)
     {
-        //paso 5
-        //Corrutina para ventana de combos con arrays
         canChainAttack = true;
         Debug.Log("Combo Open");
 
         yield return new WaitForSeconds(attackSO.comboWindow);
 
         canChainAttack = false;
-        
+        comboIndex = 0;
+
         Debug.Log("Combo Close");
     }
 
+    #endregion
 
+    #region Limpiador de corrutinas etc
+
+    void CancelCurrentAttack(bool resetCombo = true)
+    {
+        if (_attackCoroutine != null)
+            StopCoroutine(_attackCoroutine);
+
+        if (_comboWindowCoroutine != null)
+            StopCoroutine(_comboWindowCoroutine);
+
+        hitBoxWeapon.gameObject.SetActive(false);
+
+        canChainAttack = false;
+
+        if (resetCombo)
+            comboIndex = 0;
+
+        isAttacking = false;
+        _attackCoroutine = null;
+    }
+
+    #endregion
+
+    #region Test
+
+    [Button("attackGRoundedUp")]
+    public void TestGroundedUp()
+    {
+        Attack(true, AttackDirection.Up);
+    }
+
+    [Button("attackGrounded Neutral")]
+    public void TestNeutral()
+    {
+        Attack(true, AttackDirection.Neutral);
+    }
+
+    #endregion
 }

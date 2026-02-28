@@ -719,9 +719,9 @@ MonoBehaviour:
   currentWeapon: {fileID: 11400000, guid: e776c7eccc2adcb4aa5cbc32e1647513, type: 2}
   hitBoxWeapon: {fileID: 131249042}
   isAttacking: 0
-  damage: 10
   canChainAttack: 0
   comboIndex: 0
+  damage: 10
 --- !u!50 &422602076
 Rigidbody2D:
   serializedVersion: 5
@@ -756,7 +756,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 422602071}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a3b56aa569034f4f875cd7372868e68, type: 3}
   m_Name: 
@@ -772,12 +772,17 @@ MonoBehaviour:
   _damageTest: 0
   _isAlive: 1
   actions: {fileID: -944628639613478452, guid: 188fa70217d40f940984bffb91396a95, type: 3}
+  isGrounded: 0
   walkSpeed: 0
   jumpSpeed: 0
   dashForce: 20
   groundCheck: {fileID: 169631115}
   groundCheckRadius: 0.2
   groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  interactionRadius: 1.5
+  interactableLayer:
     serializedVersion: 2
     m_Bits: 0
 --- !u!61 &422602078
