@@ -7,13 +7,14 @@ public class Enemy : Entity
     [SerializeField] protected State _currentState = State.Idle;
     
     protected Player _playerRef;
-    
+
+
     [Header("Detection Settings")]
     [SerializeField] protected float _detectionRange = 10f;
 
     protected override void Awake()
     {
-        base.Awake();
+        base.Awake(); 
         _playerRef = FindFirstObjectByType<Player>(); 
         if (_playerRef == null) Debug.LogWarning($"Enemy " + gameObject.name + " no encontro a player");
     }
@@ -77,13 +78,4 @@ public class Enemy : Entity
         base.TakeKnockback(knockbackDirection, knockbackForce);
     }
 
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        AttackSO attackSO = collision.GetComponent<AttackSO>();
-        if (attackSO != null)
-        {
-            TakeDamage(attackSO.damage);
-            TakeKnockback(attackSO.direction, attackSO.forceKnockback);
-        }
-    }
 }

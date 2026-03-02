@@ -14,7 +14,9 @@ public class AttackSystem : MonoBehaviour
     public bool isAttacking;
     public bool canChainAttack;
     public int comboIndex;
-    public int damage;
+    public float damage;
+    public Vector2 dirKnocBack;
+    public float forceKnockback;
 
     private Coroutine _attackCoroutine;
     private Coroutine _comboWindowCoroutine;
@@ -134,6 +136,10 @@ public class AttackSystem : MonoBehaviour
         hitBoxWeapon.size = attackSO.rangeAttack;
         hitBoxWeapon.gameObject.SetActive(true);
         damage = attackSO.damage;
+        dirKnocBack = attackSO.direction;
+        forceKnockback = attackSO.forceKnockback;
+
+        Debug.Log("Daño es de " + damage);
 
         yield return new WaitForSeconds(attackSO.durationAttack);
 
@@ -210,4 +216,6 @@ public class AttackSystem : MonoBehaviour
     }
 
     #endregion
+
+
 }

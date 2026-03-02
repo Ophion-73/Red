@@ -2,7 +2,7 @@ using UnityEngine;
 using NaughtyAttributes;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Entity : MonoBehaviour
+public class Entity : MonoBehaviour, IDamageable
 {
     #region Variables
 
