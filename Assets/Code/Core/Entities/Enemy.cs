@@ -66,4 +66,24 @@ public class Enemy : Entity
         else if (direction < -0.1f)
             transform.rotation = Quaternion.Euler(0, 180, 0);
     }
+
+    public override void TakeDamage(float damage)
+    {
+        base.TakeDamage(damage);
+    }
+
+    public override void TakeKnockback(Vector2 knockbackDirection, float knockbackForce)
+    {
+        base.TakeKnockback(knockbackDirection, knockbackForce);
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        AttackSO attackSO = collision.GetComponent<AttackSO>();
+        if (attackSO != null)
+        {
+            TakeDamage(attackSO.damage);
+            TakeKnockback(attackSO.direction, attackSO.forceKnockback);
+        }
+    }
 }

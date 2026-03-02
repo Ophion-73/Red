@@ -83,7 +83,7 @@ public class Entity : MonoBehaviour
             Die();
     }
 
-    public void TakeKnockback(Vector2 knockbackDirection, float knockbackForce)
+    public virtual void TakeKnockback(Vector2 knockbackDirection, float knockbackForce)
     {
         Vector2 directionForKnockback = knockbackDirection.normalized;
 
