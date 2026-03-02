@@ -2,7 +2,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Attacks")]
 public class AttackSO : ScriptableObject
 {
-    public int damage;
+    public float damage;
     public Vector2 direction;
     public float startup;
     public float endlag;

@@ -132,7 +132,8 @@ public class AttackSystem : MonoBehaviour
         isAttacking = true;
 
         yield return new WaitForSeconds(attackSO.startup);
-
+        HitBox hitbox = hitBoxWeapon.GetComponent<HitBox>();
+        hitbox.Init(this, gameObject);
         hitBoxWeapon.size = attackSO.rangeAttack;
         hitBoxWeapon.gameObject.SetActive(true);
         damage = attackSO.damage;

@@ -2,23 +2,28 @@ using UnityEngine;
 
 public class HitBox : MonoBehaviour
 {
-    private AttackSystem attackSystem;
-    public GameObject Owner;
+    private AttackSystem _attackSystem;
+    private GameObject _owner;
 
-    private void Awake()
+    public void Init(AttackSystem system, GameObject ownerObject)
     {
-        
-        attackSystem = GetComponent<AttackSystem>();
+        _attackSystem = system;
+        _owner = ownerObject;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         IDamageable damageable = collision.GetComponent<IDamageable>();
-        if (collision == Owner)
+        if (collision.transform.root.gameObject == _owner)
         {
             return;
         }
-        damageable.TakeDamage(attackSystem.damage);
-        damageable.TakeKnockback(attackSystem.dirKnocBack, attackSystem.forceKnockback);
+        if (damageable == null)
+        {
+            return;
+        }
+        
+        damageable.TakeDamage(_attackSystem.damage);
+        damageable.TakeKnockback(_attackSystem.dirKnocBack, _attackSystem.forceKnockback);
     }
 }
