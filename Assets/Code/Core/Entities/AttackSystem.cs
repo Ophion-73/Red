@@ -73,7 +73,7 @@ public class AttackSystem : MonoBehaviour
 
         if (attackSO != null)
         {
-            StartSingleAttack(attackSO);
+            SingleAttacks(attackSO);
         }
     }
 
@@ -81,11 +81,29 @@ public class AttackSystem : MonoBehaviour
 
     #region NormalAttacks
 
+
+    public void SingleAttacks(AttackSO attackSO)
+    {
+        if (canChainAttack & isAttacking)
+        {
+            ChainSingle(attackSO);
+            return;
+        }
+        if (_attackCoroutine != null) return;
+
+        StartSingleAttack(attackSO);
+    }
     public void StartSingleAttack(AttackSO attackSO)
     {
-        CancelCurrentAttack();
+            CancelCurrentAttack();
         _attackCoroutine = StartCoroutine(AttackCoroutine(attackSO));
     }
+    void ChainSingle(AttackSO attackSO)
+    {
+        canChainAttack = false;
+        StartSingleAttack(attackSO);
+    }
+
 
     #endregion
 
