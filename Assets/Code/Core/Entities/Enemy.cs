@@ -7,13 +7,14 @@ public class Enemy : Entity
     [SerializeField] protected State _currentState = State.Idle;
     
     protected Player _playerRef;
-    
+
+
     [Header("Detection Settings")]
     [SerializeField] protected float _detectionRange = 10f;
 
     protected override void Awake()
     {
-        base.Awake();
+        base.Awake(); 
         _playerRef = FindFirstObjectByType<Player>(); 
         if (_playerRef == null) Debug.LogWarning($"Enemy " + gameObject.name + " no encontro a player");
     }
@@ -66,4 +67,15 @@ public class Enemy : Entity
         else if (direction < -0.1f)
             transform.rotation = Quaternion.Euler(0, 180, 0);
     }
+
+    public override void TakeDamage(float damage)
+    {
+        base.TakeDamage(damage);
+    }
+
+    public override void TakeKnockback(Vector2 knockbackDirection, float knockbackForce)
+    {
+        base.TakeKnockback(knockbackDirection, knockbackForce);
+    }
+
 }

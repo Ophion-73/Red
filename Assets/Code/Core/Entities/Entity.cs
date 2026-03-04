@@ -2,7 +2,7 @@ using UnityEngine;
 using NaughtyAttributes;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Entity : MonoBehaviour
+public class Entity : MonoBehaviour, IDamageable
 {
     #region Variables
 
@@ -83,7 +83,7 @@ public class Entity : MonoBehaviour
             Die();
     }
 
-    public void TakeKnockback(Vector2 knockbackDirection, float knockbackForce)
+    public virtual void TakeKnockback(Vector2 knockbackDirection, float knockbackForce)
     {
         Vector2 directionForKnockback = knockbackDirection.normalized;
 

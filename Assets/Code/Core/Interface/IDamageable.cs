@@ -1,6 +1,8 @@
 using UnityEngine;
 
-public interface IHittable
+public interface IDamageable
 {
-    void TakeDamage(int damage);
+    void TakeDamage(float damage);
+
+    void TakeKnockback(Vector2 knockbackDirection, float knockbackForce);
 }
