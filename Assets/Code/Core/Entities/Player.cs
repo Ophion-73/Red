@@ -1,3 +1,4 @@
+using System;
 using System.Runtime.CompilerServices;
 using UnityEditorInternal;
 using UnityEngine;
@@ -74,8 +75,18 @@ public class Player : Entity
         InputRead();
         UpdateAnimatorParameters();
         Flip();
+        
     }
-    
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            isGrounded = true;
+        }
+
+    }
+
     private void FixedUpdate()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
@@ -89,27 +100,14 @@ public class Player : Entity
         _animator.SetFloat("Horizontal", moveInput.x);
         _animator.SetFloat("Vertical", moveInput.y);
         
-        _moveInput = _move.ReadValue<Vector2>();
         if(_jump.WasPressedThisFrame())
         {
-            //Aqui Mandar a llamar el metodo jump, falta crearlo
-            // Para el movimiento utiliza las siguientes funciones
-            // _move.x
-            // move.y
+            Jump();
             _animator.SetTrigger("Jump");
-        }
-        
-        AnimatorStateInfo state = _animator.GetCurrentAnimatorStateInfo(0);
-
-        if (state.IsName("Jump"))
-        {
             _animator.SetBool("IsGrounded", false);
         }
-        else
-        {
-            _animator.SetBool("IsGrounded", true);
-            Jump();
-        }
+        
+        //AnimatorStateInfo state = _animator.GetCurrentAnimatorStateInfo(0);
 
         if(_red.WasPressedThisFrame()) 
         {
@@ -122,9 +120,8 @@ public class Player : Entity
 
         if(_dash.WasPressedThisFrame())
         {
-            //Aqui Mandar a llamar el metodo Dash
-            _animator.SetTrigger("Dodge");
             Dash();
+            _animator.SetTrigger("Dodge");
         }
 
         if (_interact.WasPressedThisFrame())
@@ -148,7 +145,10 @@ public class Player : Entity
             _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, 0); 
             _rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
             
+            isGrounded = false;
+            
             _anim.SetTrigger("Jump");
+            _animator.SetBool("IsGrounded",false);
         }
     }
     
@@ -179,10 +179,10 @@ public class Player : Entity
 
     AttackDirection GetAttackDir(Vector2 input)
     {
-        if (input.y > 1) return AttackDirection.Up;
-        if (input.y < -1) return AttackDirection.Down;
-        if (input.x > 1) return AttackDirection.Right;
-        if (input.x < -1) return AttackDirection.Left;
+        if (input.y > 0.5f) return AttackDirection.Up;
+        if (input.y < -0.5f) return AttackDirection.Down;
+        if (input.x > 0.5f) return AttackDirection.Right;
+        if (input.x < -0.5f) return AttackDirection.Left;
         return AttackDirection.Neutral;
     }
 
@@ -207,7 +207,7 @@ public static class PlayerStrings
     {
         public const string move = "Move";
         public const string red = "RED";
-        public const string jump = "JUMP";
+        public const string jump = "Jump";
         public const string dash = "Dash";
         public const string interact = "Interact";
      }

@@ -679,6 +679,7 @@ GameObject:
   - component: {fileID: 422602074}
   - component: {fileID: 422602077}
   - component: {fileID: 422602078}
+  - component: {fileID: 422602079}
   m_Layer: 0
   m_Name: Red_Player
   m_TagString: Untagged
@@ -750,7 +751,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 2
+  m_Constraints: 4
 --- !u!114 &422602077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -758,14 +759,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 422602071}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a3b56aa569034f4f875cd7372868e68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  _currentHealth: 0
-  _maxHealth: 0
-  _currentSpeed: 0
+  _currentHealth: 100
+  _maxHealth: 100
+  _currentSpeed: 5
   _maxSpeed: 0
   _currentDamage: 0
   _maxDamage: 0
@@ -775,8 +776,8 @@ MonoBehaviour:
   _isAlive: 1
   actions: {fileID: -944628639613478452, guid: 188fa70217d40f940984bffb91396a95, type: 3}
   isGrounded: 0
-  walkSpeed: 0
-  jumpSpeed: 0
+  walkSpeed: 5
+  jumpSpeed: 10
   dashForce: 20
   groundCheck: {fileID: 169631115}
   groundCheckRadius: 0.2
@@ -833,6 +834,28 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.6117554, y: 2.5848129}
   m_EdgeRadius: 0
+--- !u!95 &422602079
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 422602071}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fd33c870aee99c648991bcbf0e787496, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &440478307
 GameObject:
   m_ObjectHideFlags: 0
