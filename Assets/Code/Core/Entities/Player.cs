@@ -3,71 +3,71 @@ using System.Runtime.CompilerServices;
 using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public enum AttackDirection { Up, Down, Right, Left, Neutral }
 public class Player : Entity
 {
+    [Header("Input Settings")]
     public InputActionAsset actions;
-    
     private InputAction _move;
     private InputAction _jump;
     private InputAction _red;
     private InputAction _dash;
     private InputAction _interact;
 
-
-    [SerializeField] bool isGrounded;
-
     [Header("Movement Settings")]
     public float walkSpeed = 8f;
     public float jumpSpeed = 12f;
     public float dashForce = 20f;
-    
+
+    private bool isDashing;
     private Vector2 _moveInput;
-    
-    [Header("Ground Check Settings")]
+    [SerializeField] private bool isGrounded;
+
+    [Header("Detection Settings")]
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundCheckRadius = 0.2f;
     [SerializeField] private LayerMask groundLayer;
-    
-    [Header("Interaction Settings")]
     [SerializeField] private float interactionRadius = 1.5f;
     [SerializeField] private LayerMask interactableLayer;
-    
-    private Animator _anim;
 
     private Animator _animator;
 
     private void OnEnable()
     {
-        actions.FindActionMap("Player").Enable();
+        if (actions != null)
+        {
+            var map = actions.FindActionMap("Player");
+            if (map != null) map.Enable();
+        }
     }
+
     private void OnDisable()
     {
-        actions.FindActionMap("Player").Disable();
+        if (actions != null)
+        {
+            var map = actions.FindActionMap("Player");
+            if (map != null) map.Disable();
+        }
     }
+
     protected override void Awake()
     {
         base.Awake();
         
         var map = actions.FindActionMap("Player");
-
+        
         _move = map.FindAction(PlayerStrings.PlayerInputStrings.move);
         _jump = map.FindAction(PlayerStrings.PlayerInputStrings.jump);
         _red = map.FindAction(PlayerStrings.PlayerInputStrings.red);
         _dash = map.FindAction(PlayerStrings.PlayerInputStrings.dash);
         _interact = map.FindAction(PlayerStrings.PlayerInputStrings.interact);
     }
-    
+
     private void Start()
     {
         _animator = GetComponent<Animator>();
-        /*_move = InputSystem.actions.FindAction(PlayerStrings.PlayerInputStrings.move);
-        _jump = InputSystem.actions.FindAction(PlayerStrings.PlayerInputStrings.jump);
-        _red = InputSystem.actions.FindAction(PlayerStrings.PlayerInputStrings.red);
-        _dash = InputSystem.actions.FindAction(PlayerStrings.PlayerInputStrings.dash);
-        _interact = InputSystem.actions.FindAction(PlayerStrings.PlayerInputStrings.interact);*/
-        _anim = GetComponent<Animator>();
     }
 
     private void Update()
@@ -75,16 +75,6 @@ public class Player : Entity
         InputRead();
         UpdateAnimatorParameters();
         Flip();
-        
-    }
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
-        {
-            isGrounded = true;
-        }
-
     }
 
     private void FixedUpdate()
@@ -95,33 +85,23 @@ public class Player : Entity
 
     public void InputRead()
     {
-        Vector2 moveInput = _move.ReadValue<Vector2>();
-        
-        _animator.SetFloat("Horizontal", moveInput.x);
-        _animator.SetFloat("Vertical", moveInput.y);
-        
-        if(_jump.WasPressedThisFrame())
+        _moveInput = _move.ReadValue<Vector2>();
+
+        if (_jump.WasPressedThisFrame())
         {
             Jump();
-            _animator.SetTrigger("Jump");
-            _animator.SetBool("IsGrounded", false);
         }
-        
-        //AnimatorStateInfo state = _animator.GetCurrentAnimatorStateInfo(0);
 
-        if(_red.WasPressedThisFrame()) 
+        if (_red.WasPressedThisFrame()) 
         {
             AttackDirection dir = GetAttackDir(_moveInput);
-            _attackSystem.Attack(isGrounded,dir);
-
-            //Aqui mandar a llamar el metodo red, falta crearlo(recuerda que red referencia a todos los ataques de caperucita)
+            if (_attackSystem != null) _attackSystem.Attack(isGrounded, dir);
             _animator.SetTrigger("REDButton");
         }
 
-        if(_dash.WasPressedThisFrame())
+        if (_dash.WasPressedThisFrame())
         {
             Dash();
-            _animator.SetTrigger("Dodge");
         }
 
         if (_interact.WasPressedThisFrame())
@@ -129,15 +109,17 @@ public class Player : Entity
             PerformInteraction();
         }
     }
-    
+
     private void ApplyMovement()
     {
+        if (isDashing) return;
+
         float horizontalSpeed = _moveInput.x * walkSpeed;
         float currentVerticalVelocity = _rb.linearVelocity.y;
 
         _rb.linearVelocity = new Vector2(horizontalSpeed, currentVerticalVelocity);
     }
-    
+
     public void Jump()
     {
         if (isGrounded)
@@ -145,28 +127,38 @@ public class Player : Entity
             _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, 0); 
             _rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
             
-            isGrounded = false;
-            
-            _anim.SetTrigger("Jump");
-            _animator.SetBool("IsGrounded",false);
+            _animator.SetTrigger("Jump");
         }
     }
-    
+
     public void Dash()
     {
-        float dashDirection = _moveInput.x != 0 ? Mathf.Sign(_moveInput.x) : transform.localScale.x;
-        _rb.linearVelocity = new Vector2(dashDirection * dashForce, 0);
-        
-        _anim.SetTrigger("Dodge");
+        if (Mathf.Abs(_moveInput.x) > 0.1f)
+        {
+            isDashing = true;
+
+            float dashDirection = Mathf.Sign(_moveInput.x);
+            _rb.linearVelocity = new Vector2(dashDirection * dashForce, 0);
+
+            Invoke(nameof(EndDash), 0.2f);
+        }
+
+        _animator.ResetTrigger("Dodge");
+        _animator.SetTrigger("Dodge");
     }
-    
+
+    void EndDash()
+    {
+        isDashing = false;
+    }
+
     private void UpdateAnimatorParameters()
     {
-        _anim.SetFloat("Horizontal", Mathf.Abs(_moveInput.x));
-        _anim.SetFloat("Vertical", _rb.linearVelocity.y);
-        _anim.SetBool("IsGrounded", isGrounded);
+        _animator.SetFloat("Horizontal", Mathf.Abs(_moveInput.x));
+        _animator.SetFloat("Vertical", _moveInput.y);
+        _animator.SetBool("IsGrounded", isGrounded);
     }
-    
+
     private void Flip()
     {
         if (_moveInput.x > 0 && transform.localScale.x < 0 || _moveInput.x < 0 && transform.localScale.x > 0)
@@ -179,6 +171,7 @@ public class Player : Entity
 
     AttackDirection GetAttackDir(Vector2 input)
     {
+        // Umbral de 0.5f para evitar lecturas accidentales del joystick
         if (input.y > 0.5f) return AttackDirection.Up;
         if (input.y < -0.5f) return AttackDirection.Down;
         if (input.x > 0.5f) return AttackDirection.Right;
@@ -189,17 +182,29 @@ public class Player : Entity
     private void PerformInteraction()
     {
         Collider2D hit = Physics2D.OverlapCircle(transform.position, interactionRadius, interactableLayer);
-        if (hit != null) Debug.Log("Interactuando con: " + hit.name);
+        if (hit != null) 
+        {
+            Debug.Log("Interactuando con: " + hit.name);
+            // Aquí iría la lógica de interacción (ej. hit.GetComponent<IInteractable>().Interact();)
+        }
     }
-    
+
     private void OnDrawGizmosSelected()
     {
+        // Visualizar el radio de interacción en el Editor
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, interactionRadius);
+
+        // Visualizar el Ground Check
+        if (groundCheck != null)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+        }
     }
+    
+    
 }
-
-
 
 public static class PlayerStrings
 {
@@ -210,5 +215,5 @@ public static class PlayerStrings
         public const string jump = "Jump";
         public const string dash = "Dash";
         public const string interact = "Interact";
-     }
+    }
 }

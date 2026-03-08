@@ -154,8 +154,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   _currentHealth: 0
   _maxHealth: 0
-  _currentSpeed: 0
-  _maxSpeed: 0
+  _currentSpeed: 8
+  _maxSpeed: 10
   _currentDamage: 0
   _maxDamage: 0
   _knockbackDirectionTest: {x: 0, y: 0}
@@ -163,11 +163,11 @@ MonoBehaviour:
   _damageTest: 0
   _isAlive: 1
   actions: {fileID: -944628639613478452, guid: 188fa70217d40f940984bffb91396a95, type: 3}
-  isGrounded: 0
   walkSpeed: 8
   jumpSpeed: 12
   dashForce: 20
-  groundCheck: {fileID: 1273734759}
+  isGrounded: 1
+  groundCheck: {fileID: 921171461}
   groundCheckRadius: 0.2
   groundLayer:
     serializedVersion: 2
@@ -270,10 +270,11 @@ Transform:
   m_GameObject: {fileID: 616960572}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 1.44, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 921171461}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &616960577
@@ -335,6 +336,37 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2}
   m_Direction: 0
+--- !u!1 &921171460
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 921171461}
+  m_Layer: 0
+  m_Name: floor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &921171461
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 921171460}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.99, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 616960576}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1141029102
 GameObject:
   m_ObjectHideFlags: 0
