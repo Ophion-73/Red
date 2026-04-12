@@ -1,0 +1,1 @@
+Cosas Diegeticas que te dejan moverle los ajustes al juego.
