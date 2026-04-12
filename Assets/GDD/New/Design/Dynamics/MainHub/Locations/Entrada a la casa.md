@@ -1,0 +1,1 @@
+lleva al training ground y es por donde entras en la cinematatica inicial.
