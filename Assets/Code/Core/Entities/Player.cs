@@ -186,6 +186,7 @@ public class Player : Entity
         {
             Debug.Log("Interactuando con: " + hit.name);
             // Aquí iría la lógica de interacción (ej. hit.GetComponent<IInteractable>().Interact();)
+            hit.GetComponent<IInteractable>().Interact();
         }
     }
 
