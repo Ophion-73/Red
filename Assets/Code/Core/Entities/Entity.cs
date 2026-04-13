@@ -93,7 +93,7 @@ public class Entity : MonoBehaviour, IDamageable
         Debug.Log("Hey! You knocked the air out of me (Got knockback)");
     }
 
-    public void Die()
+    public virtual void Die()
     {
         if (!_isAlive) return;
 
