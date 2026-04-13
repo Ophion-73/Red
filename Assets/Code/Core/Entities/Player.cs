@@ -203,7 +203,12 @@ public class Player : Entity
             Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
         }
     }
-    
+
+    public override void Die()
+    {
+        base.Die();
+        GameEvents.OnPlayerDied?.Invoke();
+    }
     
 }
 
