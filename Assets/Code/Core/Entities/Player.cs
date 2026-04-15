@@ -1,72 +1,73 @@
+using System;
 using System.Runtime.CompilerServices;
 using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public enum AttackDirection { Up, Down, Right, Left, Neutral }
 public class Player : Entity
 {
+    [Header("Input Settings")]
     public InputActionAsset actions;
-    
     private InputAction _move;
     private InputAction _jump;
     private InputAction _red;
     private InputAction _dash;
     private InputAction _interact;
 
-
-    [SerializeField] bool isGrounded;
-
     [Header("Movement Settings")]
     public float walkSpeed = 8f;
     public float jumpSpeed = 12f;
     public float dashForce = 20f;
-    
+
+    private bool isDashing;
     private Vector2 _moveInput;
-    
-    [Header("Ground Check Settings")]
+    [SerializeField] private bool isGrounded;
+
+    [Header("Detection Settings")]
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundCheckRadius = 0.2f;
     [SerializeField] private LayerMask groundLayer;
-    
-    [Header("Interaction Settings")]
     [SerializeField] private float interactionRadius = 1.5f;
     [SerializeField] private LayerMask interactableLayer;
-    
-    private Animator _anim;
 
     private Animator _animator;
 
     private void OnEnable()
     {
-        actions.FindActionMap("Player").Enable();
+        if (actions != null)
+        {
+            var map = actions.FindActionMap("Player");
+            if (map != null) map.Enable();
+        }
     }
+
     private void OnDisable()
     {
-        actions.FindActionMap("Player").Disable();
+        if (actions != null)
+        {
+            var map = actions.FindActionMap("Player");
+            if (map != null) map.Disable();
+        }
     }
+
     protected override void Awake()
     {
         base.Awake();
         
         var map = actions.FindActionMap("Player");
-
+        
         _move = map.FindAction(PlayerStrings.PlayerInputStrings.move);
         _jump = map.FindAction(PlayerStrings.PlayerInputStrings.jump);
         _red = map.FindAction(PlayerStrings.PlayerInputStrings.red);
         _dash = map.FindAction(PlayerStrings.PlayerInputStrings.dash);
         _interact = map.FindAction(PlayerStrings.PlayerInputStrings.interact);
     }
-    
+
     private void Start()
     {
         _animator = GetComponent<Animator>();
-        /*_move = InputSystem.actions.FindAction(PlayerStrings.PlayerInputStrings.move);
-        _jump = InputSystem.actions.FindAction(PlayerStrings.PlayerInputStrings.jump);
-        _red = InputSystem.actions.FindAction(PlayerStrings.PlayerInputStrings.red);
-        _dash = InputSystem.actions.FindAction(PlayerStrings.PlayerInputStrings.dash);
-        _interact = InputSystem.actions.FindAction(PlayerStrings.PlayerInputStrings.interact);*/
-        _anim = GetComponent<Animator>();
     }
 
     private void Update()
@@ -75,7 +76,7 @@ public class Player : Entity
         UpdateAnimatorParameters();
         Flip();
     }
-    
+
     private void FixedUpdate()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
@@ -84,46 +85,22 @@ public class Player : Entity
 
     public void InputRead()
     {
-        Vector2 moveInput = _move.ReadValue<Vector2>();
-        
-        _animator.SetFloat("Horizontal", moveInput.x);
-        _animator.SetFloat("Vertical", moveInput.y);
-        
         _moveInput = _move.ReadValue<Vector2>();
-        if(_jump.WasPressedThisFrame())
-        {
-            //Aqui Mandar a llamar el metodo jump, falta crearlo
-            // Para el movimiento utiliza las siguientes funciones
-            // _move.x
-            // move.y
-            _animator.SetTrigger("Jump");
-        }
-        
-        AnimatorStateInfo state = _animator.GetCurrentAnimatorStateInfo(0);
 
-        if (state.IsName("Jump"))
+        if (_jump.WasPressedThisFrame())
         {
-            _animator.SetBool("IsGrounded", false);
-        }
-        else
-        {
-            _animator.SetBool("IsGrounded", true);
             Jump();
         }
 
-        if(_red.WasPressedThisFrame()) 
+        if (_red.WasPressedThisFrame()) 
         {
             AttackDirection dir = GetAttackDir(_moveInput);
-            _attackSystem.Attack(isGrounded,dir);
-
-            //Aqui mandar a llamar el metodo red, falta crearlo(recuerda que red referencia a todos los ataques de caperucita)
+            if (_attackSystem != null) _attackSystem.Attack(isGrounded, dir);
             _animator.SetTrigger("REDButton");
         }
 
-        if(_dash.WasPressedThisFrame())
+        if (_dash.WasPressedThisFrame())
         {
-            //Aqui Mandar a llamar el metodo Dash
-            _animator.SetTrigger("Dodge");
             Dash();
         }
 
@@ -132,15 +109,17 @@ public class Player : Entity
             PerformInteraction();
         }
     }
-    
+
     private void ApplyMovement()
     {
+        if (isDashing) return;
+
         float horizontalSpeed = _moveInput.x * walkSpeed;
         float currentVerticalVelocity = _rb.linearVelocity.y;
 
         _rb.linearVelocity = new Vector2(horizontalSpeed, currentVerticalVelocity);
     }
-    
+
     public void Jump()
     {
         if (isGrounded)
@@ -148,25 +127,38 @@ public class Player : Entity
             _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, 0); 
             _rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
             
-            _anim.SetTrigger("Jump");
+            _animator.SetTrigger("Jump");
         }
     }
-    
+
     public void Dash()
     {
-        float dashDirection = _moveInput.x != 0 ? Mathf.Sign(_moveInput.x) : transform.localScale.x;
-        _rb.linearVelocity = new Vector2(dashDirection * dashForce, 0);
-        
-        _anim.SetTrigger("Dodge");
+        if (Mathf.Abs(_moveInput.x) > 0.1f)
+        {
+            isDashing = true;
+
+            float dashDirection = Mathf.Sign(_moveInput.x);
+            _rb.linearVelocity = new Vector2(dashDirection * dashForce, 0);
+
+            Invoke(nameof(EndDash), 0.2f);
+        }
+
+        _animator.ResetTrigger("Dodge");
+        _animator.SetTrigger("Dodge");
     }
-    
+
+    void EndDash()
+    {
+        isDashing = false;
+    }
+
     private void UpdateAnimatorParameters()
     {
-        _anim.SetFloat("Horizontal", Mathf.Abs(_moveInput.x));
-        _anim.SetFloat("Vertical", _rb.linearVelocity.y);
-        _anim.SetBool("IsGrounded", isGrounded);
+        _animator.SetFloat("Horizontal", Mathf.Abs(_moveInput.x));
+        _animator.SetFloat("Vertical", _moveInput.y);
+        _animator.SetBool("IsGrounded", isGrounded);
     }
-    
+
     private void Flip()
     {
         if (_moveInput.x > 0 && transform.localScale.x < 0 || _moveInput.x < 0 && transform.localScale.x > 0)
@@ -179,27 +171,46 @@ public class Player : Entity
 
     AttackDirection GetAttackDir(Vector2 input)
     {
-        if (input.y > 1) return AttackDirection.Up;
-        if (input.y < -1) return AttackDirection.Down;
-        if (input.x > 1) return AttackDirection.Right;
-        if (input.x < -1) return AttackDirection.Left;
+        // Umbral de 0.5f para evitar lecturas accidentales del joystick
+        if (input.y > 0.5f) return AttackDirection.Up;
+        if (input.y < -0.5f) return AttackDirection.Down;
+        if (input.x > 0.5f) return AttackDirection.Right;
+        if (input.x < -0.5f) return AttackDirection.Left;
         return AttackDirection.Neutral;
     }
 
     private void PerformInteraction()
     {
         Collider2D hit = Physics2D.OverlapCircle(transform.position, interactionRadius, interactableLayer);
-        if (hit != null) Debug.Log("Interactuando con: " + hit.name);
+        if (hit != null) 
+        {
+            Debug.Log("Interactuando con: " + hit.name);
+            // Aquí iría la lógica de interacción (ej. hit.GetComponent<IInteractable>().Interact();)
+            hit.GetComponent<IInteractable>().Interact();
+        }
     }
-    
+
     private void OnDrawGizmosSelected()
     {
+        // Visualizar el radio de interacción en el Editor
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, interactionRadius);
+
+        // Visualizar el Ground Check
+        if (groundCheck != null)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+        }
     }
+
+    public override void Die()
+    {
+        base.Die();
+        GameEvents.OnPlayerDied?.Invoke();
+    }
+    
 }
-
-
 
 public static class PlayerStrings
 {
@@ -207,8 +218,8 @@ public static class PlayerStrings
     {
         public const string move = "Move";
         public const string red = "RED";
-        public const string jump = "JUMP";
+        public const string jump = "Jump";
         public const string dash = "Dash";
         public const string interact = "Interact";
-     }
+    }
 }
