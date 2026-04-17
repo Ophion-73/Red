@@ -69,10 +69,10 @@ public class Bulky : Enemy
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, _bulkyData.explosionRadius, _bulkyData.playerLayer);
         foreach (var col in hitColliders)
         {
-            if (col.TryGetComponent<Entity>(out Entity e))
+            if (col.TryGetComponent<Player>(out Player p))
             {
-                e.TakeDamage(CurrentDamage);
-                Debug.Log("Bulky hit: " + e.name);
+                p.TakeDamage(CurrentDamage);
+                Debug.Log("Bulky hit: " + p.name);
             }
         }
     }
