@@ -60,17 +60,21 @@ Ejecutados únicamente cuando RED está en el suelo.
 - Ataque básico en combo.
 - Se ejecuta sin DI.
 - Presionar repetidamente el botón de ataque encadena un combo de 3 a 5 golpes, dependiendo del arma equipada.
+- RED quickly swings her axe from her back to the side, back and forth when in combo
 
 ### RED Side Normal
 - Botón de ataque + DI lateral.
 - Puede ejecutarse hacia izquierda o derecha.
 - El ataque se orienta según la dirección presionada.
+- RED swings her axe over her head, letting it carry her forward and slamming the edge against the ground
 
 ### RED Up Normal
 - Botón de ataque + DI hacia arriba.
+- RED fires up her axe from bottom to top, ascending into a deadly uppercut in a slightly diagonal direction
 
 ### RED Down Normal
 - Botón de ataque + DI hacia abajo.
+- RED spins her axe around her without lifting it off the ground, knocking down (or grabbing?) enemies either side of her.
 
 ---
 
@@ -80,17 +84,21 @@ Ejecutados únicamente cuando RED está en el aire.
 
 ### RED Neutral Air
 - Botón de ataque sin DI.
+- RED swings her axe while in the air in a quick and elegant fashion
 
 ### RED Side Air
 - Botón de ataque + DI lateral.
 - Puede ejecutarse hacia izquierda o derecha.
 - El ataque se orienta según la dirección presionada.
+- RED swings her axe with force, letting the momentum propel her through the air in a horizontal direction
 
 ### RED Up Air
 - Botón de ataque + DI hacia arriba.
+- RED uses all her strength to spin her axe above her like a helicopter blade, carrying her upward and damaging enemies to her sides or above her
 
 ### RED Down Air
 - Botón de ataque + DI hacia abajo.
+- RED swings her axe above her head like a lumberjack would, shooting directly down edge first against the floor 
 
 
 
