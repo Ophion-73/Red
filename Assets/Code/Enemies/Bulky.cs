@@ -9,10 +9,14 @@ public class Bulky : Enemy
     public UnityEvent OnExplosionAttack;
     public UnityEvent OnTakeDamage;
 
+    [Header("Referencias")]
+    [SerializeField] private Animator _animator;
+
     private float _lastAttackTime;
 
     protected override void Awake()
     {
+        _animator = GetComponent<Animator>();
         base.Awake();
         InitializeStats();
     }
@@ -30,7 +34,13 @@ public class Bulky : Enemy
 
     protected override void HandleIdle()
     {
-        if (Vector2.Distance(transform.position, _playerRef.transform.position) < _detectionRange) ChangeState(State.Chasing);
+        if (Vector2.Distance(transform.position, _playerRef.transform.position) < _detectionRange) 
+        {
+            ChangeState(State.Chasing);
+            _animator.SetBool("Chasing", true);
+            _animator.SetBool("Attacking", false);
+        }
+
     }
 
     protected override void HandleChasing()
@@ -39,7 +49,13 @@ public class Bulky : Enemy
         float distanceToPlayer = Vector2.Distance(transform.position, _playerRef.transform.position);
         
         if (distanceToPlayer <= _bulkyData.explosionRadius * 0.8f)
+        {
             ChangeState(State.Attacking);
+            _animator.SetBool("Attacking", true);
+            _animator.SetBool("Chasing", false);
+        }
+
+
         else
             MoveTowardsPlayer();
     }
@@ -52,6 +68,9 @@ public class Bulky : Enemy
         {
             PerformAoEAttack();
             ChangeState(State.Chasing);
+            _animator.SetBool("Chasing", true);
+            _animator.SetBool("Attacking", false);
+            
         }
     }
 

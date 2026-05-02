@@ -1445,7 +1445,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1587,6 +1587,7 @@ GameObject:
   - component: {fileID: 1480587474}
   - component: {fileID: 1480587473}
   - component: {fileID: 1480587470}
+  - component: {fileID: 1480587476}
   - component: {fileID: 1480587475}
   m_Layer: 0
   m_Name: Red_Player (1)
@@ -1685,7 +1686,29 @@ Transform:
   - {fileID: 1328462570}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1480587475
+--- !u!95 &1480587475
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1480587468}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e83d42a3249156b4aa46ca7afb7b14cf, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1480587476
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1694,28 +1717,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 1480587468}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4a1d6d272528f54186ee29e0a346112, type: 3}
+  m_Script: {fileID: 11500000, guid: 58c76ef8d460ca044ae4659bd3b34a3b, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GlassCannon
-  _currentHealth: 10
-  _maxHealth: 10
-  _currentSpeed: 10
-  _maxSpeed: 10
-  _currentDamage: 10
-  _maxDamage: 10
-  _knockbackDirectionTest: {x: 1, y: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::Bulky
+  _currentHealth: 0
+  _maxHealth: 0
+  _currentSpeed: 0
+  _maxSpeed: 0
+  _currentDamage: 0
+  _maxDamage: 0
+  _knockbackDirectionTest: {x: 0, y: 0}
   _knockbackForceTest: 0
   _damageTest: 0
   _isAlive: 1
   _currentState: 0
   _detectionRange: 10
-  _glassCannonData: {fileID: 11400000, guid: 8c77fcd47cfc0814493ebba30e1ec337, type: 2}
-  OnRangeAttack:
+  _bulkyData: {fileID: 11400000, guid: e9717a73f37c797408cf2e220fb62726, type: 2}
+  OnExplosionAttack:
     m_PersistentCalls:
       m_Calls: []
   OnTakeDamage:
     m_PersistentCalls:
       m_Calls: []
+  _animator: {fileID: 1480587475}
 --- !u!1 &1725115357
 GameObject:
   m_ObjectHideFlags: 0
