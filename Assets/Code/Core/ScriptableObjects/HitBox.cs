@@ -4,6 +4,7 @@ public class HitBox : MonoBehaviour
 {
     private AttackSystem _attackSystem;
     private GameObject _owner;
+    public bool hitBool;
 
     public void Init(AttackSystem system, GameObject ownerObject)
     {
@@ -22,8 +23,15 @@ public class HitBox : MonoBehaviour
         {
             return;
         }
-        
+
         damageable.TakeDamage(_attackSystem.damage);
         damageable.TakeKnockback(_attackSystem.dirKnocBack, _attackSystem.forceKnockback);
+        hitBool = true;
+
+        if (hitBool)
+        {
+            GameEvents.OnPlayerHit?.Invoke();
+            hitBool = false;
+        }
     }
 }
