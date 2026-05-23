@@ -17,7 +17,7 @@ MonoBehaviour:
   stunTime: 2
   stunCooldown: 3
   attackCooldown: 3
-  attackInvoke: 5
+  attackInvoke: 4.17
   playerLayer:
     serializedVersion: 2
     m_Bits: 1
