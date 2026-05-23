@@ -95,7 +95,7 @@ public class Summoner : Enemy
         {
             if (col.TryGetComponent<Player>(out Player p))
             {
-                Instantiate(invocations, pointInvocations);
+                Instantiate(invocations, this.gameObject.transform.position, this.gameObject.transform.rotation);
                 if (canStun)
                 {
                     p.OnStun(_summonerData.stunTime);
@@ -108,10 +108,10 @@ public class Summoner : Enemy
             }
         }
     }
-
     IEnumerator StunSummonCoroutine()
     {
         yield return new WaitForSeconds(_summonerData.stunCooldown);
+        Debug.Log(this.gameObject + "INVOKE" + invocations);
         canStun = true;
     }
     

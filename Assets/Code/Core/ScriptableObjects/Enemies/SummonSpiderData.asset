@@ -20,5 +20,5 @@ MonoBehaviour:
   attackInvoke: 5
   playerLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   summons: 3
