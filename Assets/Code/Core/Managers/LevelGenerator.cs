@@ -1,63 +1,79 @@
 using UnityEngine;
 using System.Collections.Generic;
+
 public class LevelGenerator : MonoBehaviour
 {
     public ScenarioData config;
-    private List<GameObject> mapaFinal = new List<GameObject>();
+    private List<GameObject> finalMap = new List<GameObject>();
 
     void Start()
     {
-        ConstruirRuta();
-        InstanciarMapa();
+        BuildRoute();
+        InstantiateMap();
     }
 
-    void ConstruirRuta()
+    void BuildRoute()
     {
-        mapaFinal.Clear();
+        finalMap.Clear();
 
-        foreach (LevelSlot slot in config.secuenciaDeNiveles)
+        foreach (LevelSlot slot in config.levelSequence)
         {
-            if (slot.esObligatorio && slot.prefabFijo != null)
+            if (slot.isRequired && slot.fixedPrefab != null)
             {
-                mapaFinal.Add(slot.prefabFijo);
+                finalMap.Add(slot.fixedPrefab);
             }
             else
             {
-                mapaFinal.Add(SeleccionarDePool(slot.tipo));
+                finalMap.Add(SelectFromPool(slot.type));
             }
         }
+
+        // --- NUEVA SECCIÓN DE LOGS ---
+        Debug.Log($"<color=green><b>[LevelGenerator]</b> Ruta construida. Total de habitaciones guardadas: {finalMap.Count}</color>");
+        for (int i = 0; i < finalMap.Count; i++)
+        {
+            if (finalMap[i] != null)
+            {
+                Debug.Log($"Habitación [{i}]: {finalMap[i].name}");
+            }
+            else
+            {
+                Debug.LogWarning($"Habitación [{i}]: ¡Alerta! El objeto es nulo (revisa las pools o prefabs fijos).");
+            }
+        }
+        // ------------------------------
     }
 
-    GameObject SeleccionarDePool(RoomType tipo)
+    GameObject SelectFromPool(RoomType type)
     {
-        switch (tipo)
+        switch (type)
         {
             case RoomType.Combat:
                 return config.combatRoomsPool[Random.Range(0, config.combatRoomsPool.Count)];
-            case RoomType.Shop:
-                return config.shopRoomsPool[Random.Range(0, config.shopRoomsPool.Count)];
+            case RoomType.Event:
+                return config.eventRoomsPool[Random.Range(0, config.eventRoomsPool.Count)];
             default:
                 return null;
         }
     }
 
-    void InstanciarMapa()
+    void InstantiateMap()
     {
-        Vector3 proximaPosicion = Vector3.zero;
-        Transform ultimaSalida = null;
+        Vector3 nextPosition = Vector3.zero;
+        Transform lastRoom = null; // Nota: En tu código anterior era lastExit, se mantiene como lo pusiste.
 
-        foreach (GameObject prefab in mapaFinal)
+        foreach (GameObject roomPrefab in finalMap)
         {
-            GameObject room = Instantiate(prefab, proximaPosicion, Quaternion.identity);
+            GameObject roomInstance = Instantiate(roomPrefab, nextPosition, Quaternion.identity);
             
-            Transform entrada = room.transform.Find("Entrada");
-            if (ultimaSalida != null && entrada != null)
+            Transform entrance = roomInstance.transform.Find("Entrance");
+            if (lastRoom != null && entrance != null)
             {
-                Vector3 offset = entrada.position - room.transform.position;
-                room.transform.position = ultimaSalida.position - offset;
+                Vector3 offset = entrance.position - roomInstance.transform.position;
+                roomInstance.transform.position = lastRoom.position - offset;
             }
 
-            ultimaSalida = room.transform.Find("Salida");
+            lastRoom = roomInstance.transform.Find("Exit");
         }
     }
 }

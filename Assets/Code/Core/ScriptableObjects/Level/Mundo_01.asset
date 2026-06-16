@@ -12,12 +12,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc29e774e243a254abdbfdd0b1e4a9a9, type: 3}
   m_Name: Mundo_01
   m_EditorClassIdentifier: Assembly-CSharp::ScenarioData
-  secuenciaDeNiveles:
-  - tipo: 0
-    esObligatorio: 0
-    prefabFijo: {fileID: 0}
-  - tipo: 0
-    esObligatorio: 0
-    prefabFijo: {fileID: 0}
-  combatRoomsPool: []
-  shopRoomsPool: []
+  levelSequence:
+  - type: 0
+    isRequired: 1
+    fixedPrefab: {fileID: 3950866571657087519, guid: c99bb19505f815c41b353e4982275028, type: 3}
+  - type: 1
+    isRequired: 0
+    fixedPrefab: {fileID: 6936680655936247198, guid: 3239bbe1c9c8e6143857af1b31eb212a, type: 3}
+  - type: 5
+    isRequired: 1
+    fixedPrefab: {fileID: 8626243514619279153, guid: 39e607a22fa1aa440aba71f1b99609d8, type: 3}
+  - type: 1
+    isRequired: 0
+    fixedPrefab: {fileID: 6936680655936247198, guid: 3239bbe1c9c8e6143857af1b31eb212a, type: 3}
+  - type: 3
+    isRequired: 1
+    fixedPrefab: {fileID: 2130158833963810576, guid: 4227c6ab8b4beb54eb9805f9370bc087, type: 3}
+  - type: 1
+    isRequired: 0
+    fixedPrefab: {fileID: 6936680655936247198, guid: 3239bbe1c9c8e6143857af1b31eb212a, type: 3}
+  - type: 2
+    isRequired: 1
+    fixedPrefab: {fileID: 5897213054988686350, guid: 831668a416fb5c949b82f868e5f4147c, type: 3}
+  - type: 1
+    isRequired: 0
+    fixedPrefab: {fileID: 6936680655936247198, guid: 3239bbe1c9c8e6143857af1b31eb212a, type: 3}
+  - type: 1
+    isRequired: 0
+    fixedPrefab: {fileID: 6936680655936247198, guid: 3239bbe1c9c8e6143857af1b31eb212a, type: 3}
+  - type: 4
+    isRequired: 1
+    fixedPrefab: {fileID: 194661084564473269, guid: 21a41fa970e2822499745563ee79fda8, type: 3}
+  combatRoomsPool:
+  - {fileID: 6936680655936247198, guid: 3239bbe1c9c8e6143857af1b31eb212a, type: 3}
+  - {fileID: 6936680655936247198, guid: 3239bbe1c9c8e6143857af1b31eb212a, type: 3}
+  - {fileID: 6936680655936247198, guid: 3239bbe1c9c8e6143857af1b31eb212a, type: 3}
+  - {fileID: 6936680655936247198, guid: 3239bbe1c9c8e6143857af1b31eb212a, type: 3}
+  eventRoomsPool:
+  - {fileID: 8626243514619279153, guid: 39e607a22fa1aa440aba71f1b99609d8, type: 3}
