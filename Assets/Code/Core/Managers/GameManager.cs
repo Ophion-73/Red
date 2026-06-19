@@ -1,6 +1,4 @@
-using UnityEngine;
 using RED.Utility.Singleton;
-using UnityEngine.XR;
 
 public class GameManager : Singleton<GameManager>
 {
