@@ -230,6 +230,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &105394594
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 105394595}
+  m_Layer: 0
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &105394595
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105394594}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.19, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 422602073}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &116463090
 GameObject:
   m_ObjectHideFlags: 0
@@ -445,7 +476,7 @@ GameObject:
   - component: {fileID: 169631114}
   - component: {fileID: 169631113}
   - component: {fileID: 169631116}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -794,6 +825,7 @@ GameObject:
   - component: {fileID: 422602074}
   - component: {fileID: 422602077}
   - component: {fileID: 422602078}
+  - component: {fileID: 422602079}
   m_Layer: 0
   m_Name: Red_Player
   m_TagString: Untagged
@@ -816,6 +848,7 @@ Transform:
   m_Children:
   - {fileID: 1425499891}
   - {fileID: 1725115358}
+  - {fileID: 105394595}
   - {fileID: 131249041}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -873,15 +906,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 422602071}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a3b56aa569034f4f875cd7372868e68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   _currentHealth: 10000
   _maxHealth: 10000
-  _currentSpeed: 0
-  _maxSpeed: 0
+  _currentSpeed: 3
+  _maxSpeed: 10
   _currentDamage: 0
   _maxDamage: 0
   _knockbackDirectionTest: {x: 0, y: 0}
@@ -889,19 +922,19 @@ MonoBehaviour:
   _damageTest: 0
   _isAlive: 1
   actions: {fileID: -944628639613478452, guid: 188fa70217d40f940984bffb91396a95, type: 3}
-  walkSpeed: 0
-  jumpSpeed: 0
+  walkSpeed: 3
+  jumpSpeed: 2
   dashForce: 20
-  isGrounded: 0
-  groundCheck: {fileID: 169631115}
+  isGrounded: 1
+  groundCheck: {fileID: 105394595}
   groundCheckRadius: 0.2
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   interactionRadius: 1.5
   interactableLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!61 &422602078
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -948,6 +981,28 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.4924583, y: 2.5848129}
   m_EdgeRadius: 0
+--- !u!95 &422602079
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 422602071}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fd33c870aee99c648991bcbf0e787496, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &440478307
 GameObject:
   m_ObjectHideFlags: 0
@@ -1590,7 +1645,7 @@ GameObject:
   - component: {fileID: 1480587476}
   - component: {fileID: 1480587475}
   m_Layer: 0
-  m_Name: Red_Player (1)
+  m_Name: Bear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
