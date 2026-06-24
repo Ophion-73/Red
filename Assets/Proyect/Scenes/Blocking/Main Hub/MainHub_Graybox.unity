@@ -413,7 +413,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InteractStair
   player: {fileID: 134533918}
   destination: {fileID: 39539092}
-  fade: {fileID: 46106660}
 --- !u!1 &46106658
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,7 +424,7 @@ GameObject:
   - component: {fileID: 46106659}
   - component: {fileID: 46106662}
   - component: {fileID: 46106661}
-  - component: {fileID: 46106660}
+  - component: {fileID: 46106663}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -452,20 +451,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &46106660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 46106658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627d63ad01c016148bbbf5a1a8035fa2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CameraFade
-  fadeImage: {fileID: 46106661}
-  fadeDuration: 2
 --- !u!114 &46106661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -504,6 +489,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 46106658}
   m_CullTransparentMesh: 1
+--- !u!114 &46106663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 46106658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b207418b59c821c4daf1fd3b87b010fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraFade
+  fadeImage: {fileID: 46106661}
+  fadeDuration: 2
 --- !u!1 &81699521
 GameObject:
   m_ObjectHideFlags: 0
@@ -924,7 +923,7 @@ GameObject:
   - component: {fileID: 134533913}
   m_Layer: 0
   m_Name: Player (1)
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1123,6 +1122,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 194194506}
+  - {fileID: 1742500737}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &135986429
@@ -1586,6 +1586,103 @@ Transform:
   m_Children: []
   m_Father: {fileID: 547633405}
   m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
+--- !u!1 &160251180
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 160251184}
+  - component: {fileID: 160251183}
+  - component: {fileID: 160251182}
+  - component: {fileID: 160251181}
+  m_Layer: 0
+  m_Name: SpawnerBoxLeft
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &160251181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160251180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61494ffa15baf69409f840e567320eb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ColliderSpawns
+  spawnFront: {fileID: 2036783848}
+  spawnBack: {fileID: 373722838}
+  playerStay: 0
+--- !u!54 &160251182
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160251180}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &160251183
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160251180}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &160251184
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160251180}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.8854, y: 3.18924, z: -7.9913406}
+  m_LocalScale: {x: 10, y: 5, z: 5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &161187024
 GameObject:
   m_ObjectHideFlags: 0
@@ -2988,7 +3085,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InteractStair
   player: {fileID: 134533918}
   destination: {fileID: 1854468678}
-  fade: {fileID: 46106660}
 --- !u!61 &368156135
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3101,7 +3197,7 @@ GameObject:
   m_Component:
   - component: {fileID: 373722839}
   m_Layer: 0
-  m_Name: InteractableBackXFrontSiteLeft
+  m_Name: InteractableBackSiteLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4861,7 +4957,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InteractStair
   player: {fileID: 134533918}
   destination: {fileID: 2058884807}
-  fade: {fileID: 46106660}
 --- !u!61 &746396201
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5750,7 +5845,7 @@ GameObject:
   m_Component:
   - component: {fileID: 910102794}
   m_Layer: 0
-  m_Name: InteractableBackXFrontSiteRight
+  m_Name: InteractableBackSiteRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6367,7 +6462,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InteractStair
   player: {fileID: 134533918}
   destination: {fileID: 273660132}
-  fade: {fileID: 46106660}
 --- !u!61 &1008399798
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6631,7 +6725,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InteractStair
   player: {fileID: 134533918}
   destination: {fileID: 1416756244}
-  fade: {fileID: 46106660}
 --- !u!61 &1120107097
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7171,6 +7264,103 @@ Transform:
   m_Children: []
   m_Father: {fileID: 715423996}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: -90}
+--- !u!1 &1225634050
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1225634054}
+  - component: {fileID: 1225634053}
+  - component: {fileID: 1225634052}
+  - component: {fileID: 1225634051}
+  m_Layer: 0
+  m_Name: SpawnerBoxRight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1225634051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1225634050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61494ffa15baf69409f840e567320eb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ColliderSpawns
+  spawnFront: {fileID: 2105469540}
+  spawnBack: {fileID: 910102793}
+  playerStay: 0
+--- !u!54 &1225634052
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1225634050}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &1225634053
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1225634050}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1225634054
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1225634050}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 22.114601, y: 3.18924, z: -7.9913406}
+  m_LocalScale: {x: 10, y: 5, z: 5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1249521224
 GameObject:
   m_ObjectHideFlags: 0
@@ -8503,7 +8693,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54f647fe7a8fbc04f9be3d013596ee05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractStartRun
-  fade: {fileID: 46106660}
+  fade: {fileID: 46106663}
 --- !u!61 &1559189931
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9311,7 +9501,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InteractStair
   player: {fileID: 134533918}
   destination: {fileID: 422481459}
-  fade: {fileID: 46106660}
 --- !u!61 &1706978772
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9629,6 +9818,87 @@ MonoBehaviour:
       BarrelClipping: 0.25
       Anamorphism: 0
   BlendHint: 0
+--- !u!1 &1742500736
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1742500737}
+  - component: {fileID: 1742500739}
+  - component: {fileID: 1742500738}
+  m_Layer: 0
+  m_Name: Collider3d
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1742500737
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742500736}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 134533918}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1742500738
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742500736}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &1742500739
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742500736}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1749940380
 GameObject:
   m_ObjectHideFlags: 0
@@ -9678,7 +9948,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InteractStair
   player: {fileID: 134533918}
   destination: {fileID: 864488348}
-  fade: {fileID: 46106660}
 --- !u!61 &1749940383
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10881,11 +11150,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be8fe69ef4357b34a8ea7990305f4d2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraManager
-  cameras:
-  - {fileID: 968439309}
-  - {fileID: 1716411811}
-  - {fileID: 194635263}
-  activeCamera: 0
 --- !u!4 &1924802163
 Transform:
   m_ObjectHideFlags: 0
@@ -11642,7 +11906,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2036783849}
   m_Layer: 0
-  m_Name: InteractableFrontXBackSiteLeft
+  m_Name: InteractableFontSiteLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12223,7 +12487,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2105469541}
   m_Layer: 0
-  m_Name: InteractableFrontXBackSiteRight
+  m_Name: InteractableFronSiteRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12528,7 +12792,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InteractStair
   player: {fileID: 134533918}
   destination: {fileID: 89362197}
-  fade: {fileID: 46106660}
 --- !u!61 &2140386442
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12675,3 +12938,5 @@ SceneRoots:
   - {fileID: 910102794}
   - {fileID: 1587040262}
   - {fileID: 1412502993}
+  - {fileID: 160251184}
+  - {fileID: 1225634054}

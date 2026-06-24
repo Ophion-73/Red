@@ -10,7 +10,7 @@ public class CameraFade : MonoBehaviour
     {
         float time = 0;
 
-        while(time < fadeDuration)
+        while (time < fadeDuration)
         {
             time += Time.deltaTime;
             Color color = fadeImage.color;
@@ -24,7 +24,7 @@ public class CameraFade : MonoBehaviour
     {
         float time = 0;
 
-        while(time < fadeDuration)
+        while (time < fadeDuration)
         {
             time += Time.deltaTime;
             Color color = fadeImage.color;
