@@ -1,12 +1,1 @@
-{
-  "alwaysUpdateLinks": true,
-  "promptDelete": false,
-  "pdfExportSettings": {
-    "includeName": true,
-    "pageSize": "Letter",
-    "landscape": false,
-    "margin": "0",
-    "downscalePercent": 100
-  }
-  "promptDelete": false
-}
+{}
