@@ -173,6 +173,9 @@ public class Player : Entity
     {
         // Umbral de 0.5f para evitar lecturas accidentales del joystick
         if (input.y > 0.5f) return AttackDirection.Up;
+        {
+            Debug.Log("Arriba");
+        }
         if (input.y < -0.5f) return AttackDirection.Down;
         if (input.x > 0.5f) return AttackDirection.Right;
         if (input.x < -0.5f) return AttackDirection.Left;

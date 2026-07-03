@@ -95,6 +95,7 @@ public class AttackSystem : MonoBehaviour
     }
     public void StartSingleAttack(AttackSO attackSO)
     {
+        Debug.Log("Atacando con" +  attackSO);
             CancelCurrentAttack();
         _attackCoroutine = StartCoroutine(AttackCoroutine(attackSO));
     }
