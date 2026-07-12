@@ -5,6 +5,7 @@ public class UIManager : MonoBehaviour
     [Header("UI Canvas")]
     [Tooltip("Arrastra los componentes Canvas, no los GameObjects")]
     [SerializeField] private Canvas menuCanvas;
+    [SerializeField] private Canvas loadingCanvas;
     [SerializeField] private Canvas hudCanvas;
     [SerializeField] private Canvas gameOverCanvas;
 
@@ -27,11 +28,12 @@ public class UIManager : MonoBehaviour
             case GameState.Menu:
                 if (menuCanvas != null) menuCanvas.enabled = true;
                 break;
-
+            case GameState.Generating:
+                if (loadingCanvas != null) loadingCanvas.enabled = true;
+                break;
             case GameState.Playing:
                 if (hudCanvas != null) hudCanvas.enabled = true;
                 break;
-
             case GameState.GameOver:
                 if (gameOverCanvas != null) gameOverCanvas.enabled = true;
                 break;
@@ -41,6 +43,8 @@ public class UIManager : MonoBehaviour
     private void DisableAllCanvases()
     {
         if (menuCanvas != null) menuCanvas.enabled = false;
+        
+        if (loadingCanvas != null) loadingCanvas.enabled = false;
         
         if (hudCanvas != null) hudCanvas.enabled = false;
         

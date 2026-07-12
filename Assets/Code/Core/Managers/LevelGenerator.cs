@@ -6,10 +6,27 @@ public class LevelGenerator : MonoBehaviour
     public ScenarioData config;
     private List<GameObject> finalMap = new List<GameObject>();
 
-    void Start()
+    /*void Start()
     {
         BuildRoute();
         InstantiateMap();
+    }*/
+
+    private void OnEnable()
+    {
+        GameEvents.OnRequestLevelGeneration += GenerateFullLevel;
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.OnRequestLevelGeneration -= GenerateFullLevel;
+    }
+
+    private void GenerateFullLevel()
+    {
+        BuildRoute();
+        InstantiateMap();
+        GameEvents.OnLevelGenerated?.Invoke();
     }
 
     void BuildRoute()
