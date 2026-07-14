@@ -1,10 +1,33 @@
+using System;
 using UnityEngine;
 using System.Collections.Generic;
 
 public class LevelManager : MonoBehaviour
 { 
     [SerializeField] private Transform startingPoint;
+    [SerializeField] private LevelGenerator levelGenerator;
     
+    private void OnEnable()
+    {
+        GameEvents.OnRequestLevelGeneration += LevelGeneration;
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.OnRequestLevelGeneration -= LevelGeneration;
+    }
+    
+    void LevelGeneration()
+    {
+        if (levelGenerator != null)
+            levelGenerator.BuildRoute();
+        else
+            Debug.LogError("[LevelGenerator] No esta asignado en el isnpector ponlooo");
+        
+        BuildLevel(levelGenerator.finalMap);
+        GameEvents.OnLevelGenerated?.Invoke();
+    }
+
     public void BuildLevel(List<GameObject> roomPrefabs)
     {
         Transform lastExit = startingPoint;

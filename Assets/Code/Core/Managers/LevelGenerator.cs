@@ -4,22 +4,9 @@ using System.Collections.Generic;
 public class LevelGenerator : MonoBehaviour
 {
     public ScenarioData config;
-    private List<GameObject> finalMap = new List<GameObject>();
-    [SerializeField] private LevelManager levelManager;
-
-    void Start()
-    {
-        BuildRoute();
-        if (levelManager != null)
-        {
-            levelManager.BuildLevel(finalMap);
-        }
-        else
-        {
-            Debug.LogError("[LevelGenerator] No esta asignado en el isnpector ponlooo");
-        }
-    }
-    void BuildRoute()
+    public List<GameObject> finalMap = new List<GameObject>();
+    
+    public void BuildRoute()
     {
         finalMap.Clear();
 
