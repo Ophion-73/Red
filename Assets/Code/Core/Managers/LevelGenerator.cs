@@ -5,13 +5,20 @@ public class LevelGenerator : MonoBehaviour
 {
     public ScenarioData config;
     private List<GameObject> finalMap = new List<GameObject>();
+    [SerializeField] private LevelManager levelManager;
 
     void Start()
     {
         BuildRoute();
-        InstantiateMap();
+        if (levelManager != null)
+        {
+            levelManager.BuildLevel(finalMap);
+        }
+        else
+        {
+            Debug.LogError("[LevelGenerator] No esta asignado en el isnpector ponlooo");
+        }
     }
-
     void BuildRoute()
     {
         finalMap.Clear();
@@ -27,8 +34,7 @@ public class LevelGenerator : MonoBehaviour
                 finalMap.Add(SelectFromPool(slot.type));
             }
         }
-
-        // --- NUEVA SECCIÓN DE LOGS ---
+        
         Debug.Log($"<color=green><b>[LevelGenerator]</b> Ruta construida. Total de habitaciones guardadas: {finalMap.Count}</color>");
         for (int i = 0; i < finalMap.Count; i++)
         {
@@ -41,9 +47,7 @@ public class LevelGenerator : MonoBehaviour
                 Debug.LogWarning($"Habitación [{i}]: ¡Alerta! El objeto es nulo (revisa las pools o prefabs fijos).");
             }
         }
-        // ------------------------------
     }
-
     GameObject SelectFromPool(RoomType type)
     {
         switch (type)
@@ -54,26 +58,6 @@ public class LevelGenerator : MonoBehaviour
                 return config.eventRoomsPool[Random.Range(0, config.eventRoomsPool.Count)];
             default:
                 return null;
-        }
-    }
-
-    void InstantiateMap()
-    {
-        Vector3 nextPosition = Vector3.zero;
-        Transform lastRoom = null; // Nota: En tu código anterior era lastExit, se mantiene como lo pusiste.
-
-        foreach (GameObject roomPrefab in finalMap)
-        {
-            GameObject roomInstance = Instantiate(roomPrefab, nextPosition, Quaternion.identity);
-            
-            Transform entrance = roomInstance.transform.Find("Entrance");
-            if (lastRoom != null && entrance != null)
-            {
-                Vector3 offset = entrance.position - roomInstance.transform.position;
-                roomInstance.transform.position = lastRoom.position - offset;
-            }
-
-            lastRoom = roomInstance.transform.Find("Exit");
         }
     }
 }
