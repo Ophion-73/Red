@@ -1,53 +1,49 @@
+using RED.Utility.Singleton;
 using UnityEngine;
 
-public class UIManager : MonoBehaviour
+public class UIManager : Singleton<UIManager>
 {
-    [Header("UI Canvas")]
-    [Tooltip("Arrastra los componentes Canvas, no los GameObjects")]
-    [SerializeField] private Canvas menuCanvas;
+    [Header("Global UI")]
     [SerializeField] private Canvas loadingCanvas;
-    [SerializeField] private Canvas hudCanvas;
-    [SerializeField] private Canvas gameOverCanvas;
+
+    private UISceneManager currentSceneManager;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        DontDestroyOnLoad(gameObject);
+    }
 
     private void OnEnable()
     {
-        GameEvents.OnGameStateChanged += UpdateUIState;
+        GameEvents.OnGameStateChanged += HandleGameStateChange;
     }
 
     private void OnDisable()
     {
-        GameEvents.OnGameStateChanged -= UpdateUIState;
+        GameEvents.OnGameStateChanged -= HandleGameStateChange;
     }
 
-    private void UpdateUIState(GameState newState)
+    public void RegisterSceneManager(UISceneManager sceneManager)
     {
-        DisableAllCanvases();
+        currentSceneManager = sceneManager;
         
-        switch (newState)
+        if (GameManager.Instance != null)
         {
-            case GameState.Menu:
-                if (menuCanvas != null) menuCanvas.enabled = true;
-                break;
-            case GameState.Generating:
-                if (loadingCanvas != null) loadingCanvas.enabled = true;
-                break;
-            case GameState.Playing:
-                if (hudCanvas != null) hudCanvas.enabled = true;
-                break;
-            case GameState.GameOver:
-                if (gameOverCanvas != null) gameOverCanvas.enabled = true;
-                break;
+            currentSceneManager.UpdateSceneUI(GameManager.Instance.CurrentState);
         }
     }
 
-    private void DisableAllCanvases()
+    private void HandleGameStateChange(GameState newState)
     {
-        if (menuCanvas != null) menuCanvas.enabled = false;
+        if (loadingCanvas != null)
+        {
+            loadingCanvas.enabled = (newState == GameState.Boot || newState == GameState.Generating);
+        }
         
-        if (loadingCanvas != null) loadingCanvas.enabled = false;
-        
-        if (hudCanvas != null) hudCanvas.enabled = false;
-        
-        if (gameOverCanvas != null) gameOverCanvas.enabled = false;
+        if (currentSceneManager != null)
+        {
+            currentSceneManager.UpdateSceneUI(newState);
+        }
     }
 }

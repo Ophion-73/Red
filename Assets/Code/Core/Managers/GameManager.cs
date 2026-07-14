@@ -57,4 +57,16 @@ public class GameManager : Singleton<GameManager>
     {
         ChangeState(GameState.GameOver);
     }
+    
+    public void TogglePause()
+    {
+        if (CurrentState == GameState.Playing)
+        {
+            ChangeState(GameState.Paused);
+        }
+        else if (CurrentState == GameState.Paused)
+        {
+            ChangeState(GameState.Playing);
+        }
+    }
 }

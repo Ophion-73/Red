@@ -1,6 +1,6 @@
 using System;
 
-public enum GameState { Boot, Menu, Generating, Playing, GameOver }
+public enum GameState { Boot, Menu, Generating, Playing, Paused, GameOver }
 
 public static class GameEvents
 {
