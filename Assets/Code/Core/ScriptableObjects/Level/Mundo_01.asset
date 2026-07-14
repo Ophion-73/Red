@@ -15,38 +15,14 @@ MonoBehaviour:
   levelSequence:
   - type: 0
     isRequired: 1
-    fixedPrefab: {fileID: 3950866571657087519, guid: c99bb19505f815c41b353e4982275028, type: 3}
+    fixedPrefab: {fileID: 257498154865536231, guid: cd9a35d43c0cbae41b2035e02f93bbab, type: 3}
   - type: 1
     isRequired: 0
-    fixedPrefab: {fileID: 6936680655936247198, guid: 3239bbe1c9c8e6143857af1b31eb212a, type: 3}
-  - type: 5
-    isRequired: 1
-    fixedPrefab: {fileID: 8626243514619279153, guid: 39e607a22fa1aa440aba71f1b99609d8, type: 3}
+    fixedPrefab: {fileID: 3369868203514363026, guid: baa77133a18ebcf4ba65cf9084dc14fd, type: 3}
   - type: 1
     isRequired: 0
-    fixedPrefab: {fileID: 6936680655936247198, guid: 3239bbe1c9c8e6143857af1b31eb212a, type: 3}
-  - type: 3
-    isRequired: 1
-    fixedPrefab: {fileID: 2130158833963810576, guid: 4227c6ab8b4beb54eb9805f9370bc087, type: 3}
-  - type: 1
-    isRequired: 0
-    fixedPrefab: {fileID: 6936680655936247198, guid: 3239bbe1c9c8e6143857af1b31eb212a, type: 3}
-  - type: 2
-    isRequired: 1
-    fixedPrefab: {fileID: 5897213054988686350, guid: 831668a416fb5c949b82f868e5f4147c, type: 3}
-  - type: 1
-    isRequired: 0
-    fixedPrefab: {fileID: 6936680655936247198, guid: 3239bbe1c9c8e6143857af1b31eb212a, type: 3}
-  - type: 1
-    isRequired: 0
-    fixedPrefab: {fileID: 6936680655936247198, guid: 3239bbe1c9c8e6143857af1b31eb212a, type: 3}
-  - type: 4
-    isRequired: 1
-    fixedPrefab: {fileID: 194661084564473269, guid: 21a41fa970e2822499745563ee79fda8, type: 3}
+    fixedPrefab: {fileID: 3369868203514363026, guid: baa77133a18ebcf4ba65cf9084dc14fd, type: 3}
   combatRoomsPool:
-  - {fileID: 6936680655936247198, guid: 3239bbe1c9c8e6143857af1b31eb212a, type: 3}
-  - {fileID: 6936680655936247198, guid: 3239bbe1c9c8e6143857af1b31eb212a, type: 3}
-  - {fileID: 6936680655936247198, guid: 3239bbe1c9c8e6143857af1b31eb212a, type: 3}
-  - {fileID: 6936680655936247198, guid: 3239bbe1c9c8e6143857af1b31eb212a, type: 3}
+  - {fileID: 3369868203514363026, guid: baa77133a18ebcf4ba65cf9084dc14fd, type: 3}
   eventRoomsPool:
-  - {fileID: 8626243514619279153, guid: 39e607a22fa1aa440aba71f1b99609d8, type: 3}
+  - {fileID: 3369868203514363026, guid: baa77133a18ebcf4ba65cf9084dc14fd, type: 3}
