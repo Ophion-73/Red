@@ -1,0 +1,1 @@
+When poison is applied it will deal a set amount of damage per stack applied, stacks decrease overtime.

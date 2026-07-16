@@ -1,0 +1,1 @@
+When frost stacks reach a certain threshold the enemy will be frozen which wont allow them to move, the next instance of damage form an attack will be doubled and will unfreeze them.

@@ -1,0 +1,1 @@
+You mark an enemy for x seconds, during that time the damage you deal gets stored, a shadow deals a percentage of the damage dealt in a single instance.

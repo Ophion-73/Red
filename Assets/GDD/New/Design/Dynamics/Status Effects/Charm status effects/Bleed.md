@@ -1,0 +1,1 @@
+Beed deals damage over time based on the enemys max Hp and it doesnt expire.
