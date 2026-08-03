@@ -60,4 +60,9 @@ public class LevelManager : MonoBehaviour
             lastExit = connector.Exit;
         }
     }
+
+    public void SpawnEnemy(GameObject enemy, Transform spawnPoint)
+    {
+        Instantiate(enemy, spawnPoint);
+    }
 }

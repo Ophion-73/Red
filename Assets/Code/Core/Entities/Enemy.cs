@@ -5,12 +5,18 @@ public class Enemy : Entity
 {
     [Header("State Machine")]
     [SerializeField] protected State _currentState = State.Idle;
-    
+
     protected Player _playerRef;
 
 
     [Header("Detection Settings")]
     [SerializeField] protected float _detectionRange = 10f;
+
+    [Header("Stats")]
+    public int cost  {get {return _cost;}}
+    public int enemyId { get { return _enemyId; } }
+    [SerializeField] private int _cost; //QUE NO SEA 0
+    [SerializeField] private int _enemyId;//QUE NINGUNO SEA EL MISMO ENTRE ENEMIGOS Y QUE NO SEA 0
 
     protected override void Awake()
     {
