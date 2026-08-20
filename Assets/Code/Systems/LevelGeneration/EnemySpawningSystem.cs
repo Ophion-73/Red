@@ -10,8 +10,8 @@ public class EnemySpawningSystem
     private int _budget;
     private LevelManager _levelManager;
 
-    private List<Enemy> _enemyPool;
-    private List<Transform> _unUsedSpawnPoints;
+    private List<Enemy> _enemyPool = new List<Enemy>();
+    private List<Transform> _unUsedSpawnPoints = new List<Transform>();
 
     public EnemySpawningSystem(EnemyBundleSO enemies, Transform[] spawners, int budget, LevelManager levelManager)
     {
@@ -60,8 +60,10 @@ public class EnemySpawningSystem
             if (_enemies.enemy[i].GetComponent<Enemy>() != null)
                 _enemyPool.Add(_enemies.enemy[i].GetComponent<Enemy>());
             else
+            {
                 Debug.Log("los game objects no tienen el script enemy");
-            return;
+                return;
+            }
         }
         
     }
