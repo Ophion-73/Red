@@ -46,6 +46,8 @@ public class GameManager : Singleton<GameManager>
 
     public void StartGame()
     {
+        LoadingScreenManager.Instance.ShowLoadingScreen();
+        
         AppSceneManager.Instance.LoadSceneAsync(AppSceneManager.GAME_SCENE_NAME, () => 
         {
             ChangeState(GameState.Generating);
@@ -55,6 +57,7 @@ public class GameManager : Singleton<GameManager>
     private void HandleLevelGenerated()
     {
         ChangeState(GameState.Playing);
+        LoadingScreenManager.Instance.HideLoadingScreen();
     }
 
     private void HandlePlayerDeath()
