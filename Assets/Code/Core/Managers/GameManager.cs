@@ -3,6 +3,7 @@ using RED.Utility.Singleton;
 public class GameManager : Singleton<GameManager>
 {
     public GameState CurrentState { get; private set; }
+    
     protected override void Awake()
     {
         base.Awake();
@@ -45,7 +46,10 @@ public class GameManager : Singleton<GameManager>
 
     public void StartGame()
     {
-        ChangeState(GameState.Generating);
+        AppSceneManager.Instance.LoadSceneAsync(AppSceneManager.GAME_SCENE_NAME, () => 
+        {
+            ChangeState(GameState.Generating);
+        });
     }
 
     private void HandleLevelGenerated()
