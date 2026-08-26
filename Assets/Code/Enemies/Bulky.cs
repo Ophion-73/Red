@@ -16,8 +16,8 @@ public class Bulky : Enemy
 
     protected override void Awake()
     {
-        _animator = GetComponent<Animator>();
         base.Awake();
+        _animator = GetComponent<Animator>();
         InitializeStats();
     }
 
@@ -38,6 +38,7 @@ public class Bulky : Enemy
         {
             ChangeState(State.Chasing);
             _animator.SetBool("Chasing", true);
+            Debug.Log("Chasing Activado");
             _animator.SetBool("Attacking", false);
         }
 
@@ -50,9 +51,11 @@ public class Bulky : Enemy
         
         if (distanceToPlayer <= _bulkyData.explosionRadius * 0.8f)
         {
+            Debug.Log("Entro a atacar");
             ChangeState(State.Attacking);
             _animator.SetBool("Attacking", true);
             _animator.SetBool("Chasing", false);
+
         }
 
 
