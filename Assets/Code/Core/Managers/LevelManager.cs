@@ -1,11 +1,23 @@
 using System;
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.Pool;
 
 public class LevelManager : MonoBehaviour
 { 
+    [Header("Level References")]
     [SerializeField] private Transform startingPoint;
     [SerializeField] private LevelGenerator levelGenerator;
+
+    [Header("Hierarchy Organization")]
+    [SerializeField] private Transform poolContainer;
+    [SerializeField] private Transform activeLevelContainer;
+    
+    // este diccionario guarda un pool independiente para cada tipo de habitacion.
+    private Dictionary<GameObject, ObjectPool<GameObject>> roomPools = new Dictionary<GameObject, ObjectPool<GameObject>>();
+    
+    // aqui estan las habitaciones que estan prendidas
+    private List<GameObject> activeRooms = new List<GameObject>();
     
     private void OnEnable()
     {
@@ -17,48 +29,102 @@ public class LevelManager : MonoBehaviour
         GameEvents.OnRequestLevelGeneration -= LevelGeneration;
     }
     
-    void LevelGeneration()
+    /// <summary>
+    /// el async void permirte que el metodo se conecte al evento
+    /// tambien permite que dentro se puedan ejecutar tareas como la pausa (await).
+    /// Barrera si lees esto "Hola".
+    /// </summary>
+    private async void LevelGeneration()
     {
         if (levelGenerator != null)
+        {
+            ClearLevel();
             levelGenerator.BuildRoute();
+            
+            // aqui el await nos sirve para que esto se quede pausado hasta que el metodo
+            // BuildLevelAsync termine
+            await BuildLevelAsync(levelGenerator.finalMap);
+            GameEvents.OnLevelGenerated?.Invoke();
+        }
         else
+        {
             Debug.LogError("[LevelGenerator] No esta asignado en el isnpector ponlooo");
-        
-        BuildLevel(levelGenerator.finalMap);
-        GameEvents.OnLevelGenerated?.Invoke();
+        }
     }
 
-    public void BuildLevel(List<GameObject> roomPrefabs)
+    /// <summary>
+    /// el Awaitable nos ayudara a que el metoodo haga trabajo asincrono, esto nos ayuda
+    /// a no usar corrutinas.
+    /// </summary>
+    private async Awaitable BuildLevelAsync(List<GameObject> roomPrefabs)
     {
         Transform lastExit = startingPoint;
 
         foreach (GameObject prefab in roomPrefabs)
         {
-            if (prefab == null)
-            {
-                continue;
-            }
-            GameObject roomInstance = Instantiate(prefab, Vector3.zero, Quaternion.identity);
+            if (prefab == null) continue;
+            
+            GameObject roomInstance = GetRoomFromPool(prefab);
+            roomInstance.transform.SetParent(activeLevelContainer);
+            roomInstance.SetActive(true);
+            activeRooms.Add(roomInstance);
             RoomConnector connector = roomInstance.GetComponent<RoomConnector>();
+            
             if (connector == null)
             {
                 Debug.LogError($" {prefab.name} no tiene el componente RoomConnector.");
-                Destroy(roomInstance);
                 continue;
             }
             
-            if (lastExit != null)
-            {
-                Vector3 entranceOffset = connector.Entrance.position - roomInstance.transform.position;
-                roomInstance.transform.position = lastExit.position - entranceOffset;
-            }
-            else
-            {
-                Vector3 entranceOffset = connector.Entrance.position - roomInstance.transform.position;
-                roomInstance.transform.position = Vector3.zero - entranceOffset;
-            }
+            Vector3 targetPosition = (lastExit != null) ? lastExit.position : Vector3.zero;
+            Vector3 entranceOffset = connector.Entrance.position - roomInstance.transform.position;
+            roomInstance.transform.position = targetPosition - entranceOffset;
             lastExit = connector.Exit;
+            
+            // esto es como magia negra
+            // el await hace que se pause el bucle durante un frame, esto nos sirve para que el
+            // juego no se congele y la pantalla de carga siga con su animacion de manera fluida.
+            await Awaitable.NextFrameAsync();
         }
+    }
+
+    private GameObject GetRoomFromPool(GameObject prefab)
+    {
+        // el if pregunta si no hay un almacen en el diccionario del tipo de mapa que queremos
+        if (!roomPools.ContainsKey(prefab))
+        {
+            roomPools[prefab] = new ObjectPool<GameObject>(
+                createFunc: () => Instantiate(prefab, poolContainer),
+                actionOnGet: obj => obj.gameObject.SetActive(true),
+                actionOnRelease: obj =>
+                {
+                    obj.SetActive(false);
+                    obj.transform.SetParent(poolContainer);
+                },
+                actionOnDestroy: obj => Destroy(obj),
+                defaultCapacity: 10,
+                maxSize: 50
+            );
+        }
+        
+        return roomPools[prefab].Get();
+    }
+
+    private void ClearLevel()
+    {
+        for (int i = 0; i < activeRooms.Count; i++)
+        {
+            foreach (var kvp in roomPools)
+            {
+                if (activeRooms[i].name.Contains(kvp.Key.name))
+                {
+                    kvp.Value.Release(activeRooms[i]);
+                    break;
+                }
+            }
+        }
+        
+        activeRooms.Clear();
     }
 
     public void SpawnEnemy(GameObject enemy, Transform spawnPoint)
