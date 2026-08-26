@@ -7,7 +7,8 @@ public class GlassCannon : Enemy
     [Header("Events")]
     public UnityEvent OnRangeAttack;
     public UnityEvent OnTakeDamage;
-
+    public GameObject projectilePrefab;
+    public Transform firePoint;
     private float _lastAttackTime;
     
     protected override void Awake()
@@ -74,10 +75,10 @@ public class GlassCannon : Enemy
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, _glassCannonData.attackRange, _glassCannonData.playerLayer);
         foreach (var col in hitColliders)
         {
+
             if (col.TryGetComponent<Player>(out Player p))
             {
-                p.TakeDamage(CurrentDamage);
-                Debug.Log("GlassCannon hit: " + p.name);
+                ShootProjectile(p);
             }
         }
     }
@@ -87,6 +88,20 @@ public class GlassCannon : Enemy
         if (_glassCannonData == null) return;
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, _glassCannonData.attackRange);
+    }
+
+    private void ShootProjectile(Player target)
+    {
+        if (target == null) return;
+
+        Vector2 direction = (target.transform.position - firePoint.position).normalized;
+
+        GameObject projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
+
+        if (projectile.TryGetComponent<EnemyProjectile>(out EnemyProjectile proj))
+        {
+            proj.Init(direction, CurrentDamage);
+        }
     }
 
 

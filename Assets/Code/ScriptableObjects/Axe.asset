@@ -20,10 +20,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 09565d8d706ab7142ad23f7e458c5fcb, type: 2}
   GroundedUpAttackSos: {fileID: 11400000, guid: 16e96319590bb734f9bd18393cb74909, type: 2}
   GroundedDownAttackSos: {fileID: 11400000, guid: 09565d8d706ab7142ad23f7e458c5fcb, type: 2}
-  GroundedRightAttackSos: {fileID: 0}
-  GroundedLeftAttackSos: {fileID: 0}
-  AirNeutralAttackSos: {fileID: 0}
-  AirUpAttackSOs: {fileID: 0}
-  AirDownAttackSos: {fileID: 0}
-  AirRightAttackSos: {fileID: 0}
-  AirLeftAttackSos: {fileID: 0}
+  GroundedRightAttackSos: {fileID: 11400000, guid: 09565d8d706ab7142ad23f7e458c5fcb, type: 2}
+  GroundedLeftAttackSos: {fileID: 11400000, guid: 09565d8d706ab7142ad23f7e458c5fcb, type: 2}
+  AirNeutralAttackSos: {fileID: 11400000, guid: 09565d8d706ab7142ad23f7e458c5fcb, type: 2}
+  AirUpAttackSOs: {fileID: 11400000, guid: 09565d8d706ab7142ad23f7e458c5fcb, type: 2}
+  AirDownAttackSos: {fileID: 11400000, guid: 09565d8d706ab7142ad23f7e458c5fcb, type: 2}
+  AirRightAttackSos: {fileID: 11400000, guid: 16e96319590bb734f9bd18393cb74909, type: 2}
+  AirLeftAttackSos: {fileID: 11400000, guid: 16e96319590bb734f9bd18393cb74909, type: 2}

@@ -61,8 +61,20 @@ public class Enemy : Entity
     public void ChangeState(State newState)
     {
         if (_currentState == newState) return;
-        
+
+        Debug.Log($"{name} {_currentState} {newState}");
+
         _currentState = newState;
+
+        if (_currentState == State.Chasing)
+        {
+            EnemyColliders.instance.EnterCombat(this);
+
+        }
+        else if (_currentState == State.Dead)
+        {
+            EnemyColliders.instance.ExitCombat(this);
+        }
     }
 
     protected void FlipTowardsPlayer()
@@ -82,6 +94,27 @@ public class Enemy : Entity
     public override void TakeKnockback(Vector2 knockbackDirection, float knockbackForce)
     {
         base.TakeKnockback(knockbackDirection, knockbackForce);
+    }
+
+    public void SetCollisionLayer(bool hasCollision)
+    {
+        if (hasCollision)
+        {
+            gameObject.layer = LayerMask.NameToLayer("Enemy");
+        }
+        else
+        {
+            gameObject.layer = LayerMask.NameToLayer("EnemyCollision");
+        }
+
+    }
+
+    private void OnDisable()
+    {
+        if(EnemyColliders.instance != null)
+        {
+            EnemyColliders.instance.ExitCombat(this);
+        }
     }
 
 }
