@@ -98,16 +98,13 @@ public class Enemy : Entity
 
     public void SetCollisionLayer(bool hasCollision)
     {
-        Debug.Log($"{name} {(hasCollision ? "Enemy" : "EnemyCollision")}");
         if (hasCollision)
         {
             gameObject.layer = LayerMask.NameToLayer("Enemy");
-            Debug.Log($"{name} Enemy");
         }
         else
         {
             gameObject.layer = LayerMask.NameToLayer("EnemyCollision");
-            Debug.Log($"{name} EnemyCollision");
         }
 
     }
