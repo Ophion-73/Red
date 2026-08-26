@@ -20,6 +20,7 @@ public class Player : Entity
     public float walkSpeed = 8f;
     public float jumpSpeed = 12f;
     public float dashForce = 20f;
+    public bool stunned;
 
     private bool isDashing;
     private Vector2 _moveInput;
@@ -72,6 +73,7 @@ public class Player : Entity
 
     private void Update()
     {
+        if (stunned) return;
         InputRead();
         UpdateAnimatorParameters();
         Flip();
@@ -208,6 +210,19 @@ public class Player : Entity
     {
         base.Die();
         GameEvents.OnPlayerDied?.Invoke();
+    }
+
+    public void OnStun(float duration)
+    {
+        StartCoroutine(StunCoroutine(duration));
+    }
+    private IEnumerator StunCoroutine(float duration)
+    {
+        stunned = true;
+        Debug.Log("Stun en proceso");
+        yield return new WaitForSeconds(duration);
+        stunned = false;
+        Debug.Log("Ya no estoy estuneado");
     }
     
 }

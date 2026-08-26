@@ -8,9 +8,5 @@ public static class GameEvents
     public static Action<GameState> OnGameStateChanged;
     public static Action OnPlayerDied;
     public static Action OnPlayerHit;
-    public static Action OnPlayerSpawn;
-    
-    // LEVELS
-    public static Action OnRequestLevelGeneration;
-    public static Action OnLevelGenerated;
+    public static Action OnMaxInvocation;
 }
