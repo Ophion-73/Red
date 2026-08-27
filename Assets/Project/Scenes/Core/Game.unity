@@ -334,7 +334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 991a456e4559de14d9a16c7b5a28be0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelGenerator
-  config: {fileID: 0}
+  config: {fileID: 11400000, guid: eee66942694acfa48ab182cbf66a0805, type: 2}
   finalMap: []
 --- !u!114 &1502524283
 MonoBehaviour:
@@ -348,8 +348,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f8bfb552a86d004dad1b38136af86f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
-  startingPoint: {fileID: 0}
-  levelGenerator: {fileID: 0}
+  startingPoint: {fileID: 1007128269}
+  levelGenerator: {fileID: 1502524282}
+  poolContainer: {fileID: 817901870}
+  activeLevelContainer: {fileID: 1058143374}
+  _enemyBundle: {fileID: 11400000, guid: 19fdf16dd6ad17a4e8b0309e71727941, type: 2}
+  _spawnPoints: []
+  _budget: 200
 --- !u!4 &1502524284
 Transform:
   m_ObjectHideFlags: 0

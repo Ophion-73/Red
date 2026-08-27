@@ -13,12 +13,22 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private Transform poolContainer;
     [SerializeField] private Transform activeLevelContainer;
     
+    
     // este diccionario guarda un pool independiente para cada tipo de habitacion.
     private Dictionary<GameObject, ObjectPool<GameObject>> roomPools = new Dictionary<GameObject, ObjectPool<GameObject>>();
     
     // aqui estan las habitaciones que estan prendidas
     private List<GameObject> activeRooms = new List<GameObject>();
+
+    [Header("Enemy Generation")]
+    [SerializeField] private EnemyBundleSO _enemyBundle;
+    //Juan porfa haz un script que almacene la informacion de cada nivel como en este caso sus spawnpoints
+    [SerializeField] private List<Transform> _spawnPoints = new List<Transform>();
+    [SerializeField] private int _budget;
+    private EnemySpawningSystem _enemySpawningSystem;
+    private EnemySpawnPointsContainer _enemySpawnPointsContainer;
     
+
     private void OnEnable()
     {
         GameEvents.OnRequestLevelGeneration += LevelGeneration;
@@ -45,6 +55,9 @@ public class LevelManager : MonoBehaviour
             // BuildLevelAsync termine
             await BuildLevelAsync(levelGenerator.finalMap);
             GameEvents.OnLevelGenerated?.Invoke();
+            EnemySpawningSystem enemySpawningSystem = new EnemySpawningSystem(_enemyBundle, _spawnPoints, _budget, this);
+            _enemySpawningSystem = enemySpawningSystem;
+            _enemySpawningSystem.SpawnEnemies();
         }
         else
         {
@@ -58,6 +71,7 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     private async Awaitable BuildLevelAsync(List<GameObject> roomPrefabs)
     {
+        _enemySpawnPointsContainer = GetComponent<EnemySpawnPointsContainer>();
         Transform lastExit = startingPoint;
 
         foreach (GameObject prefab in roomPrefabs)
@@ -80,12 +94,22 @@ public class LevelManager : MonoBehaviour
             Vector3 entranceOffset = connector.Entrance.position - roomInstance.transform.position;
             roomInstance.transform.position = targetPosition - entranceOffset;
             lastExit = connector.Exit;
-            
+
+            EnemySpawnPointsContainer spawnPointsContainer = roomInstance.GetComponent<EnemySpawnPointsContainer>();
+            if (spawnPointsContainer != null)
+            {
+                for (int i = 0; i < spawnPointsContainer._enemyLevelspawnPoints.Count; i++)
+                {
+                    _spawnPoints.Add(spawnPointsContainer._enemyLevelspawnPoints[i]);
+                }
+            }
+
             // esto es como magia negra
             // el await hace que se pause el bucle durante un frame, esto nos sirve para que el
             // juego no se congele y la pantalla de carga siga con su animacion de manera fluida.
             await Awaitable.NextFrameAsync();
         }
+
     }
 
     private GameObject GetRoomFromPool(GameObject prefab)

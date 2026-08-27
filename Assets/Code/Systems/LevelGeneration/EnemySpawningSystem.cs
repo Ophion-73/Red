@@ -6,14 +6,14 @@ using System;
 public class EnemySpawningSystem
 {
     private EnemyBundleSO _enemies; 
-    private Transform[] _spawners;
+    private List<Transform> _spawners;
     private int _budget;
     private LevelManager _levelManager;
 
     private List<Enemy> _enemyPool = new List<Enemy>();
     private List<Transform> _unUsedSpawnPoints = new List<Transform>();
 
-    public EnemySpawningSystem(EnemyBundleSO enemies, Transform[] spawners, int budget, LevelManager levelManager)
+    public EnemySpawningSystem(EnemyBundleSO enemies, List<Transform> spawners, int budget, LevelManager levelManager)
     {
         _enemies = enemies;
         _spawners = spawners;
@@ -69,7 +69,7 @@ public class EnemySpawningSystem
     }
     public void CreateSpawnPointList()
     {
-        for (int i = 0; i < _spawners.Length; i++)
+        for (int i = 0; i < _spawners.Count; i++)
         {
             _unUsedSpawnPoints.Add(_spawners[i]);
         }
