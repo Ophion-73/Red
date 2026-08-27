@@ -33,6 +33,8 @@ public class Player : Entity
     [SerializeField] private float interactionRadius = 1.5f;
     [SerializeField] private LayerMask interactableLayer;
 
+    [SerializeField] private SpriteRenderer spriteRenderer;
+
     private Animator _animator;
 
     private void OnEnable()
