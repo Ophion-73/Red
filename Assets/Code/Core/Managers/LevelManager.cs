@@ -54,6 +54,9 @@ public class LevelManager : MonoBehaviour
             // aqui el await nos sirve para que esto se quede pausado hasta que el metodo
             // BuildLevelAsync termine
             await BuildLevelAsync(levelGenerator.finalMap);
+            
+            await Awaitable.WaitForSecondsAsync(2.5f);
+            
             GameEvents.OnLevelGenerated?.Invoke();
             EnemySpawningSystem enemySpawningSystem = new EnemySpawningSystem(_enemyBundle, _spawnPoints, _budget, this);
             _enemySpawningSystem = enemySpawningSystem;
