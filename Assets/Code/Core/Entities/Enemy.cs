@@ -21,6 +21,10 @@ public class Enemy : Entity
     protected override void Awake()
     {
         base.Awake(); 
+    }
+
+    protected virtual void OnEnable()
+    {
         _playerRef = FindFirstObjectByType<Player>(); 
         if (_playerRef == null) Debug.LogWarning($"Enemy " + gameObject.name + " no encontro a player");
     }

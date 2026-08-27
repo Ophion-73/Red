@@ -12,7 +12,13 @@ public class LevelManager : MonoBehaviour
     [Header("Hierarchy Organization")]
     [SerializeField] private Transform poolContainer;
     [SerializeField] private Transform activeLevelContainer;
+
+    [Header("Enemy Pooling")]
+    [SerializeField] private Transform enemyPoolContainer;
+    [SerializeField] private Transform activeEnemiesContainer;
     
+    private Dictionary<GameObject, ObjectPool<GameObject>> enemyPools = new Dictionary<GameObject, ObjectPool<GameObject>>();
+    private List<GameObject> activeEnemies = new List<GameObject>();
     
     // este diccionario guarda un pool independiente para cada tipo de habitacion.
     private Dictionary<GameObject, ObjectPool<GameObject>> roomPools = new Dictionary<GameObject, ObjectPool<GameObject>>();
@@ -28,6 +34,10 @@ public class LevelManager : MonoBehaviour
     private EnemySpawningSystem _enemySpawningSystem;
     private EnemySpawnPointsContainer _enemySpawnPointsContainer;
     
+    private void Awake()
+    {
+        if (_enemyBundle != null) _enemySpawningSystem = new EnemySpawningSystem(_enemyBundle, this);
+    }
 
     private void OnEnable()
     {
@@ -58,9 +68,7 @@ public class LevelManager : MonoBehaviour
             await Awaitable.WaitForSecondsAsync(2.5f);
             
             GameEvents.OnLevelGenerated?.Invoke();
-            EnemySpawningSystem enemySpawningSystem = new EnemySpawningSystem(_enemyBundle, _spawnPoints, _budget, this);
-            _enemySpawningSystem = enemySpawningSystem;
-            _enemySpawningSystem.SpawnEnemies();
+            _enemySpawningSystem.SpawnEnemies(_budget, _spawnPoints);
         }
         else
         {
@@ -150,12 +158,51 @@ public class LevelManager : MonoBehaviour
                 }
             }
         }
-        
         activeRooms.Clear();
+        
+        for (int i = 0; i < activeEnemies.Count; i++)
+        {
+            foreach (var kvp in enemyPools)
+            {
+                if (activeEnemies[i].name.Contains(kvp.Key.name))
+                {
+                    kvp.Value.Release(activeEnemies[i]);
+                    break;
+                }
+            }
+        }
+        activeEnemies.Clear();
+        
+        _spawnPoints.Clear();
     }
 
-    public void SpawnEnemy(GameObject enemy, Transform spawnPoint)
+    public void SpawnEnemyFromPool(GameObject enemyPrefab, Transform spawnPoint)
+    {
+        if (!enemyPools.ContainsKey(enemyPrefab))
+        {
+            enemyPools[enemyPrefab] = new ObjectPool<GameObject>(
+                createFunc: () => Instantiate(enemyPrefab, enemyPoolContainer),
+                actionOnGet: obj => obj.gameObject.SetActive(true),
+                actionOnRelease: obj =>
+                {
+                    obj.SetActive(false);
+                    obj.transform.SetParent(enemyPoolContainer);
+                },
+                actionOnDestroy: obj => Destroy(obj),
+                defaultCapacity: 20,
+                maxSize: 100
+            );
+        }
+
+        GameObject enemyInstance = enemyPools[enemyPrefab].Get();
+        enemyInstance.transform.SetParent(activeEnemiesContainer);
+        enemyInstance.transform.position = spawnPoint.position;
+        enemyInstance.transform.rotation = spawnPoint.rotation;
+        activeEnemies.Add(enemyInstance);
+    }
+    
+    /*public void SpawnEnemy(GameObject enemy, Transform spawnPoint)
     {
         Instantiate(enemy, spawnPoint);
-    }
+    }*/
 }
