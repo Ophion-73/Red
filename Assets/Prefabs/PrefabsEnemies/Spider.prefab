@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 708192312069557674}
   - component: {fileID: 2604732440619045496}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Spider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -157,6 +157,8 @@ MonoBehaviour:
   _isAlive: 1
   _currentState: 0
   _detectionRange: 10
+  _cost: 10
+  _enemyId: 0
   _summonerData: {fileID: 11400000, guid: 4618e432ea5dd564cb3986d9f178c1b5, type: 2}
   OnInvokeAttack:
     m_PersistentCalls:

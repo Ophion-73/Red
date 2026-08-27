@@ -12,13 +12,33 @@ public class LevelManager : MonoBehaviour
     [Header("Hierarchy Organization")]
     [SerializeField] private Transform poolContainer;
     [SerializeField] private Transform activeLevelContainer;
+
+    [Header("Enemy Pooling")]
+    [SerializeField] private Transform enemyPoolContainer;
+    [SerializeField] private Transform activeEnemiesContainer;
+    
+    private Dictionary<GameObject, ObjectPool<GameObject>> enemyPools = new Dictionary<GameObject, ObjectPool<GameObject>>();
+    private List<GameObject> activeEnemies = new List<GameObject>();
     
     // este diccionario guarda un pool independiente para cada tipo de habitacion.
     private Dictionary<GameObject, ObjectPool<GameObject>> roomPools = new Dictionary<GameObject, ObjectPool<GameObject>>();
     
     // aqui estan las habitaciones que estan prendidas
     private List<GameObject> activeRooms = new List<GameObject>();
+
+    [Header("Enemy Generation")]
+    [SerializeField] private EnemyBundleSO _enemyBundle;
+    //Juan porfa haz un script que almacene la informacion de cada nivel como en este caso sus spawnpoints
+    [SerializeField] private List<Transform> _spawnPoints = new List<Transform>();
+    [SerializeField] private int _budget;
+    private EnemySpawningSystem _enemySpawningSystem;
+    private EnemySpawnPointsContainer _enemySpawnPointsContainer;
     
+    private void Awake()
+    {
+        if (_enemyBundle != null) _enemySpawningSystem = new EnemySpawningSystem(_enemyBundle, this);
+    }
+
     private void OnEnable()
     {
         GameEvents.OnRequestLevelGeneration += LevelGeneration;
@@ -44,7 +64,11 @@ public class LevelManager : MonoBehaviour
             // aqui el await nos sirve para que esto se quede pausado hasta que el metodo
             // BuildLevelAsync termine
             await BuildLevelAsync(levelGenerator.finalMap);
+            
+            await Awaitable.WaitForSecondsAsync(2.5f);
+            
             GameEvents.OnLevelGenerated?.Invoke();
+            _enemySpawningSystem.SpawnEnemies(_budget, _spawnPoints);
         }
         else
         {
@@ -58,6 +82,7 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     private async Awaitable BuildLevelAsync(List<GameObject> roomPrefabs)
     {
+        _enemySpawnPointsContainer = GetComponent<EnemySpawnPointsContainer>();
         Transform lastExit = startingPoint;
 
         foreach (GameObject prefab in roomPrefabs)
@@ -80,12 +105,22 @@ public class LevelManager : MonoBehaviour
             Vector3 entranceOffset = connector.Entrance.position - roomInstance.transform.position;
             roomInstance.transform.position = targetPosition - entranceOffset;
             lastExit = connector.Exit;
-            
+
+            EnemySpawnPointsContainer spawnPointsContainer = roomInstance.GetComponent<EnemySpawnPointsContainer>();
+            if (spawnPointsContainer != null)
+            {
+                for (int i = 0; i < spawnPointsContainer._enemyLevelspawnPoints.Count; i++)
+                {
+                    _spawnPoints.Add(spawnPointsContainer._enemyLevelspawnPoints[i]);
+                }
+            }
+
             // esto es como magia negra
             // el await hace que se pause el bucle durante un frame, esto nos sirve para que el
             // juego no se congele y la pantalla de carga siga con su animacion de manera fluida.
             await Awaitable.NextFrameAsync();
         }
+
     }
 
     private GameObject GetRoomFromPool(GameObject prefab)
@@ -123,12 +158,51 @@ public class LevelManager : MonoBehaviour
                 }
             }
         }
-        
         activeRooms.Clear();
+        
+        for (int i = 0; i < activeEnemies.Count; i++)
+        {
+            foreach (var kvp in enemyPools)
+            {
+                if (activeEnemies[i].name.Contains(kvp.Key.name))
+                {
+                    kvp.Value.Release(activeEnemies[i]);
+                    break;
+                }
+            }
+        }
+        activeEnemies.Clear();
+        
+        _spawnPoints.Clear();
     }
 
-    public void SpawnEnemy(GameObject enemy, Transform spawnPoint)
+    public void SpawnEnemyFromPool(GameObject enemyPrefab, Transform spawnPoint)
+    {
+        if (!enemyPools.ContainsKey(enemyPrefab))
+        {
+            enemyPools[enemyPrefab] = new ObjectPool<GameObject>(
+                createFunc: () => Instantiate(enemyPrefab, enemyPoolContainer),
+                actionOnGet: obj => obj.gameObject.SetActive(true),
+                actionOnRelease: obj =>
+                {
+                    obj.SetActive(false);
+                    obj.transform.SetParent(enemyPoolContainer);
+                },
+                actionOnDestroy: obj => Destroy(obj),
+                defaultCapacity: 20,
+                maxSize: 100
+            );
+        }
+
+        GameObject enemyInstance = enemyPools[enemyPrefab].Get();
+        enemyInstance.transform.SetParent(activeEnemiesContainer);
+        enemyInstance.transform.position = spawnPoint.position;
+        enemyInstance.transform.rotation = spawnPoint.rotation;
+        activeEnemies.Add(enemyInstance);
+    }
+    
+    /*public void SpawnEnemy(GameObject enemy, Transform spawnPoint)
     {
         Instantiate(enemy, spawnPoint);
-    }
+    }*/
 }

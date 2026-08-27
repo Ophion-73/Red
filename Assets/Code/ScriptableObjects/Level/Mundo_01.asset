@@ -19,10 +19,25 @@ MonoBehaviour:
   - type: 1
     isRequired: 0
     fixedPrefab: {fileID: 3369868203514363026, guid: baa77133a18ebcf4ba65cf9084dc14fd, type: 3}
+  - type: 5
+    isRequired: 1
+    fixedPrefab: {fileID: 257498154865536231, guid: 49600b39e5f3be54fab627b4fb5846b7, type: 3}
   - type: 1
     isRequired: 0
     fixedPrefab: {fileID: 3369868203514363026, guid: baa77133a18ebcf4ba65cf9084dc14fd, type: 3}
+  - type: 2
+    isRequired: 1
+    fixedPrefab: {fileID: 3369868203514363026, guid: 7c0686cc8c11e3c419c59d2be9d8e34f, type: 3}
+  - type: 1
+    isRequired: 0
+    fixedPrefab: {fileID: 3369868203514363026, guid: baa77133a18ebcf4ba65cf9084dc14fd, type: 3}
+  - type: 3
+    isRequired: 1
+    fixedPrefab: {fileID: 257498154865536231, guid: 6fd4b07a9b948a549b5bdc9553ef4ae4, type: 3}
+  - type: 4
+    isRequired: 1
+    fixedPrefab: {fileID: 3369868203514363026, guid: 32e5f70d27d353749b0f2624f6ef8779, type: 3}
   combatRoomsPool:
   - {fileID: 3369868203514363026, guid: baa77133a18ebcf4ba65cf9084dc14fd, type: 3}
   eventRoomsPool:
-  - {fileID: 3369868203514363026, guid: baa77133a18ebcf4ba65cf9084dc14fd, type: 3}
+  - {fileID: 257498154865536231, guid: 49600b39e5f3be54fab627b4fb5846b7, type: 3}

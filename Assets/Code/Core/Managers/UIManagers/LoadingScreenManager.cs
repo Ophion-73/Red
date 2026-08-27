@@ -14,7 +14,10 @@ public class LoadingScreenManager : Singleton<LoadingScreenManager>
     protected override void Awake()
     {
         base.Awake();
-        if (loadingCanvas != null) loadingCanvas.enabled = false;
+        if (loadingCanvas != null)
+            loadingCanvas.enabled = false;
+        else
+            Debug.Log("No hay Canvas de Loading");
     }
 
     public void ShowLoadingScreen()
@@ -24,13 +27,18 @@ public class LoadingScreenManager : Singleton<LoadingScreenManager>
             loadingCanvas.enabled = true;
             StartCoroutine(Fade(1f));
         }
+        else
+            Debug.Log("No hay Canvas de Loading");
     }
 
     public void HideLoadingScreen()
     {
         StartCoroutine(Fade(0f, () => 
         {
-            if (loadingCanvas != null) loadingCanvas.enabled = false;
+            if (loadingCanvas != null)
+                loadingCanvas.enabled = false;
+            else
+                Debug.Log("No hay Canvas de Loading");
         }));
     }
 
