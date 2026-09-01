@@ -1,35 +1,41 @@
 using UnityEngine;
+using System.Collections;
 using UnityEngine.Events;
 
-public class Bear : Bulky
+public class SummonerSpider : Summoner
 {
-    [SerializeField] private BulkyData _bulkyData;
+    [SerializeField] private SummonerData _summonerData;
 
     [Header("Events")]
-    public UnityEvent OnExplosionAttack;
+    public UnityEvent OnInvokeAttack;
     public UnityEvent OnTakeDamage;
 
     [Header("Referencias")]
     [SerializeField] private Animator _animator;
 
+    [Header("Invocaciones")]
+    public bool canStun;
+    public Transform pointInvocations;
+    public GameObject invocations;
+
     private float _lastAttackTime;
 
     protected override void Awake()
     {
-        base.Awake();
+        canStun = true;
         _animator = GetComponent<Animator>();
+        base.Awake();
         InitializeStats();
     }
 
     private void InitializeStats()
     {
-        if (_bulkyData == null) return;
+        if (_summonerData == null) return;
 
-        MaxHealth = _bulkyData.maxHealth;
+        MaxHealth = _summonerData.maxHealth;
         CurrentHealth = MaxHealth;
-        MaxSpeed = _bulkyData.moveSpeed;
+        MaxSpeed = _summonerData.moveSpeed;
         CurrentSpeed = MaxSpeed;
-        CurrentDamage = _bulkyData.damage;
     }
 
     protected override void HandleIdle()
@@ -38,7 +44,6 @@ public class Bear : Bulky
         {
             ChangeState(State.Chasing);
             _animator.SetBool("Chasing", true);
-            Debug.Log("Chasing Activado");
             _animator.SetBool("Attacking", false);
         }
 
@@ -49,13 +54,11 @@ public class Bear : Bulky
         base.HandleChasing();
         float distanceToPlayer = Vector2.Distance(transform.position, _playerRef.transform.position);
 
-        if (distanceToPlayer <= _bulkyData.explosionRadius * 0.8f)
+        if (distanceToPlayer <= _summonerData.attackInvoke * 0.8f)
         {
-            Debug.Log("Entro a atacar");
             ChangeState(State.Attacking);
             _animator.SetBool("Attacking", true);
             _animator.SetBool("Chasing", false);
-
         }
 
 
@@ -67,7 +70,7 @@ public class Bear : Bulky
     {
         _rb.linearVelocity = new Vector2(0, _rb.linearVelocity.y);
 
-        if (Time.time >= _lastAttackTime + _bulkyData.attackCooldown)
+        if (Time.time >= _lastAttackTime + _summonerData.attackCooldown)
         {
             PerformAoEAttack();
             ChangeState(State.Chasing);
@@ -86,17 +89,31 @@ public class Bear : Bulky
     private void PerformAoEAttack()
     {
         _lastAttackTime = Time.time;
-        OnExplosionAttack?.Invoke();
+        OnInvokeAttack?.Invoke();
 
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, _bulkyData.explosionRadius, _bulkyData.playerLayer);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, _summonerData.attackInvoke, _summonerData.playerLayer);
         foreach (var col in hitColliders)
         {
             if (col.TryGetComponent<Player>(out Player p))
             {
-                p.TakeDamage(CurrentDamage);
-                Debug.Log("Bulky hit: " + p.name);
+                Instantiate(invocations, this.gameObject.transform.position, this.gameObject.transform.rotation);
+                if (canStun)
+                {
+                    p.OnStun(_summonerData.stunTime);
+                    Debug.Log("summon: " + p.name);
+                }
+                else if (!canStun)
+                {
+                    StartCoroutine(StunSummonCoroutine());
+                }
             }
         }
+    }
+    IEnumerator StunSummonCoroutine()
+    {
+        yield return new WaitForSeconds(_summonerData.stunCooldown);
+        Debug.Log(this.gameObject + "INVOKE" + invocations);
+        canStun = true;
     }
 
     public override void TakeDamage(float damage)
@@ -107,8 +124,8 @@ public class Bear : Bulky
 
     private void OnDrawGizmosSelected()
     {
-        if (_bulkyData == null) return;
+        if (_summonerData == null) return;
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, _bulkyData.explosionRadius);
+        Gizmos.DrawWireSphere(transform.position, _summonerData.attackInvoke);
     }
 }
