@@ -1,6 +1,3 @@
-using System;
-using System.Runtime.CompilerServices;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
@@ -8,6 +5,14 @@ using System.Collections;
 public enum AttackDirection { Up, Down, Right, Left, Neutral }
 public class Player : Entity
 {
+    [Header("Animator Hashes")]
+    private static readonly int HorizontalHash = Animator.StringToHash("Horizontal");
+    private static readonly int VerticalHash = Animator.StringToHash("Vertical");
+    private static readonly int IsGroundedHash = Animator.StringToHash("IsGrounded");
+    private static readonly int JumpHash = Animator.StringToHash("Jump");
+    private static readonly int RedButtonHash = Animator.StringToHash("REDButton");
+    private static readonly int DodgeHash = Animator.StringToHash("Dodge");
+
     [Header("Input Settings")]
     public InputActionAsset actions;
     private InputAction _move;
@@ -100,7 +105,7 @@ public class Player : Entity
         {
             AttackDirection dir = GetAttackDir(_moveInput);
             if (_attackSystem != null) _attackSystem.Attack(isGrounded, dir);
-            _animator.SetTrigger("REDButton");
+            _animator.SetTrigger(RedButtonHash);
         }
 
         if (_dash.WasPressedThisFrame())
@@ -131,7 +136,7 @@ public class Player : Entity
             _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, 0); 
             _rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
             
-            _animator.SetTrigger("Jump");
+            _animator.SetTrigger(JumpHash);
         }
     }
 
@@ -147,8 +152,8 @@ public class Player : Entity
             Invoke(nameof(EndDash), 0.2f);
         }
 
-        _animator.ResetTrigger("Dodge");
-        _animator.SetTrigger("Dodge");
+        _animator.ResetTrigger(DodgeHash);
+        _animator.SetTrigger(DodgeHash);
     }
 
     void EndDash()
@@ -158,9 +163,9 @@ public class Player : Entity
 
     private void UpdateAnimatorParameters()
     {
-        _animator.SetFloat("Horizontal", Mathf.Abs(_moveInput.x));
-        _animator.SetFloat("Vertical", _moveInput.y);
-        _animator.SetBool("IsGrounded", isGrounded);
+        _animator.SetFloat(HorizontalHash, Mathf.Abs(_moveInput.x));
+        _animator.SetFloat(VerticalHash, _moveInput.y);
+        _animator.SetBool(IsGroundedHash, isGrounded);
     }
 
     private void Flip()
