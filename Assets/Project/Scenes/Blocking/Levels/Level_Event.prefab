@@ -365,7 +365,7 @@ GameObject:
   - component: {fileID: 5133857496786862905}
   - component: {fileID: 5280347951399241014}
   - component: {fileID: 2068685798184032261}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ramas (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -501,7 +501,7 @@ GameObject:
   - component: {fileID: 1031799603526020293}
   - component: {fileID: 78785030058683989}
   - component: {fileID: 7224800343828936586}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ramas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -637,7 +637,7 @@ GameObject:
   - component: {fileID: 4486007629396993366}
   - component: {fileID: 6878336504747971849}
   - component: {fileID: 3177841644295304213}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Arbol Tirado
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -773,7 +773,7 @@ GameObject:
   - component: {fileID: 880647190715567671}
   - component: {fileID: 4686923784543310120}
   - component: {fileID: 8197623315222369375}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Piso (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -909,7 +909,7 @@ GameObject:
   - component: {fileID: 898366834797271438}
   - component: {fileID: 4685702718709541450}
   - component: {fileID: 5087519402376271749}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Arbol talable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1110,7 +1110,7 @@ GameObject:
   - component: {fileID: 8646624688714636989}
   - component: {fileID: 7201739244707748443}
   - component: {fileID: 6081057591905090001}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Puente (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1246,7 +1246,7 @@ GameObject:
   - component: {fileID: 8805142491763851935}
   - component: {fileID: 344996229676656876}
   - component: {fileID: 1781391050441909231}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Piso (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1562,7 +1562,7 @@ GameObject:
   - component: {fileID: 194540891067586353}
   - component: {fileID: 5871627888085627136}
   - component: {fileID: 7351350755264874329}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Puente (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1698,7 +1698,7 @@ GameObject:
   - component: {fileID: 9130045833121907471}
   - component: {fileID: 8562182882261690437}
   - component: {fileID: 7846357289328483388}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Piso
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1834,7 +1834,7 @@ GameObject:
   - component: {fileID: 8231915795099297919}
   - component: {fileID: 9203199215201174855}
   - component: {fileID: 3494163209243316305}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Puente
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2060,7 +2060,7 @@ GameObject:
   - component: {fileID: 108525845758124138}
   - component: {fileID: 4497495936678721389}
   - component: {fileID: 1238593277851962573}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ramas (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

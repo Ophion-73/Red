@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 2391936564417615269}
   - component: {fileID: 4983123848502493363}
   - component: {fileID: 8523130325914880515}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tronco (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -238,7 +238,7 @@ GameObject:
   - component: {fileID: 7503183417196345491}
   - component: {fileID: 2736623313677005787}
   - component: {fileID: 7116927223069362481}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: arbol talable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -349,7 +349,7 @@ GameObject:
   - component: {fileID: 6397878302064138268}
   - component: {fileID: 2097437310185624779}
   - component: {fileID: 7238081938210951091}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: piso
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -485,7 +485,7 @@ GameObject:
   - component: {fileID: 3739242198195784963}
   - component: {fileID: 5621785378186133929}
   - component: {fileID: 8383483310421540506}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: piso
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -792,7 +792,7 @@ GameObject:
   - component: {fileID: 4795981128156118173}
   - component: {fileID: 2279279906319487588}
   - component: {fileID: 5241652587842881650}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bajada
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1018,7 +1018,7 @@ GameObject:
   - component: {fileID: 5381260601188060122}
   - component: {fileID: 3984458600771352827}
   - component: {fileID: 6029082819688223727}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tronco (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1154,7 +1154,7 @@ GameObject:
   - component: {fileID: 6449260381844202237}
   - component: {fileID: 4561737809710372453}
   - component: {fileID: 2313522606273812780}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tronco
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1470,7 +1470,7 @@ GameObject:
   - component: {fileID: 6400551861832317657}
   - component: {fileID: 3746346011485119897}
   - component: {fileID: 3852815328558165066}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: piso
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1696,7 +1696,7 @@ GameObject:
   - component: {fileID: 9154719003441075445}
   - component: {fileID: 49093744768529573}
   - component: {fileID: 7124767437635064660}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: piso
   m_TagString: Untagged
   m_Icon: {fileID: 0}
