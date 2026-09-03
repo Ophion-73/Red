@@ -168,14 +168,14 @@ public class Player : Entity
         _animator.SetBool(IsGroundedHash, isGrounded);
     }
 
+    
+
     private void Flip()
     {
-        if (_moveInput.x > 0 && transform.localScale.x < 0 || _moveInput.x < 0 && transform.localScale.x > 0)
-        {
-            Vector3 localScale = transform.localScale;
-            localScale.x *= -1f;
-            transform.localScale = localScale;
-        }
+        if (_moveInput.x > 0)
+            spriteRenderer.flipX = false;
+        else if (_moveInput.x < 0)
+            spriteRenderer.flipX = true;
     }
 
     AttackDirection GetAttackDir(Vector2 input)
