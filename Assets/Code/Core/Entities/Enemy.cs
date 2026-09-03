@@ -70,7 +70,7 @@ public class Enemy : Entity
 
         _currentState = newState;
 
-        if (_currentState == State.Chasing)
+        /*if (_currentState == State.Chasing)
         {
             EnemyColliders.instance.EnterCombat(this);
 
@@ -78,7 +78,7 @@ public class Enemy : Entity
         else if (_currentState == State.Dead)
         {
             EnemyColliders.instance.ExitCombat(this);
-        }
+        }*/
     }
 
     protected void FlipTowardsPlayer()

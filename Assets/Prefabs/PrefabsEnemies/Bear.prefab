@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5142671835152015681}
   - component: {fileID: 632688208520980578}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Red_Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   m_Component:
   - component: {fileID: 243962529213628970}
   - component: {fileID: 7637219516160816829}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Red_Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 775107278187111706}
   - component: {fileID: 4865842686157884642}
   - component: {fileID: 4026526391219986185}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
