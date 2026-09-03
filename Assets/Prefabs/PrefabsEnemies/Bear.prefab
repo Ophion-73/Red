@@ -112,6 +112,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7637219516160816829
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -157,6 +158,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -166,7 +168,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &8035308274354450036
 GameObject:
@@ -180,7 +181,7 @@ GameObject:
   - component: {fileID: 5147595770533899587}
   - component: {fileID: 775107278187111706}
   - component: {fileID: 4865842686157884642}
-  - component: {fileID: 1028659324914888083}
+  - component: {fileID: 4026526391219986185}
   m_Layer: 0
   m_Name: Bear
   m_TagString: Untagged
@@ -300,7 +301,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1028659324914888083
+--- !u!114 &4026526391219986185
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -309,23 +310,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 8035308274354450036}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58c76ef8d460ca044ae4659bd3b34a3b, type: 3}
+  m_Script: {fileID: 11500000, guid: 7add8c8adc8967e498242df093217be0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Bulky
-  _currentHealth: 0
-  _maxHealth: 0
-  _currentSpeed: 0
-  _maxSpeed: 0
+  m_EditorClassIdentifier: Assembly-CSharp::Bear
+  _currentHealth: 100
+  _maxHealth: 100
+  _currentSpeed: 5
+  _maxSpeed: 5
   _currentDamage: 0
   _maxDamage: 0
-  _knockbackDirectionTest: {x: 0, y: 0}
+  _knockbackDirectionTest: {x: 1, y: 0}
   _knockbackForceTest: 0
   _damageTest: 0
   _isAlive: 1
   _currentState: 0
-  _detectionRange: 10
-  _cost: 5
-  _enemyId: 0
+  _detectionRange: 30
+  _cost: 10
+  _enemyId: 2
   _bulkyData: {fileID: 11400000, guid: e9717a73f37c797408cf2e220fb62726, type: 2}
   OnExplosionAttack:
     m_PersistentCalls:
