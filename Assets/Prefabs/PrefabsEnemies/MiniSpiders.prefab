@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 1494617702838547359}
   - component: {fileID: 6852427881966816792}
   - component: {fileID: 2471514333125469613}
-  - component: {fileID: 6993582757268970945}
+  - component: {fileID: 1566991919429969228}
   m_Layer: 0
   m_Name: MiniSpiders
   m_TagString: Untagged
@@ -163,7 +163,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6993582757268970945
+--- !u!114 &1566991919429969228
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -172,13 +172,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1023014697444916596}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dcaba4b1468796449dde14760e5226f, type: 3}
+  m_Script: {fileID: 11500000, guid: 204ac4cb9b037bf498ff25aa6ebef772, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Squishy
-  _currentHealth: 10
-  _maxHealth: 10
-  _currentSpeed: 10
-  _maxSpeed: 10
+  m_EditorClassIdentifier: Assembly-CSharp::MiniSpider
+  _currentHealth: 20
+  _maxHealth: 20
+  _currentSpeed: 5
+  _maxSpeed: 5
   _currentDamage: 0
   _maxDamage: 0
   _knockbackDirectionTest: {x: 0, y: 0}
@@ -186,9 +186,9 @@ MonoBehaviour:
   _damageTest: 0
   _isAlive: 1
   _currentState: 0
-  _detectionRange: 10
-  _cost: 5
-  _enemyId: 0
+  _detectionRange: 30
+  _cost: 10
+  _enemyId: 3
   _squishyData: {fileID: 11400000, guid: 2375ea53ffe6dc14cb151b3817b0480e, type: 2}
   OnExplosionAttack:
     m_PersistentCalls:
@@ -231,6 +231,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8173152741701836319
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -276,6 +277,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
@@ -285,5 +287,4 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0

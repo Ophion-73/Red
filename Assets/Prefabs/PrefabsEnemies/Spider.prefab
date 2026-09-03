@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6525631704262275135}
   - component: {fileID: 6990599560429505413}
   - component: {fileID: 708192312069557674}
-  - component: {fileID: 2604732440619045496}
+  - component: {fileID: 8828732695691539763}
   m_Layer: 0
   m_Name: Spider
   m_TagString: Untagged
@@ -133,7 +133,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2604732440619045496
+--- !u!114 &8828732695691539763
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,23 +142,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 68561327486231281}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f01240f3bf1cbde4982eb34ea20a5876, type: 3}
+  m_Script: {fileID: 11500000, guid: 5c4fa4cad1a43334daf62ec4f29cff62, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Summoner
-  _currentHealth: 10
-  _maxHealth: 10
-  _currentSpeed: 10
-  _maxSpeed: 10
+  m_EditorClassIdentifier: Assembly-CSharp::SummonerSpider
+  _currentHealth: 100
+  _maxHealth: 100
+  _currentSpeed: 5
+  _maxSpeed: 5
   _currentDamage: 0
   _maxDamage: 0
-  _knockbackDirectionTest: {x: 0, y: 0}
+  _knockbackDirectionTest: {x: 1, y: 0}
   _knockbackForceTest: 0
   _damageTest: 0
   _isAlive: 1
   _currentState: 0
-  _detectionRange: 10
+  _detectionRange: 30
   _cost: 10
-  _enemyId: 0
+  _enemyId: 4
   _summonerData: {fileID: 11400000, guid: 4618e432ea5dd564cb3986d9f178c1b5, type: 2}
   OnInvokeAttack:
     m_PersistentCalls:
@@ -235,6 +235,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5395488729311876976
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -280,6 +281,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -289,7 +291,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &3377071981607955985
 GameObject:
