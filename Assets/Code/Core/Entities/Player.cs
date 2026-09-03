@@ -75,7 +75,7 @@ public class Player : Entity
 
     private void Start()
     {
-        _animator = GetComponent<Animator>();
+        _animator = GetComponentInChildren<Animator>();
     }
 
     private void Update()
@@ -168,14 +168,18 @@ public class Player : Entity
         _animator.SetBool(IsGroundedHash, isGrounded);
     }
 
-    
-
     private void Flip()
     {
         if (_moveInput.x > 0)
+        {
+            Debug.Log("derecha");
             spriteRenderer.flipX = false;
+        }
         else if (_moveInput.x < 0)
+        {
+            Debug.Log("izquierda");
             spriteRenderer.flipX = true;
+        }
     }
 
     AttackDirection GetAttackDir(Vector2 input)
